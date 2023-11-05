@@ -1,0 +1,480 @@
+<html>
+<head>
+  <title>JS特效：一个打字绚烂烟花的特效 || 陈YFの博客(￣▽￣)"</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/606060 (zh-CN, DDL); Windows/10.0.0 (Win64); EDAMVersion=V2;"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="6464"/>
+<h1>JS特效：一个打字绚烂烟花的特效 || 陈YFの博客(￣▽￣)"</h1>
+
+<div><span>
+  <div style="--en-clipped-content:article; --en-clipped-source-url:https://blog.cyfan.top/p/d81838f5.html#Tampermonkey%25E7%2594%25A8%25E6%2588%25B7%25E6%259C%2589%25E7%25A6%258F%25E4%25BA%2586; --en-clipped-source-title:JS特效：一个打字绚烂烟花的特效 || 陈YFの博客(￣▽￣)&quot;;">
+<div><br/></div><div style="min-height: 9293px; font-size: 16px; display: block; min-width: 100%; position: relative;"> <div style="box-sizing:border-box;line-height:1.15;text-size-adjust:100%;-webkit-tap-highlight-color:transparent;font-size:16px;font-family:&quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;PingFang SC&quot;, &quot;Lantinghei SC&quot;, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft Sans Serif&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;overflow-wrap:break-word;"><div style="box-sizing:border-box;font-weight:400;line-height:1.5;text-align:left;font-family:&quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;PingFang SC&quot;, &quot;Lantinghei SC&quot;, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft Sans Serif&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;font-size:16px;overflow-wrap:break-word;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;color:rgb(60, 72, 88);background-color:rgb(248, 248, 248);"><span style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;background-color:rgb(255, 255, 255);transition:background-color 0.2s ease-in-out 0s;border-radius:8px;box-shadow:rgba(0, 0, 0, 0.24) 0px 12px 15px 0px, rgba(0, 0, 0, 0.19) 0px 17px 50px 0px;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;text-size-adjust:100%;line-height:1.5;overflow-wrap:break-word;color:rgb(44, 62, 80);font-family:&quot;SF Pro SC&quot;, &quot;SF Pro Text&quot;, &quot;SF Pro Icons&quot;, &quot;PingFang SC&quot;, &quot;Lantinghei SC&quot;, &quot;Microsoft Yahei&quot;, &quot;Hiragino Sans GB&quot;, &quot;Microsoft Sans Serif&quot;, &quot;WenQuanYi Micro Hei&quot;, sans-serif;font-size:16px;"><h1 style="margin:0.67em 0px;box-sizing:border-box;line-height:1.25;font-size:2em;padding-bottom:0.3em;border-bottom:1px solid rgb(234, 236, 239);color:rgb(26, 32, 44);font-weight:700;margin-bottom:0.75em;margin-top:0px;"><a href="https://blog.cyfan.top/p/d81838f5.html#%E5%89%8D%E8%A8%80%EF%BC%9A" style="cursor:pointer;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;box-sizing:border-box;background-color:initial;text-decoration:none;color:rgb(3, 102, 214);" title="前言："></a>前言：</h1><blockquote style="box-sizing:border-box;margin:0px;margin-top:0px;margin-bottom:16px;padding:0px 1em;border-left:0.25em solid rgb(223, 226, 229);color:rgb(113, 128, 150);"><p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;"><strong style="box-sizing:border-box;font-weight:700;">转载警告</strong><br style="box-sizing:border-box;"/>该特效转载<a href="http://mlldxe.cn/archives/541" rel="noopener" style="cursor:pointer;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;box-sizing:border-box;background-color:initial;text-decoration:none;color:rgb(3, 102, 214);" target="_blank">http://mlldxe.cn/archives/541</a>,本来是仅仅支持wordpress的,但顺手被我抠出来放回javascript中了。(●’◡’●)好有成就感呢！</p></blockquote><blockquote style="box-sizing:border-box;margin:0px;margin-top:0px;margin-bottom:16px;padding:0px 1em;border-left:0.25em solid rgb(223, 226, 229);color:rgb(113, 128, 150);"><p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;"><strong style="box-sizing:border-box;font-weight:700;">绚烂警告</strong><br style="box-sizing:border-box;"/>该代码效果及其绚烂,注意安全!</p></blockquote><p style="box-sizing:border-box;margin-top:0px;margin-bottom:16px;">好吧好吧,乱解刨别人代码也是不对的.</p><h1 style="margin:0.67em 0px;box-sizing:border-box;line-height:1.25;font-size:2em;padding-bottom:0.3em;border-bottom:1px solid rgb(234, 236, 239);color:rgb(26, 32, 44);font-weight:700;margin-top:2em;margin-bottom:0.75em;"><a href="https://blog.cyfan.top/p/d81838f5.html#%E4%BB%A3%E7%A0%81" style="cursor:pointer;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;box-sizing:border-box;background-color:initial;text-decoration:none;color:rgb(3, 102, 214);" title="代码:"></a>代码:</h1><h2 style="box-sizing:border-box;line-height:1.25;padding-bottom:0.3em;border-bottom:1px solid rgb(234, 236, 239);font-size:1.5em;color:rgb(26, 32, 44);margin-top:2em;margin-bottom:0.75em;font-weight:700;"><a href="https://blog.cyfan.top/p/d81838f5.html#%E5%8E%9F%E7%94%9F%E4%BB%A3%E7%A0%81" style="cursor:pointer;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;box-sizing:border-box;background-color:initial;text-decoration:none;color:rgb(3, 102, 214);" title="原生代码:"></a>原生代码:</h2><div style="box-sizing:border-box;display:block;background:rgb(30, 30, 30);color:rgb(220, 220, 220);border-radius:3px;overflow-x:initial;padding:0px;"><pre style="display:block;color:rgb(33, 37, 41);box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;margin-top:0px;margin-bottom:16px;overflow-wrap:normal;padding:16px;line-height:1.45;border-radius:3px;font-size:85%;position:relative;overflow:visible;background-color:initial;"><code style="box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;white-space:pre;color:rgb(220, 220, 220);word-break:normal;background:rgb(30, 30, 30);overflow:visible;overflow-wrap:normal;margin:0px;border:0px;background-color:initial;tab-size:4;font-size:85%;padding:0.5rem 0px;border-radius:3px;display:block;line-height:1.5;overflow-x:auto;"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> sw = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.screen.width;
+<span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (sw &gt; <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1200</span>) {
+    (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">webpackUniversalModuleDefinition</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">root, factory</span>) </span>{
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> exports === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'object'</span> &amp;&amp; <span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span> === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'object'</span>)
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports = factory();
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> define === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'function'</span> &amp;&amp; define.amd)
+                define([], factory);
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> exports === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'object'</span>)
+                exports[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;POWERMODE&quot;</span>] = factory();
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span>
+                root[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;POWERMODE&quot;</span>] = factory()
+        }
+    )(<span style="box-sizing:border-box;color:rgb(86, 156, 214);">this</span>, <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">modules</span>) </span>{
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> installedModules = {};
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">__webpack_require__</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">moduleId</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (installedModules[moduleId])
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> installedModules[moduleId].exports;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span> = installedModules[moduleId] = {
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">exports</span>: {},
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">id</span>: moduleId,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">loaded</span>: <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>
+                    };
+                    modules[moduleId].call(<span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports, <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>, <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports, __webpack_require__);
+                    <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.loaded = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports
+                }
+                __webpack_require__.m = modules;
+                __webpack_require__.c = installedModules;
+                __webpack_require__.p = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;&quot;</span>;
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> __webpack_require__(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>)
+            }
+        )([(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">module, exports, __webpack_require__</span>) </span>{
+                <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'use strict'</span>;
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> canvas = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.createElement(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'canvas'</span>);
+                canvas.width = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerWidth;
+                canvas.height = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerHeight;
+                canvas.style.cssText = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'position:fixed;top:0;left:0;pointer-events:none;z-index:999999'</span>;
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.addEventListener(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'resize'</span>, <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    canvas.width = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerWidth;
+                    canvas.height = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerHeight
+                });
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.appendChild(canvas);
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> context = canvas.getContext(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'2d'</span>);
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> particles = [];
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> particlePointer = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>;
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> rendering = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                POWERMODE.shake = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getRandom</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">min, max</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * (max - min) + min
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getColor</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">el</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (POWERMODE.colorful) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> u = getRandom(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">360</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'hsla('</span> + getRandom(u - <span style="box-sizing:border-box;color:rgb(184, 215, 163);">10</span>, u + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">10</span>) + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">', 100%, '</span> + getRandom(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">50</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">80</span>) + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'%, '</span> + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span> + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">')'</span>
+                    } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getComputedStyle(el).color
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getCaret</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> el = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.activeElement;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> bcr;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (el.tagName === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'TEXTAREA'</span> || (el.tagName === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'INPUT'</span> &amp;&amp; el.getAttribute(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'type'</span>) === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'text'</span>)) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> offset = __webpack_require__(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>)(el, el.selectionEnd);
+                        bcr = el.getBoundingClientRect();
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: offset.left + bcr.left,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: offset.top + bcr.top,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: getColor(el)
+                        }
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> selection = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getSelection();
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (selection.rangeCount) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> range = selection.getRangeAt(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> startNode = range.startContainer;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (startNode.nodeType === <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.TEXT_NODE) {
+                            startNode = startNode.parentNode
+                        }
+                        bcr = range.getBoundingClientRect();
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: bcr.left,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: bcr.top,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: getColor(startNode)
+                        }
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'transparent'</span>
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">createParticle</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">x, y, color</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: x,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: y,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">alpha</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: color,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">velocity</span>: {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-1</span> + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * <span style="box-sizing:border-box;color:rgb(184, 215, 163);">2</span>,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-3.5</span> + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * <span style="box-sizing:border-box;color:rgb(184, 215, 163);">2</span>
+                        }
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">POWERMODE</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> caret = getCaret();
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> numParticles = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">5</span> + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.round(<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * <span style="box-sizing:border-box;color:rgb(184, 215, 163);">10</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">while</span> (numParticles--) {
+                            particles[particlePointer] = createParticle(caret.x, caret.y, caret.color);
+                            particlePointer = (particlePointer + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>) % <span style="box-sizing:border-box;color:rgb(184, 215, 163);">500</span>
+                        }
+                    }
+                    {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (POWERMODE.shake) {
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> intensity = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span> + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">2</span> * <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random();
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> x = intensity * (<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() &gt; <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.5</span> ? <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-1</span> : <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>);
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> y = intensity * (<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() &gt; <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.5</span> ? <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-1</span> : <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>);
+                            <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginLeft = x + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'px'</span>;
+                            <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginTop = y + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'px'</span>;
+                            setTimeout(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginLeft = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">''</span>;
+                                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginTop = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">''</span>
+                            }, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">75</span>)
+                        }
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (!rendering) {
+                        requestAnimationFrame(loop)
+                    }
+                }
+                ;POWERMODE.colorful = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">loop</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    rendering = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+                    context.clearRect(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, canvas.width, canvas.height);
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> rendered = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> rect = canvas.getBoundingClientRect();
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">for</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> i = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>; i &lt; particles.length; ++i) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> particle = particles[i];
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (particle.alpha &lt;= <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.1</span>)
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">continue</span>;
+                        particle.velocity.y += <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.075</span>;
+                        particle.x += particle.velocity.x;
+                        particle.y += particle.velocity.y;
+                        particle.alpha *= <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.96</span>;
+                        context.globalAlpha = particle.alpha;
+                        context.fillStyle = particle.color;
+                        context.fillRect(<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.round(particle.x - <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1.5</span>) - rect.left, <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.round(particle.y - <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1.5</span>) - rect.top, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">3</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">3</span>);
+                        rendered = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (rendered) {
+                        requestAnimationFrame(loop)
+                    } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                        rendering = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports = POWERMODE
+            }
+        ), (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">module, exports</span>) </span>{
+                (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> properties = [<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'direction'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'boxSizing'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'width'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'height'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'overflowX'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'overflowY'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderTopWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderRightWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderBottomWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderLeftWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderStyle'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingTop'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingRight'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingBottom'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingLeft'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontStyle'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontVariant'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontWeight'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontStretch'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontSize'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontSizeAdjust'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'lineHeight'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontFamily'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textAlign'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textTransform'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textIndent'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textDecoration'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'letterSpacing'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'wordSpacing'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'tabSize'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'MozTabSize'</span>];
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> isFirefox = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.mozInnerScreenX != <span style="box-sizing:border-box;color:rgb(86, 156, 214);">null</span>;
+                    <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getCaretCoordinates</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">element, position, options</span>) </span>{
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> debug = options &amp;&amp; options.debug || <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (debug) {
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> el = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.querySelector(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'#input-textarea-caret-position-mirror-div'</span>);
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (el) {
+                                el.parentNode.removeChild(el)
+                            }
+                        }
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> div = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.createElement(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'div'</span>);
+                        div.id = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'input-textarea-caret-position-mirror-div'</span>;
+                        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.appendChild(div);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> style = div.style;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> computed = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getComputedStyle ? getComputedStyle(element) : element.currentStyle;
+                        style.whiteSpace = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'pre-wrap'</span>;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (element.nodeName !== <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'INPUT'</span>)
+                            style.wordWrap = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'break-word'</span>;
+                        style.position = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'absolute'</span>;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (!debug)
+                            style.visibility = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'hidden'</span>;
+                        properties.forEach(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">prop</span>) </span>{
+                            style[prop] = computed[prop]
+                        });
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (isFirefox) {
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (element.scrollHeight &gt; <span style="box-sizing:border-box;color:rgb(78, 201, 176);">parseInt</span>(computed.height))
+                                style.overflowY = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'scroll'</span>
+                        } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                            style.overflow = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'hidden'</span>
+                        }
+                        div.textContent = element.value.substring(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, position);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (element.nodeName === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'INPUT'</span>)
+                            div.textContent = div.textContent.replace(<span style="box-sizing:border-box;color:rgb(154, 83, 52);">/s/g</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;u00a0&quot;</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> span = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.createElement(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'span'</span>);
+                        span.textContent = element.value.substring(position) || <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'.'</span>;
+                        div.appendChild(span);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> coordinates = {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">top</span>: span.offsetTop + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">parseInt</span>(computed[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderTopWidth'</span>]),
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">left</span>: span.offsetLeft + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">parseInt</span>(computed[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderLeftWidth'</span>])
+                        };
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (debug) {
+                            span.style.backgroundColor = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'#aaa'</span>
+                        } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                            <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.removeChild(div)
+                        }
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> coordinates
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span> != <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;undefined&quot;</span> &amp;&amp; <span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports != <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;undefined&quot;</span>) {
+                        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports = getCaretCoordinates
+                    } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getCaretCoordinates = getCaretCoordinates
+                    }
+                }())
+            }
+        )])
+    })
+}
+
+    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> sw=<span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.screen.width;
+    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (sw&gt;<span style="box-sizing:border-box;color:rgb(184, 215, 163);">1200</span>) {
+        POWERMODE.colorful=<span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+        POWERMODE.shake=<span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.addEventListener(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'input'</span>,POWERMODE)
+    }</code></pre></div><h2 style="box-sizing:border-box;line-height:1.25;padding-bottom:0.3em;border-bottom:1px solid rgb(234, 236, 239);font-size:1.5em;color:rgb(26, 32, 44);margin-top:2em;margin-bottom:0.75em;font-weight:700;"><a href="https://blog.cyfan.top/p/d81838f5.html#Tampermonkey%E7%94%A8%E6%88%B7%E6%9C%89%E7%A6%8F%E4%BA%86" style="cursor:pointer;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;box-sizing:border-box;background-color:initial;text-decoration:none;color:rgb(3, 102, 214);" title="Tampermonkey用户有福了!"></a>Tampermonkey用户有福了!</h2><div style="box-sizing:border-box;display:block;background:rgb(30, 30, 30);color:rgb(220, 220, 220);border-radius:3px;overflow-x:initial;padding:0px;"><pre style="display:block;color:rgb(33, 37, 41);box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;margin-top:0px;margin-bottom:16px;overflow-wrap:normal;padding:16px;line-height:1.45;border-radius:3px;font-size:85%;position:relative;overflow:visible;background-color:initial;"><code style="box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;white-space:pre;color:rgb(220, 220, 220);word-break:normal;background:rgb(30, 30, 30);overflow:visible;overflow-wrap:normal;margin:0px;border:0px;background-color:initial;tab-size:4;font-size:85%;padding:0.5rem 0px;border-radius:3px;display:block;line-height:1.5;overflow-x:auto;"><span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// ==UserScript==</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @name         打字敲击特效</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @namespace    /</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @version      0.1</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @description  ?</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @author       CYF</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @match        *://*/*</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// @grant        none</span>
+<span style="box-sizing:border-box;color:rgb(87, 166, 74);font-style:italic;">// ==/UserScript==</span>
+
+<span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> sw = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.screen.width;
+<span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (sw &gt; <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1200</span>) {
+    (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">webpackUniversalModuleDefinition</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">root, factory</span>) </span>{
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> exports === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'object'</span> &amp;&amp; <span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span> === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'object'</span>)
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports = factory();
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> define === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'function'</span> &amp;&amp; define.amd)
+                define([], factory);
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> exports === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'object'</span>)
+                exports[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;POWERMODE&quot;</span>] = factory();
+            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span>
+                root[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;POWERMODE&quot;</span>] = factory()
+        }
+    )(<span style="box-sizing:border-box;color:rgb(86, 156, 214);">this</span>, <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">modules</span>) </span>{
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> installedModules = {};
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">__webpack_require__</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">moduleId</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (installedModules[moduleId])
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> installedModules[moduleId].exports;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span> = installedModules[moduleId] = {
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">exports</span>: {},
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">id</span>: moduleId,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">loaded</span>: <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>
+                    };
+                    modules[moduleId].call(<span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports, <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>, <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports, __webpack_require__);
+                    <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.loaded = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports
+                }
+                __webpack_require__.m = modules;
+                __webpack_require__.c = installedModules;
+                __webpack_require__.p = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;&quot;</span>;
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> __webpack_require__(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>)
+            }
+        )([(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">module, exports, __webpack_require__</span>) </span>{
+                <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'use strict'</span>;
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> canvas = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.createElement(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'canvas'</span>);
+                canvas.width = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerWidth;
+                canvas.height = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerHeight;
+                canvas.style.cssText = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'position:fixed;top:0;left:0;pointer-events:none;z-index:999999'</span>;
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.addEventListener(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'resize'</span>, <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    canvas.width = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerWidth;
+                    canvas.height = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.innerHeight
+                });
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.appendChild(canvas);
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> context = canvas.getContext(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'2d'</span>);
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> particles = [];
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> particlePointer = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>;
+                <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> rendering = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                POWERMODE.shake = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getRandom</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">min, max</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * (max - min) + min
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getColor</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">el</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (POWERMODE.colorful) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> u = getRandom(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">360</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'hsla('</span> + getRandom(u - <span style="box-sizing:border-box;color:rgb(184, 215, 163);">10</span>, u + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">10</span>) + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">', 100%, '</span> + getRandom(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">50</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">80</span>) + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'%, '</span> + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span> + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">')'</span>
+                    } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getComputedStyle(el).color
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getCaret</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> el = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.activeElement;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> bcr;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (el.tagName === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'TEXTAREA'</span> || (el.tagName === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'INPUT'</span> &amp;&amp; el.getAttribute(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'type'</span>) === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'text'</span>)) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> offset = __webpack_require__(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>)(el, el.selectionEnd);
+                        bcr = el.getBoundingClientRect();
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: offset.left + bcr.left,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: offset.top + bcr.top,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: getColor(el)
+                        }
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> selection = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getSelection();
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (selection.rangeCount) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> range = selection.getRangeAt(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> startNode = range.startContainer;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (startNode.nodeType === <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.TEXT_NODE) {
+                            startNode = startNode.parentNode
+                        }
+                        bcr = range.getBoundingClientRect();
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: bcr.left,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: bcr.top,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: getColor(startNode)
+                        }
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'transparent'</span>
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">createParticle</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">x, y, color</span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> {
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: x,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: y,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">alpha</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">color</span>: color,
+                        <span style="box-sizing:border-box;color:rgb(156, 220, 254);">velocity</span>: {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">x</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-1</span> + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * <span style="box-sizing:border-box;color:rgb(184, 215, 163);">2</span>,
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">y</span>: <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-3.5</span> + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * <span style="box-sizing:border-box;color:rgb(184, 215, 163);">2</span>
+                        }
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">POWERMODE</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> caret = getCaret();
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> numParticles = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">5</span> + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.round(<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() * <span style="box-sizing:border-box;color:rgb(184, 215, 163);">10</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">while</span> (numParticles--) {
+                            particles[particlePointer] = createParticle(caret.x, caret.y, caret.color);
+                            particlePointer = (particlePointer + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>) % <span style="box-sizing:border-box;color:rgb(184, 215, 163);">500</span>
+                        }
+                    }
+                    {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (POWERMODE.shake) {
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> intensity = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span> + <span style="box-sizing:border-box;color:rgb(184, 215, 163);">2</span> * <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random();
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> x = intensity * (<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() &gt; <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.5</span> ? <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-1</span> : <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>);
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> y = intensity * (<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.random() &gt; <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.5</span> ? <span style="box-sizing:border-box;color:rgb(184, 215, 163);">-1</span> : <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1</span>);
+                            <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginLeft = x + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'px'</span>;
+                            <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginTop = y + <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'px'</span>;
+                            setTimeout(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginLeft = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">''</span>;
+                                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.style.marginTop = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">''</span>
+                            }, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">75</span>)
+                        }
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (!rendering) {
+                        requestAnimationFrame(loop)
+                    }
+                }
+                ;POWERMODE.colorful = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">loop</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    rendering = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+                    context.clearRect(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, canvas.width, canvas.height);
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> rendered = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> rect = canvas.getBoundingClientRect();
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">for</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> i = <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>; i &lt; particles.length; ++i) {
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> particle = particles[i];
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (particle.alpha &lt;= <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.1</span>)
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">continue</span>;
+                        particle.velocity.y += <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.075</span>;
+                        particle.x += particle.velocity.x;
+                        particle.y += particle.velocity.y;
+                        particle.alpha *= <span style="box-sizing:border-box;color:rgb(184, 215, 163);">0.96</span>;
+                        context.globalAlpha = particle.alpha;
+                        context.fillStyle = particle.color;
+                        context.fillRect(<span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.round(particle.x - <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1.5</span>) - rect.left, <span style="box-sizing:border-box;color:rgb(78, 201, 176);">Math</span>.round(particle.y - <span style="box-sizing:border-box;color:rgb(184, 215, 163);">1.5</span>) - rect.top, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">3</span>, <span style="box-sizing:border-box;color:rgb(184, 215, 163);">3</span>);
+                        rendered = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (rendered) {
+                        requestAnimationFrame(loop)
+                    } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                        rendering = <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>
+                    }
+                }
+                <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports = POWERMODE
+            }
+        ), (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">module, exports</span>) </span>{
+                (<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"></span>) </span>{
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> properties = [<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'direction'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'boxSizing'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'width'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'height'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'overflowX'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'overflowY'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderTopWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderRightWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderBottomWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderLeftWidth'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderStyle'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingTop'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingRight'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingBottom'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'paddingLeft'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontStyle'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontVariant'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontWeight'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontStretch'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontSize'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontSizeAdjust'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'lineHeight'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'fontFamily'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textAlign'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textTransform'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textIndent'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'textDecoration'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'letterSpacing'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'wordSpacing'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'tabSize'</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'MozTabSize'</span>];
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> isFirefox = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.mozInnerScreenX != <span style="box-sizing:border-box;color:rgb(86, 156, 214);">null</span>;
+                    <span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span> <span style="box-sizing:border-box;color:rgb(220, 220, 220);">getCaretCoordinates</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">element, position, options</span>) </span>{
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> debug = options &amp;&amp; options.debug || <span style="box-sizing:border-box;color:rgb(86, 156, 214);">false</span>;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (debug) {
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> el = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.querySelector(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'#input-textarea-caret-position-mirror-div'</span>);
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (el) {
+                                el.parentNode.removeChild(el)
+                            }
+                        }
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> div = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.createElement(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'div'</span>);
+                        div.id = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'input-textarea-caret-position-mirror-div'</span>;
+                        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.appendChild(div);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> style = div.style;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> computed = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getComputedStyle ? getComputedStyle(element) : element.currentStyle;
+                        style.whiteSpace = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'pre-wrap'</span>;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (element.nodeName !== <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'INPUT'</span>)
+                            style.wordWrap = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'break-word'</span>;
+                        style.position = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'absolute'</span>;
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (!debug)
+                            style.visibility = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'hidden'</span>;
+                        properties.forEach(<span style="box-sizing:border-box;color:rgb(220, 220, 220);"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">function</span>(<span style="box-sizing:border-box;color:rgb(220, 220, 220);">prop</span>) </span>{
+                            style[prop] = computed[prop]
+                        });
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (isFirefox) {
+                            <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (element.scrollHeight &gt; <span style="box-sizing:border-box;color:rgb(78, 201, 176);">parseInt</span>(computed.height))
+                                style.overflowY = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'scroll'</span>
+                        } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                            style.overflow = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'hidden'</span>
+                        }
+                        div.textContent = element.value.substring(<span style="box-sizing:border-box;color:rgb(184, 215, 163);">0</span>, position);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (element.nodeName === <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'INPUT'</span>)
+                            div.textContent = div.textContent.replace(<span style="box-sizing:border-box;color:rgb(154, 83, 52);">/s/g</span>, <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;u00a0&quot;</span>);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> span = <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.createElement(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'span'</span>);
+                        span.textContent = element.value.substring(position) || <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'.'</span>;
+                        div.appendChild(span);
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> coordinates = {
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">top</span>: span.offsetTop + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">parseInt</span>(computed[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderTopWidth'</span>]),
+                            <span style="box-sizing:border-box;color:rgb(156, 220, 254);">left</span>: span.offsetLeft + <span style="box-sizing:border-box;color:rgb(78, 201, 176);">parseInt</span>(computed[<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'borderLeftWidth'</span>])
+                        };
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (debug) {
+                            span.style.backgroundColor = <span style="box-sizing:border-box;color:rgb(214, 157, 133);">'#aaa'</span>
+                        } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                            <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.removeChild(div)
+                        }
+                        <span style="box-sizing:border-box;color:rgb(86, 156, 214);">return</span> coordinates
+                    }
+                    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (<span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span> != <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;undefined&quot;</span> &amp;&amp; <span style="box-sizing:border-box;color:rgb(86, 156, 214);">typeof</span> <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports != <span style="box-sizing:border-box;color:rgb(214, 157, 133);">&quot;undefined&quot;</span>) {
+                        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">module</span>.exports = getCaretCoordinates
+                    } <span style="box-sizing:border-box;color:rgb(86, 156, 214);">else</span> {
+                        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.getCaretCoordinates = getCaretCoordinates
+                    }
+                }())
+            }
+        )])
+    })
+}
+
+    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> sw=<span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.screen.width;
+    <span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (sw&gt;<span style="box-sizing:border-box;color:rgb(184, 215, 163);">1200</span>) {
+        POWERMODE.colorful=<span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+        POWERMODE.shake=<span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+        <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.addEventListener(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'input'</span>,POWERMODE)
+    }</code></pre></div><h1 style="margin:0.67em 0px;box-sizing:border-box;line-height:1.25;font-size:2em;padding-bottom:0.3em;border-bottom:1px solid rgb(234, 236, 239);color:rgb(26, 32, 44);font-weight:700;margin-top:2em;margin-bottom:0.75em;"><a href="https://blog.cyfan.top/p/d81838f5.html#%E4%BF%AE%E6%94%B9%E6%8F%90%E7%A4%BA" style="cursor:pointer;transition:color 0.2s ease-in-out 0s, background-color 0.2s ease-in-out 0s;box-sizing:border-box;background-color:initial;text-decoration:none;color:rgb(3, 102, 214);" title="修改提示:"></a>修改提示:</h1><p style="box-sizing:border-box;margin-top:0px;margin-bottom:16px;">最后几行:</p><div style="box-sizing:border-box;display:block;background:rgb(30, 30, 30);color:rgb(220, 220, 220);border-radius:3px;overflow-x:initial;padding:0px;"><pre style="display:block;color:rgb(33, 37, 41);box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;margin-top:0px;margin-bottom:16px;overflow-wrap:normal;padding:16px;line-height:1.45;border-radius:3px;font-size:85%;position:relative;overflow:visible;background-color:initial;"><code style="box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;white-space:pre;color:rgb(220, 220, 220);word-break:normal;background:rgb(30, 30, 30);overflow:visible;overflow-wrap:normal;margin:0px;border:0px;background-color:initial;tab-size:4;font-size:85%;padding:0.5rem 0px;border-radius:3px;display:block;line-height:1.5;overflow-x:auto;"><span style="box-sizing:border-box;color:rgb(86, 156, 214);">var</span> sw=<span style="box-sizing:border-box;color:rgb(78, 201, 176);">window</span>.screen.width;
+<span style="box-sizing:border-box;color:rgb(86, 156, 214);">if</span> (sw&gt;<span style="box-sizing:border-box;color:rgb(184, 215, 163);">1200</span>) {
+    POWERMODE.colorful=<span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>; 
+    POWERMODE.shake=<span style="box-sizing:border-box;color:rgb(86, 156, 214);">true</span>;
+    <span style="box-sizing:border-box;color:rgb(78, 201, 176);">document</span>.body.addEventListener(<span style="box-sizing:border-box;color:rgb(214, 157, 133);">'input'</span>,POWERMODE)
+}</code></pre></div><p style="box-sizing:border-box;margin-top:0px;margin-bottom:16px;">中<code style="color:rgb(232, 62, 140);overflow-wrap:break-word;box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;padding:0.2em 0.4em;margin:0px;background-color:rgba(27, 31, 35, 0.05);border-radius:3px;font-size:85%;">POWERMODE.colorful=true;</code>指是否开启多彩颜色。而<code style="color:rgb(232, 62, 140);overflow-wrap:break-word;box-sizing:border-box;font-family:SFMono-Regular, Consolas, &quot;Liberation Mono&quot;, Menlo, monospace;padding:0.2em 0.4em;margin:0px;background-color:rgba(27, 31, 35, 0.05);border-radius:3px;font-size:85%;">POWERMODE.shake=true;</code>指是否开启屏幕震荡.<br style="box-sizing:border-box;"/>默认全部开启.</p><hr style="box-sizing:initial;background:0px 0px;overflow:hidden;border-right-style:initial;border-bottom-style:solid;border-left-style:initial;border-right-color:initial;border-left-color:initial;border-image:initial;border-top-style:initial;border-top-color:initial;border-bottom-color:rgb(238, 238, 238);padding:0px;background-color:rgb(225, 228, 232);border:0px;height:0.2em;margin:2rem 0px;margin-bottom:0px;"/></div></div></div></div></div></div></div></span></div></div></div>
+</div>
+</span>
+</div></body></html> 

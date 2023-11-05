@@ -1,0 +1,435 @@
+<html>
+<head>
+  <title>Vue双向绑定原理及实现</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/606060 (zh-CN, DDL); Windows/10.0.0 (Win64); EDAMVersion=V2;"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="6173"/>
+<h1>Vue双向绑定原理及实现</h1>
+
+<div><span>
+  <div style="--en-clipped-content:article; --en-clipped-source-url:https://www.shirmy.me/article/17; --en-clipped-source-title:Vue双向绑定原理及实现;">
+<div><br/></div><div style="min-height: 10800px; font-size: 16px; display: block; min-width: 100%; position: relative;"> <div style="font:inherit;vertical-align:baseline;line-height:1.15;text-size-adjust:100%;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-font-smoothing:antialiased;font-size:16px;overflow:hidden auto;"><div style="font:inherit;vertical-align:baseline;-webkit-tap-highlight-color:rgba(0, 0, 0, 0);-webkit-font-smoothing:antialiased;font-family:&quot;Noto Sans&quot;, sans-serif;font-size:16px;font-weight:400;overflow-wrap:break-word;word-break:break-word;background-color:rgb(255, 255, 255);transition:all 0.1s linear 0s;line-height:1.5;color:rgb(22, 27, 61);overflow:hidden;"><div style="font:inherit;vertical-align:baseline;"><div style="font:inherit;vertical-align:baseline;"><div style="font:inherit;vertical-align:baseline;justify-content:space-between;"><span><div style="font:inherit;vertical-align:baseline;"><div style="font:inherit;vertical-align:baseline;box-sizing:border-box;border-radius:5px 5px 0px 0px;"><div style="font:inherit;vertical-align:baseline;border-radius:5px 5px 0px 0px;background-color:rgb(255, 255, 255);transition:all 0.1s linear 0s;"><div style="font:inherit;vertical-align:baseline;"><div style="font:inherit;vertical-align:baseline;font-size:15px;"><h1 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:40px;line-height:1;margin:1em 0px;">Vue双向绑定原理及实现</h1>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">虽然类似的文章已经很多了，但是我还是要写一篇博客来做个总结，也可以说是做个笔记？话不多说，直接开始。先上效果图：</p>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">
+    </p><div style="padding:0px;border:0px;font:inherit;vertical-align:baseline;flex-direction:column;width:100%;margin:1.5em 0px;display:flex;">
+      <div style="margin:0px;border:0px;font:inherit;vertical-align:baseline;box-sizing:border-box;display:flex;justify-content:center;align-items:center;position:relative;width:100%;cursor:zoom-in;padding:0px 1em;">
+        <img src="Vue双向绑定原理及实现_files/Vue双向绑定.gif-progressive" type="image/gif" data-filename="Vue双向绑定.gif-progressive" height="260" style="visibility:undefined;display:undefined;opacity:undefined;margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;border-style:none;max-width:100%;border-radius:4px;transition:all 0.25s linear 0s;filter:blur(8px);" title="双向绑定实例" width="500"/>
+        <img src="Vue双向绑定原理及实现_files/Vue双向绑定 [1].gif-progressive" type="image/gif" data-filename="Vue双向绑定.gif-progressive" height="244" style="margin:0px;border:0px;font:inherit;vertical-align:baseline;border-style:none;max-width:100%;border-radius:4px;transition:all 0.25s linear 0s;box-sizing:border-box;position:absolute;top:0px;padding:0px 1em;opacity:1;" title="双向绑定实例" width="500"/>
+      </div>
+      <div style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;margin-top:1em;text-align:center;">
+        <span style="border:0px;font:inherit;vertical-align:baseline;display:inline-block;border-bottom:0.995798px solid rgb(220, 223, 231);margin:0px auto;padding:0.1em 0.3em;">双向绑定实例</span>
+      </div>
+    </div>
+  <p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;"></p>
+<h2 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:30px;line-height:1;margin:1em 0px;">Object.defineProperty</h2>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">Vue实现双向绑定的核心是<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Object.defineProperty()</code>方法，它可以自定义属性的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>和<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>，如此一来，我们就可劫持数据，在数据改变时，通过<strong style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:bolder;">发布——订阅</strong>模式来更新视图。请看下面的例子</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> person = {}
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Object</span>.defineProperty(person, <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'name'</span>, {
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">get</span>() {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">console</span>.log(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">`get <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(51, 51, 51);font-weight:400;">${name}</span>`</span>)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> name
+  },
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">set</span>(newVal) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">console</span>.log(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">`set <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(51, 51, 51);font-weight:400;">${newVal}</span>`</span>)
+    name = newVal
+  }
+})
+person.name = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'smile'</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 触发 set() 打印 set smile</span>
+person.name <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 触发 get() 打印 get smile</span></code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">上面的例子，通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Object.defineProperty()</code>在对象<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">person={}</code>上定义了一个<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">name</code>属性，并且定义了它的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>和<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>方法，如此一来，在改变<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">person</code>上的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">name</code>的时候就会触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>，在读取<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">person</code>上的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">name</code>时就会触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>。这时我们就可以在<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>方法和<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>方法中做一些事情，比如当属性发生变化时更新视图了。</p>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">说白了就是，给监听的数据定义<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>并编写更新视图的方法，数据变化 -&gt; 触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">set()</code> -&gt; 变化后的值更新到视图</p>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">接下来，我们可以画出流程图，并根据流程图去实现：</p>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">
+    </p><div style="padding:0px;border:0px;font:inherit;vertical-align:baseline;flex-direction:column;width:100%;margin:1.5em 0px;display:flex;">
+      <div style="margin:0px;border:0px;font:inherit;vertical-align:baseline;box-sizing:border-box;display:flex;justify-content:center;align-items:center;position:relative;width:100%;cursor:zoom-in;padding:0px 1em;">
+        <img src="Vue双向绑定原理及实现_files/双向绑定流程.png-thumbnail" type="image/png" data-filename="双向绑定流程.png-thumbnail" height="436" style="visibility:undefined;display:undefined;opacity:undefined;margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;border-style:none;max-width:100%;border-radius:4px;transition:all 0.25s linear 0s;filter:blur(8px);" title="双向绑定流程" width="650"/>
+        <img src="Vue双向绑定原理及实现_files/双向绑定流程.png-progressive" type="image/png" data-filename="双向绑定流程.png-progressive" height="416" style="margin:0px;border:0px;font:inherit;vertical-align:baseline;border-style:none;max-width:100%;border-radius:4px;transition:all 0.25s linear 0s;box-sizing:border-box;position:absolute;top:0px;padding:0px 1em;opacity:1;" title="双向绑定流程" width="650"/>
+      </div>
+      <div style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;margin-top:1em;text-align:center;">
+        <span style="border:0px;font:inherit;vertical-align:baseline;display:inline-block;border-bottom:0.995798px solid rgb(220, 223, 231);margin:0px auto;padding:0.1em 0.3em;">双向绑定流程</span>
+      </div>
+    </div>
+  <p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;"></p>
+<h2 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:30px;line-height:1;margin:1em 0px;">监听器Observer和依赖收集</h2>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在知道如何通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>方法<strong style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:bolder;">劫持数据</strong>后，我们就可以开始实现了双向绑定了。</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> vm = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Vue({
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">el</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'#app'</span>,
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data</span>: {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">name</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'smile'</span>
+  }
+})</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">通过分析 Vue 实例的创建可以看到，在实例化时会传入一个对象，里面包括了<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">el</code>用于指定需要挂载的 DOM 节点，包括了<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">data</code>用于存储需要双向绑定的数据，因此我们需要定义一个 Vue 类，并在构造函数中传入<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">el</code>和<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">data</code>，此外还需要提供可供挂载的 DOM 节点。</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">div</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">id</span>=<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">&quot;app&quot;</span>&gt;</span><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;/<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">div</span>&gt;</span></code></pre>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// step0: 需要创建一个 Vue 类，并且在实例化时传入需要监听的属性，需要挂载的 DOM 节点位置</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Vue</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>(options, prop) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$options = options
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data = options.data
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$prop = prop
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$el = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">document</span>.querySelector(options.el) <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 获取需要挂载的视图模板</span>
+
+    observer(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data)  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// step1: 对 data 中的属性逐一定义 setter 方法</span>
+  }
+}</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">接下来，我们需要对<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">data</code>里的属性逐一定义<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>方法，为了当属性发生变化时可以触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>方法，通知视图更新。</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(0, 146, 219);">function</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(153, 0, 0);">observer</span>(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data</span>) </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// data 必须存在，而且是个 object 类型</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (!data || <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">typeof</span> data !== <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'object'</span>) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span>
+  }
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 给 data 中的属性都定义 setter</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Object</span>.keys(data).forEach(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">key</span> =&gt;</span> {
+    defineReactive(data, key, data[key])
+  })
+}</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">接下来编写<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">defineReactive()</code>方法，这时我们要想，既然要通知视图更新，那么事先总得要收集需要更新的属性，因为我们的视图模板上可能会有多个属性，因此我们创建一个<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Dep</code>来收集所有的<strong style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:bolder;">依赖</strong>，并进行统一的管理</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Dep</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>() {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.subs = [] <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 存储所有依赖</span>
+  }
+
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 收集依赖</span>
+  addSubs(sub) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.subs.push(sub)
+  }
+
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 通知视图更新</span>
+  notify() {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">console</span>.log(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'监听的属性发生变化，触发视图更新'</span>)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.subs.forEach(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">sub</span> =&gt;</span> {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 通过调用依赖项 update() 方法来更新视图</span>
+      sub.update()
+    })
+  }
+}</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">那么问题来了，我们应该在哪里收集依赖呢？在最上面的例子可以知道，当属性被读取时会触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>，因此我们可以根据属性的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>方法来收集依赖。比如在视图模板中定义了两个<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">{{name}}</code>，那么在我们模板编译后获取到两个<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">name</code>属性，然后依次触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">name</code>属性的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>方法收集依赖，依赖项中包含了视图更新的回调。这样当数据变化触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>后，就可以遍历所有依赖，并执行依赖的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">update</code>方法来更新视图了。现在不明白没关系，等到最后就明白了。</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">/**
+  data 有可能是多级结构，所以需要递归的方式，给内层的 object 属性都定义 setter 方法
+  data: {
+    person: {
+      age: 0,
+      name: 'smile,
+    }
+  }
+ */</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(0, 146, 219);">function</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(153, 0, 0);">defineReactive</span>(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data, key, value</span>) </span>{
+  observer(value) <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// value 可能还是一个 object</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> dep = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Dep()
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Object</span>.defineProperty(data, key, {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">get</span>() {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">TODO:</span> 这里进行依赖收集</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// dep.addSubs()</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> value
+    },
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">set</span>(newVal) {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (value !== newVal) {
+        value = newVal
+        dep.notify()
+      }
+    }
+  })
+}</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">现在，我们就监听到属性的变化，并且触发视图更新的方法了</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> vm = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Vue({
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">el</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'#app'</span>,
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data</span>: {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">name</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'smile'</span>
+  }
+})
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 赋值触发 set() 方法，值发生改变，触发 notify() 方法</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 因此控制台打印：监听的属性发生变化，触发视图更新</span>
+vm.$data.name = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'laugh'</span>
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 当 data 为多层级时</span>
+
+vm = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Vue({
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">el</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'#app'</span>,
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data</span>: {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">person</span>: {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">name</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'smile'</span>
+    }
+  }
+})
+
+vm.$data.person.name = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'laugh'</span>  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 同样可以触发 setter</span></code></pre>
+<h2 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:30px;line-height:1;margin:1em 0px;">订阅者Watcher</h2>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在上面的步骤中，已经解决了通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>触发更新以及何时收集依赖的问题，现在我们就要定义订阅者 Watcher 去触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>来进行订阅了。在每次实例化 Watcher 的时候通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">this.vm.$data[this.prop]</code>来触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">getter</code>进行依赖收集并保存当前的值。然后在 Watcher 中定义<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">update()</code>方法，当值发生变化后触发<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">setter</code>中调用<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">update()</code>方法执行更新视图的回调。</p>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在有了订阅者 Watcher 后，通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Dep.target = this</code>把当前 Watcher 保存到 Dep 中，并为了保证依赖只收集一次，需要在 Dep 的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">get()</code>中判断存在<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Dep.target</code>时保存 Watcher，保存之后马上把<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Dep.target</code>置为<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">null</code></p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// Dep.target = null 确保 Dep 的 target 属性为空</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Dep</span> </span>{...}
+Dep.target = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">null</span>
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 改造 defineReactive() 中的 get()</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">get</span>() {
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 确保只收集一次</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (Dep.target) {
+    dep.addSubs(Dep.target)
+  }
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> value
+}
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 订阅者 Watcher</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Watcher</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// vm 表示当前 Vue 实例</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// prop 表示需要订阅的属性</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// callback 表示触发更新时的回调函数，用于更新视图模板</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>(vm, prop, callback) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm = vm
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.prop = prop
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.callback = callback
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.value = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.get()
+  }
+
+  update() {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> value = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm.$data[<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.prop]
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> oldVal = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.value
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (value !== oldVal) {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.value = value
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.callback(value)
+    }
+  }
+
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">get</span>() {
+    Dep.target = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 储存订阅器</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> value = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm.$data[<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.prop] <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 触发 get 收集订阅器</span>
+    Dep.target = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">null</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> value
+  }
+}</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">此时每次执行<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">new Watcher()</code>时相当于：</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Dep.target = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 储存订阅器</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (Dep.target) { <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 确保只在实例化 Watcher 时收集订阅器</span>
+  dep.addSubs(Dep.target) <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 收集订阅器</span>
+}
+Dep.target = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">null</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 把 target 置为空，避免后续触发 getter 时调用 addSubs() 方法</span></code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">接下来就可以进行测试了：</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Vue</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>(options, prop) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$options = options
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data = options.data
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$prop = prop
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$el = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">document</span>.querySelector(options.el)
+
+    observer(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data)
+
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 把文本内容设置为初始化时的值</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$el.textContent = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data[<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$prop]
+
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 实例化订阅器，订阅当前属性，当值变化时执行回调，更换文本内容</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Watcher(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>, <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$prop, value =&gt; {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$el.textContent = value
+    })
+  }
+}
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> vm = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Vue({
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">el</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'#app'</span>,
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data</span>: {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">name</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'smile'</span>
+  }
+}, <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'name'</span>)  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 第二个参数传入需要监听的属性 name</span>
+
+setTimeout(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">()</span> =&gt;</span> {
+  vm.$data.name = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'laugh'</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 两秒后浏览器显示的文本由 smile 变为 laugh</span>
+}, <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">2000</span>)</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">到这里，就已经完成响应式核心代码的编写了，接下来就是解析模板，解析出模板中<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">{{name}}</code>并添加订阅者及更新函数，以及解析<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">v-model</code>等指令。</p>
+<h2 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:30px;line-height:1;margin:1em 0px;">模板编译Compile</h2>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在这个例子中，我们需要解析的 HTML 模板如下：</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">div</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">id</span>=<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">&quot;app&quot;</span>&gt;</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">input</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">v-model</span>=<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">&quot;name&quot;</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">type</span>=<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">&quot;text&quot;</span>&gt;</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">h1</span>&gt;</span>{{name}}<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;/<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">h1</span>&gt;</span>
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">h2</span>&gt;</span>{{name}}<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;/<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">h2</span>&gt;</span>
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:400;color:rgb(41, 115, 183);">&lt;/<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:navy;font-weight:400;">div</span>&gt;</span></code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在解析模板时，因为会频繁操作 DOM，因此借助文档片段(<a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment" style="padding:0px;border:0px;font:inherit;vertical-align:baseline;background-color:transparent;-webkit-user-drag:none;user-select:none;text-decoration:none;margin:0px 0.3em;color:rgb(117, 191, 215);">DocumentFragment</a>)来优化性能</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Compile</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>(vm) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm = vm
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.el = vm.$el
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.fragment = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">null</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.init()
+  }
+
+  init() {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// step0: 创建文档片段</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.fragment = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.createFragment(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.el)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// step1: 解析模板 </span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.compileNode(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.fragment)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// step2: 把模板添加到 DOM 中</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.el.appendChild(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.fragment)
+  }
+
+  createFragment(el) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> fragment = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">document</span>.createDocumentFragment()
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> child = el.firstChild
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 将子节点，全部 移动 文档片段里</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">while</span> (child) {
+      fragment.appendChild(child)
+      child = el.firstChild
+    }
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> fragment
+  }
+
+  compileNode(fragment) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> childNodes = fragment.childNodes
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Array</span>.from(childNodes).forEach(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">node</span> =&gt;</span> {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.isElementNode(node)) {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.compile(node)
+      }
+
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 把插值表达式中的属性匹配出来</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> reg = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 153, 38);">/{{(.*?)}}/</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> text = node.textContent
+
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (reg.test(text)) {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> prop = reg.exec(text)[<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">1</span>]
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.compileText(node, prop) <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 解析插值表达式</span>
+      }
+
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 递归编译子节点</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (node.childNodes &amp;&amp; node.childNodes.length) {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.compileNode(node)
+      }
+    })
+  }
+
+  compile(node) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> nodeAttrs = node.attributes
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Array</span>.from(nodeAttrs).forEach(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">attr</span> =&gt;</span> {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> name = attr.name
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 判断是否 Vue 指令</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.isDirective(name)) {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> value = attr.value
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (name === <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'v-model'</span>) {
+          <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.compileModel(node, value)
+        }
+      }
+    })
+  }
+
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 编译 v-model</span>
+  compileModel(node, prop) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> val = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm.$data[prop]
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.updateModel(node, val)
+
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 添加订阅，传入视图更新回调</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Watcher(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm, prop, (value) =&gt; {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.updateModel(node, value)
+    })
+
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 监听 input 事件</span>
+    node.addEventListener(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'input'</span>, e =&gt; {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> newValue = e.target.value
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">if</span> (val === newValue) {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span>
+      }
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 如果值发生改变，触发 setter 并更新视图</span>
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm.$data[prop] = newValue
+    })
+  }
+
+  compileText(node, prop) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">let</span> text = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm.$data[prop]
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 把 {{name}} 替换为 name</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.updateView(node, text)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-style:italic;color:rgb(153, 153, 136);">// 添加订阅，传入视图更新回调</span>
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Watcher(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.vm, prop, (value) =&gt; {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.updateView(node, value)
+    })
+  }
+
+  updateModel(node, value) {
+    node.value = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">typeof</span> value === <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'undefined'</span> ? <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">''</span> : value
+  }
+
+  updateView(node, value) {
+    node.textContent = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">typeof</span> value === <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'undefined'</span> ? <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">''</span> : value
+  }
+
+  isDirective(attr) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> attr.includes(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'v-'</span>)
+  }
+
+  isElementNode(node) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> node.nodeType === <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:teal;">1</span>
+  }
+}
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Vue</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>(options, prop) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$options = options
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data = options.data
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$prop = prop
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$el = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">document</span>.querySelector(options.el)
+
+    observer(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Compile(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>)
+  }
+}</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在这个示例中，主要为了展示双向绑定原理，因此没有编译其它指令，以及对各种情况的处理，但是到这里，就已经足够我们理解双向绑定的原理，万变不离其宗。</p>
+<h2 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:30px;line-height:1;margin:1em 0px;">数据代理</h2>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">在最后，我们修改<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">data</code>中的数据时需要通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">vm.$data.name = 'smile'</code>来修改，我们想直接通过<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">vm.name = 'smile'</code>这样来直接修改数据，结合最开始的<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">Object.defineProperty()</code>方法，我们又可以做一层数据代理，把<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">vm.key</code>代理到<code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;">vm.$data[key]</code>上，如下代码所示：</p>
+<pre style="border:0px;font:inherit;vertical-align:baseline;font-family:monospace, monospace;border-radius:5px;overflow-x:auto;margin:0.5em 0px;padding:1em;font-size:85%;background-color:rgb(247, 247, 247);"><code style="border:0px;font:inherit;vertical-align:baseline;font-size:1em;background-color:rgb(247, 247, 247);margin:0px 0.2em;padding:0.1em 0.2em;font-family:&quot;Roboto Mono&quot;, Monaco, courier, monospace;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">class</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(68, 85, 136);font-weight:700;">Vue</span> </span>{
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">constructor</span>(options, prop) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$options = options
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data = options.data
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$prop = prop
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$el = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">document</span>.querySelector(options.el)
+
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Object</span>.keys(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data).forEach(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;"><span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">key</span> =&gt;</span> {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.proxyData(key)
+    })
+
+    observer(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data)
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Compile(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>)
+  }
+
+  proxyData(key) {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(0, 134, 179);">Object</span>.defineProperty(<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>, key, {
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">get</span>() {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">return</span> <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data[key]
+      },
+      <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">set</span>(value) {
+        <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">this</span>.$data[key] = value
+      }
+    })
+  }
+}
+
+<span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">const</span> vm = <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;color:rgb(51, 51, 51);">new</span> Vue({
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">el</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'#app'</span>,
+  <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">data</span>: {
+    <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;">name</span>: <span style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;color:rgb(221, 17, 68);">'smile'</span>
+  }
+})</code></pre>
+<p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;">
+    </p><div style="padding:0px;border:0px;font:inherit;vertical-align:baseline;flex-direction:column;width:100%;margin:1.5em 0px;display:flex;">
+      <div style="margin:0px;border:0px;font:inherit;vertical-align:baseline;box-sizing:border-box;display:flex;justify-content:center;align-items:center;position:relative;width:100%;cursor:zoom-in;padding:0px 1em;">
+        <img src="Vue双向绑定原理及实现_files/数据代理.gif-progressive" type="image/gif" data-filename="数据代理.gif-progressive" height="234" style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;border-style:none;max-width:100%;border-radius:4px;transition:all 0.25s linear 0s;filter:blur(8px);opacity:0;" title="数据代理" width="586"/>
+        <img src="Vue双向绑定原理及实现_files/数据代理 [1].gif-progressive" type="image/gif" data-filename="数据代理.gif-progressive" height="222" style="visibility:undefined;display:undefined;opacity:undefined;margin:0px;border:0px;font:inherit;vertical-align:baseline;border-style:none;max-width:100%;border-radius:4px;transition:all 0.25s linear 0s;box-sizing:border-box;position:absolute;top:0px;padding:0px 1em;" title="数据代理" width="586"/>
+      </div>
+      <div style="margin:0px;padding:0px;border:0px;font:inherit;vertical-align:baseline;margin-top:1em;text-align:center;">
+        <span style="border:0px;font:inherit;vertical-align:baseline;display:inline-block;border-bottom:0.995798px solid rgb(220, 223, 231);margin:0px auto;padding:0.1em 0.3em;">数据代理</span>
+      </div>
+    </div>
+  <p style="padding:0px;border:0px;font:inherit;vertical-align:baseline;margin:1em 0px;"></p>
+<h2 style="padding:0px;border:0px;font:inherit;vertical-align:baseline;font-weight:700;font-size:30px;line-height:1;margin:1em 0px;">小结</h2>
+<ul style="padding:0px;border:0px;font:inherit;vertical-align:baseline;list-style:none;padding-left:2em;margin:1em 0px;">
+<li style="margin:0px;border:0px;font:inherit;vertical-align:baseline;list-style:disc;padding:0.3em;">监听器Observer：用来监听属性变化以及通知订阅者更新视图。</li>
+<li style="margin:0px;border:0px;font:inherit;vertical-align:baseline;list-style:disc;padding:0.3em;">订阅者Watcher：触发依赖收集，执行视图更新。</li>
+<li style="margin:0px;border:0px;font:inherit;vertical-align:baseline;list-style:disc;padding:0.3em;">模板编译Compile：初始化模板，解析指令，绑定订阅者。</li>
+<li style="margin:0px;border:0px;font:inherit;vertical-align:baseline;list-style:disc;padding:0.3em;">这个示例只是为了学习，还有很多不完善的地方，<a href="https://github.com/smileShirmy/Mvvm" style="padding:0px;border:0px;font:inherit;vertical-align:baseline;background-color:transparent;-webkit-user-drag:none;user-select:none;text-decoration:none;margin:0px 0.3em;color:rgb(117, 191, 215);">源码点我</a>。</li>
+</ul>
+</div></div></div></div></div></span></div></div></div></div></div></div>
+</div>
+</span>
+</div></body></html> 

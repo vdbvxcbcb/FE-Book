@@ -1,0 +1,342 @@
+<html>
+<head>
+  <title>响应式网页布局的实现方法原理-马海祥博客</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/606060 (zh-CN, DDL); Windows/10.0.0 (Win64); EDAMVersion=V2;"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="6179"/>
+<h1>响应式网页布局的实现方法原理-马海祥博客</h1>
+
+<div><span>
+  <div style="--en-clipped-content:article; --en-clipped-source-url:https://www.mahaixiang.cn/wzsj/278.html; --en-clipped-source-title:响应式网页布局的实现方法原理-马海祥博客;">
+<div><br/></div><div style="min-height: 10075px; font-size: 16px; display: block; min-width: 100%; position: relative;"> <div style="font-size:14px;font-family:&quot;Microsoft YaHei&quot;, SimHei, Verdana, Arial, sans-serif;color:rgb(111, 111, 111);background:rgb(234, 235, 236);"><div><div><div style="overflow:hidden;"><div><div style="background:rgb(255, 255, 255);box-shadow:rgb(228, 228, 228) 0px 3px 4px;overflow:hidden;zoom:1;">
+<h1 style="margin:0px;padding:0px;color:rgb(0, 0, 0);margin-bottom:6px;text-align:center;padding-top:15px;font-family:Arial, Helvetica, sans-serif;font-size:26px;font-weight:bold;">响应式网页布局的实现方法原理</h1>
+<div style="margin:0px;padding:0px;clear:both;"></div>
+<div style="margin:0px;padding:0px;color:rgb(153, 153, 153);font-size:12px;font-weight:normal;width:650px;height:26px;border-bottom:1px solid rgb(229, 229, 229);"><span style="float:right;">
+<div style="margin:0px;padding:0px;zoom:1;">
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;text-decoration:none;background-position:0px 0px;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;color:rgb(51, 51, 51);float:left;">收藏到：</a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -104px;" title="分享到新浪微博"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -1612px;" title="分享到微信"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -1352px;" title="分享到Facebook"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -52px;" title="分享到QQ空间"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -2652px;" title="分享到QQ好友"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -728px;" title="分享到百度贴吧"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -2444px;" title="分享到一键分享"></a>
+<a href="https://www.mahaixiang.cn/wzsj/278.html#" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;float:left;font-size:12px;padding-left:17px;line-height:16px;height:16px;background-image:url(https://www.mahaixiang.cn/templets/ma/static/api/css/../img/share/icons_0_16.png?v=ba7acbd3.png);background-repeat:no-repeat;cursor:pointer;margin:6px 6px 6px 0px;background-position:0px -2340px;" title="分享到邮件分享"></a>
+<span style="visibility:hidden;display:block;height:0px;clear:both;">.</span></div>
+
+
+</span><span style="float:right;padding-right:20px;padding-top:5px;">时间：2013-09-17   文章来源：马海祥博客   访问次数：</span>
+</div>
+<div style="margin:0px;padding:0px;clear:both;"></div>
+
+<div style="overflow:hidden;font-size:16px;line-height:28px;width:auto;height:auto;color:rgb(51, 51, 51);text-indent:2em;font-family:Arial, &quot;Microsoft YaHei&quot;, 微软雅黑, SimHei, Helvetica, sans-serif;margin:10px 0px;padding:10px;">
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	昨天我在马海祥博客上跟大家详细的介绍过《<a href="http://www.mahaixiang.cn/wzsj/277.html" style="outline:none;text-decoration:none;color:rgb(255, 0, 0);" target="_blank">什么是响应式网页设计？</a>》，我觉的响应式网页设计不仅仅是一种趋势，还更是一个新的设计解决方案！它有助于解决不同的分辨率和设备（台式电脑，笔记本电脑，平板，手机）相关的设计问题。既然是设计的问题，这里就会涉及到很多层面的角色，包括交互设计师，视觉设计师，前端工程师，后台开发工程师。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	交互设计师，要满足各自不通分辨率和设备的页面布局展现方式。而视觉设计师，则要考虑到页面性能和移动端带宽问题，权衡下页面的酷炫效果和视觉色彩的运用。而前端和后台开发工程师，则要完成满足视觉需求和交互功能，更要考虑到页面加载性能和消耗带宽问题，更重要的是移动端安全性能方面！既然响应式网页设计牵涉到了这么多的方方面面，那我们又该如何去实现这种页面呢？对此我也特意收集了一些响应式网页的实现方法原理，在马海祥博客上跟大家分享一下：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<a href="http://www.mahaixiang.cn/wzsj/278.html" style="outline:none;text-decoration:none;color:rgb(255, 0, 0);" target="_blank"><img src="响应式网页布局的实现方法原理-马海祥博客_files/1-13091G52Z0E5.jpg" type="image/jpeg" data-filename="1-13091G52Z0E5.jpg" height="215" style="border:0px;border-radius:5px;width:600px;height:215px;" title="响应式网页布局的实现方法原理" width="600"/></a></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	首先我们应该遵循移动优先原则，交互和设计应以移动端为主，PC则作为移动端的一个扩展；一个页面需要兼容不同终端，那么有两个关键点是我们需要去做到响应式的：响应式布局和响应式内容（图片、多媒体）。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:22px;"><strong style="font-style:normal;font-weight:bold;">一、响应式布局</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	如我们需要兼容不同屏幕分辨率、清晰度以及屏幕定向方式竖屏(portrait)、横屏(landscape)，怎样才能做到让一种设计方案满足所有情况？对此，马海祥觉的我们的布局应该是一种弹性的栅格布局，不同尺寸下弹性适应，如以下页面中各模块在不同尺寸下的位置：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/1531502X7-0.jpg" type="image/jpeg" data-filename="1531502X7-0.jpg" height="269" style="border:0px;border-radius:5px;width:480px;height:269px;" title="响应式网页布局" width="480"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	那么我们具体要怎么做呢？</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:18px;"><strong style="font-style:normal;font-weight:bold;">1、Meta标签定义</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	使用 viewport meta 标签在手机浏览器上控制布局</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width,initial-scale=1,maximum-scale=1&quot; /&gt;</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	通过快捷方式打开时全屏显示</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	&lt;meta name=&quot;apple-mobile-web-app-capable&quot; content=&quot;yes&quot; /&gt;</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	隐藏状态栏</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	&lt;meta name=&quot;apple-mobile-web-app-status-bar-style&quot; content=&quot;blank&quot; /&gt;</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	iPhone会将看起来像电话号码的数字添加电话连接，应当关闭</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	&lt;meta name=&quot;format-detection&quot; content=&quot;telephone=no&quot; /&gt;</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:18px;"><strong style="font-style:normal;font-weight:bold;">2、使用Media Queries适配对应样式</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	常用于布局的CSS Media Queries有以下几种：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:16px;"><strong style="font-style:normal;font-weight:bold;">设备类型(media type):</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	all所有设备；<br/>
+	　　screen 电脑显示器；<br/>
+	　　print打印用纸或打印预览视图；<br/>
+	　　handheld便携设备；<br/>
+	　　tv电视机类型的设备；<br/>
+	　　speech语意和音频盒成器；<br/>
+	　　braille盲人用点字法触觉回馈设备；<br/>
+	　　embossed盲文打印机；<br/>
+	　　projection各种投影设备；<br/>
+	　　tty使用固定密度字母栅格的媒介，比如电传打字机和终端。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:16px;"><strong style="font-style:normal;font-weight:bold;">设备特性(media feature):</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	width浏览器宽度；<br/>
+	　　height浏览器高度；<br/>
+	　　device-width设备屏幕分辨率的宽度值；<br/>
+	　　device-height设备屏幕分辨率的高度值；<br/>
+	　　orientation浏览器窗口的方向纵向还是横向，当窗口的高度值大于等于宽度时该特性值为portrait，否则为landscape；<br/>
+	　　aspect-ratio比例值，浏览器的纵横比；<br/>
+	　　device-aspect-ratio比例值，屏幕的纵横比。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:16px;"><strong style="font-style:normal;font-weight:bold;">例子：</strong></span></p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		/* for 240 px width screen */<br/>
+		　　@media only screen and (max-device-width:240px){<br/>
+		　　 selector{ ... }<br/>
+		　　}<br/>
+		　　/* for 320px width screen */<br/>
+		　　@media only screen and (min-device-width:241px) and (max-device-width:320px){<br/>
+		　　 selector{ ... }<br/>
+		　　}<br/>
+		　　/* for 480 px width screen */<br/>
+		　　@media only screen (min-device-width:321px)and (max-device-width:480px){<br/>
+		 　　selector{ ... }<br/>
+		　　}</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	适用于布局的Media Queries，这里在马海祥博客上我们就不再做详述，有兴趣的话，可通过官方文档进一步了解。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:18px;"><strong style="font-style:normal;font-weight:bold;">3、表格(table)的响应式处理</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	那么对于表格(table)的响应式处理该是怎样的呢？我们该如何突破Table的局限性呢？接下来我们来了解以下的几种针对表格响应式处理的方法：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:16px;"><strong style="font-style:normal;font-weight:bold;">（1）、隐藏不重要数据列</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理前：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<a href="http://www.mahaixiang.cn/uploads/allimg/1309/1531506419-1.png" style="outline:none;text-decoration:none;color:rgb(255, 0, 0);" target="_blank"><img src="响应式网页布局的实现方法原理-马海祥博客_files/1531506419-1.png" type="image/png" data-filename="1531506419-1.png" height="149" style="border:0px;border-radius:5px;width:600px;height:149px;" title="隐藏不重要数据列处理前" width="600"/></a><br/>
+	（点击查看大图）</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理后：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/1531503544-2.png" type="image/png" data-filename="1531503544-2.png" height="187" style="border:0px;border-radius:5px;width:399px;height:187px;" title="隐藏不重要数据列处理后" width="399"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	实现方法代码：</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		@media only screen and (max-width: 800px) {<br/>
+		 　　table td:nth-child(2),<br/>
+		 　　table th:nth-child(2) {display: none;}<br/>
+		　　}<br/>
+		　　@media only screen and (max-width: 640px) {<br/>
+		 　　table td:nth-child(4),<br/>
+		　　 table th:nth-child(4),<br/>
+		 　　table td:nth-child(7),<br/>
+		　　 table th:nth-child(7),<br/>
+		 　　table td:nth-child(8),<br/>
+		　　 th:nth-child(8){display: none;}<br/>
+		　　}</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	以用户角度思考，每个人对数据的认知不同，或许你隐藏的数据对于他却是很重要的，所以对于这种方法马海祥并不推荐。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:16px;"><strong style="font-style:normal;font-weight:bold;">（2）、多列横向变2列纵向</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理前：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/1531503029-3.png" type="image/png" data-filename="1531503029-3.png" height="76" style="border:0px;border-radius:5px;width:579px;height:76px;" title="多列横向变2列纵向处理前" width="579"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理后：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/1531504300-4.png" type="image/png" data-filename="1531504300-4.png" height="251" style="border:0px;border-radius:5px;width:579px;height:251px;" title="多列横向变2列纵向处理后" width="579"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	实现方法：&lt;thead&gt;定位隐藏，&lt;td&gt;变块元素，并绑定对应&lt;th&gt;列名，然后用伪元素的content:attr(data-th)实现&lt;th&gt;：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/153150CR-5.png" type="image/png" data-filename="153150CR-5.png" height="243" style="border:0px;border-radius:5px;width:457px;height:243px;" title="多列横向变2列纵向实现方法" width="457"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:16px;"><strong style="font-style:normal;font-weight:bold;">（3）、固定首列，剩余列横向滚动</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理前：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/153150MU-6.png" type="image/png" data-filename="153150MU-6.png" height="140" style="border:0px;border-radius:5px;width:522px;height:140px;" title="固定首列，剩余列横向滚动处理前" width="522"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理后：</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/1531506308-7.png" type="image/png" data-filename="1531506308-7.png" height="140" style="border:0px;border-radius:5px;width:238px;height:140px;" title="固定首列，剩余列横向滚动处理后" width="238"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	实现原理代码：</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		thead {float:left;}<br/>
+		　　tbody {display:block;width:auto;overflow-x:auto;}</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:22px;"><strong style="font-style:normal;font-weight:bold;">二、响应式内容</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:18px;"><strong style="font-style:normal;font-weight:bold;">1、响应式图片</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	带宽是手机终端的硬伤，如果我们只是页面布局做了响应式处理，在我们用手机访问时，请求的图片还是PC上的大图；文件体积大，消耗流量多，请求延时长，因此导致的问题也是不可估量的。那么我们就得把图片也处理成响应式的根据终端类型尺寸分辨率来适配出合理的图形。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/15315045X-8.jpg" type="image/jpeg" data-filename="15315045X-8.jpg" height="260" style="border:0px;border-radius:5px;width:468px;height:260px;" title="响应式图片" width="468"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	处理原理：浏览器获取用户终端的屏幕尺寸、分辨率逻辑处理后输出适应的图片，如屏幕分辨率320*480，那么我们匹配给它的是宽度应小于320px的图片。如果终端屏幕的DPI(device pixels)DPI详解值很高，也就是高清屏，那么我们就得输出2倍分辨率的图形(宽:640px)；以保证在高清屏下图形的清晰度。各种移动终端的屏幕参数可通过<a href="http://screensiz.es/phone" style="outline:none;text-decoration:none;color:rgb(255, 0, 0);">http://screensiz.es/phone</a>查询。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	解决方案：其实W3C已经有一个用于响应式图形的草案：新定义标签&lt;picture&gt;，因为它还只是草案，目前还没有支持的浏览器，期待在不久的未来我们能用上。虽然目前不支持，但我们还是来了解下，为之后的内容做个铺垫。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	&lt;picture&gt;是一个图形element，内容由多个源图组成，并由CSS Media Queries来适配出合理图形，代码规范如下：</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		&lt;picture width=&quot;500&quot; height=&quot;500&quot;&gt;<br/>
+		   　&lt;source media=&quot;(min-width: 640px)&quot; srcset=&quot;large-1.jpg 1x, large-2.jpg 2x&quot;&gt;<br/>
+		   　&lt;source media=&quot;(min-width: 320px)&quot; srcset=&quot;med-1.jpg 1x, med-2.jpg 2x&quot;&gt;<br/>
+		   　&lt;source srcset=&quot;small-1.jpg 1x, small-2.jpg 2x&quot;&gt;<br/>
+		   　&lt;img src=&quot;small-1.jpg&quot; alt=&quot;&quot;&gt;<br/>
+		   　&lt;p&gt;Accessible text&lt;/p&gt;<br/>
+		   　&lt;!-- Fallback content--&gt;<br/>
+		   　&lt;noscript&gt;<br/>
+		   　&lt;img src=&quot;external/imgs/small.jpg&quot; alt=&quot;Team photo&quot;&gt;<br/>
+		   　&lt;/noscript&gt;<br/>
+		　　&lt;/picture&gt;</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="color:#ff0000;"><strong style="font-style:normal;font-weight:bold;">注：</strong></span>source: 一个图片源；<br/>
+	　　media: 媒体查询，用于适配屏幕尺寸；<br/>
+	　　srcset: 图片链接，1x适应普通屏，2x适应高清屏；<br/>
+	　　&lt;noscript/&gt;: 当浏览器不支持脚本时的一个替代方案；<br/>
+	　　&lt;img/&gt;: 初始图片；另外还有一个无障碍文本，类似&lt;img/&gt;的alt属性。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	虽然&lt;picture&gt;目前还不支持，但它的原理我们是可借鉴的，所以就诞生了一个用于图片响应式处理的类库Picturefill</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		&lt;span data-picture data-alt=&quot;图片描述文本&quot;&gt;<br/>
+		    　&lt;span data-src=&quot;small.jpg&quot;&gt;&lt;/span&gt;<br/>
+		    　&lt;span data-src=&quot;medium.jpg&quot;     data-media=&quot;(min-width: 400px)&quot;&gt;&lt;/span&gt;<br/>
+		    　&lt;span data-src=&quot;large.jpg&quot;      data-media=&quot;(min-width: 800px)&quot;&gt;&lt;/span&gt;<br/>
+		    　&lt;span data-src=&quot;extralarge.jpg&quot; data-media=&quot;(min-width: 1000px)&quot;&gt;&lt;/span&gt;<br/>
+		    　&lt;!-- 浏览器不支持JS时的备用方案. --&gt;<br/>
+		    　&lt;noscript&gt;<br/>
+		    　&lt;img src=&quot;external/imgs/small.jpg&quot; alt=&quot;图片描述文本&quot;&gt;<br/>
+		    　&lt;/noscript&gt;<br/>
+		　　&lt;/span&gt;</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	其原理就是JS获取Source的源以及CSS Media Queries规则，输出适应图片，逻辑细节这里不再解析，感兴趣的可查看其JS代码，逻辑不是很复杂，也可以自己封装一个类库，以适用于自身产品，例如图片加载失败的替代方案。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	当然，在未来的CSS Image Level 4中已经实现了响应式图片的原生语法：image-set</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		&lt;image-set&gt; = image-set([ &lt;image-set-decl&gt;, ]* [ &lt;image-set-decl&gt; | &lt;color&gt;])<br/>
+		　　&lt;image-set-decl&gt; = [ &lt;image&gt; | &lt;string&gt; ] &lt;resolution&gt;</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	那么我们的响应式图片可以这样重写了</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		background-image:url(default.jpg);  /* 普通幕 */<br/>
+		　　background-image: -webkit-image-set(url(medium.jpg) 1x, url(large.jpg) 2x);  /* Retina高清屏 */</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	注：Webkit 目前只实现了 url() 形式的取值，且dppx值取负值[-2x]貌似也是合法的。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	当然除此之外，还有其他的响应式处理，如服务端user-agent嗅探。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:18px;"><strong style="font-style:normal;font-weight:bold;">2、高分辨率(DPI)下的响应式处理</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	（1）、SVG：优点可承载色彩丰富、设计复杂图形，且渲染不会出现边缘不顺滑；缺点是IE的支持不完美。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	（2）、Icon fonts：支持多浏览器，图形颜色大小的修改成本低，易于维护；图形表现单一，不支持色彩丰富且复杂的图形，IE6渲染有毛边。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	（3）、-webkit-image-set:只支持单个图形的适配，不利于图形合并，兼容不完美（Safari 6+, Chrome 21+）。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	JS检测：var retina = window.devicePixelRatio &gt; 1;</p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	CSS Media Query:</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		@media (-webkit-min-device-pixel-ratio: 2), /* Webkit-based browsers */<br/>
+		　　(min--moz-device-pixel-ratio: 2),    /* Older Firefox browsers (prior to Firefox 16) */<br/>
+		　　(min-resolution: 2dppx),             /* The standard way */<br/>
+		　　(min-resolution: 192dpi)             /* dppx fallback */</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="font-size:18px;"><strong style="font-style:normal;font-weight:bold;">3、高分辨率下的1px border</strong></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	由于高清屏的特性，1px是由2×2个像素点来渲染，那么我们样式上的border:1px在Retina屏下会渲染成2px的边框，与设计稿有出入，为了追求1px精准还原，我们就不得不拿出一个完美的解决方案。</p>
+<p style="margin:0px;font-size:16px;line-height:28px;padding:10px 0px;text-align:center;overflow-wrap:break-word;">
+	<img src="响应式网页布局的实现方法原理-马海祥博客_files/1531501161-9.png" type="image/png" data-filename="1531501161-9.png" height="286" style="border:0px;border-radius:5px;width:500px;height:286px;" title="高分辨率下的border的显示原理" width="500"/></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	在Photoshop中，如果需要看似0.5px的边框，常见的方法就是对1px边框加上阴影模糊1px。同理，我们在retina屏下需要做到真实的1px边框，可利用box-shadow属性模拟。</p>
+<blockquote style="border:1px dashed rgb(208, 212, 200);background:url(https://www.mahaixiang.cn/templets/ma/style/../images/blockquote.gif) 5px 3px no-repeat rgb(244, 245, 246);margin:10px;padding:8px 12px 8px 36px;">
+	<p style="margin:0px;font-size:16px;overflow-wrap:break-word;text-indent:0em;color:rgb(42, 42, 42);padding:8px 0px;line-height:26px;text-align:justify;">
+		@media only screen and (-webkit-min-device-pixel-ratio:1.5),<br/>
+		　　only screen and (min-device-pixel-ratio:1.5) {<br/>
+		　　button {<br/>
+		　　border:none;<br/>
+		　　padding:0 16px;<br/>
+		　　box-shadow: inset 0 0 1px #000,<br/>
+		　　inset 0 1px 0 #75c2f8,<br/>
+		　　0 1px 1px -1px rgba(0, 0, 0, .5);<br/>
+		　　}<br/>
+		　　}</p>
+</blockquote>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	<span style="color:#8b4513;"><span style="font-size:20px;"><strong style="font-style:normal;font-weight:bold;">留给我们的思考</strong></span></span></p>
+<p style="margin:0px;font-size:16px;line-height:28px;text-align:justify;overflow-wrap:break-word;padding:10px 0px;">
+	⊕响应式不只是技术的实现，它更像是一种对于设计的全新思维模式<br/>
+	　　⊕浏览的体验短期内还无法超越原生应用<br/>
+	　　⊕左手操作习惯的交互<br/>
+	　　⊕Webapp的消息推送<br/>
+	　　⊕调用本地文件系统的能力弱<br/>
+	　　⊕响应式图片的解决方案<br/>
+	　　⊕对PC事件的兼容<br/>
+	　　⊕WebAPP页面体积的响应式适配<br/>
+	　　⊕代码实现和内容可维护性之间的权衡<br/>
+	　　⊕控制设计开发成本</p>
+
+  
+
+本文发布于<a href="http://www.mahaixiang.cn/" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;" target="_blank">马海祥博客</a>文章，如想转载，请注明原文网址摘自于http://www.mahaixiang.cn/wzsj/278.html，注明出处；否则，禁止转载；谢谢配合！
+</div>
+
+<div style="margin:0px;padding:0px;">
+<div style="padding:0px;width:80%;margin:40px auto;">
+<p style="margin:0px;padding:0px;"><a href="#" style="outline:none;display:block;width:100px;margin:5px auto;height:25px;line-height:25px;padding:10px;background-color:rgb(231, 72, 81);text-align:center;border-radius:10px;font-weight:bold;font-size:18px;transition:all 0.3s ease 0s;text-decoration:none;color:rgb(255, 255, 255);" title="打赏，支持一下">打赏</a></p>
+
+
+</div>
+
+
+</div>
+
+<p style="padding:0px;font-size:16px;margin:10px 0px;"><strong style="font-style:normal;color:rgb(0, 0, 0);font-size:16px;font-weight:bold;">相关标签搜索：</strong>
+ 
+<a href="http://www.mahaixiang.cn/tags.php?/%E5%93%8D%E5%BA%94%E5%BC%8F%E7%BD%91%E9%A1%B5/" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;" target="_blank">响应式网页</a>  
+ 
+<a href="http://www.mahaixiang.cn/tags.php?/%E5%93%8D%E5%BA%94%E5%BC%8F%E8%AE%BE%E8%AE%A1/" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;" target="_blank">响应式设计</a>  
+ 
+<a href="http://www.mahaixiang.cn/tags.php?/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%B8%83%E5%B1%80/" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;" target="_blank">响应式布局</a>  
+ 
+<a href="http://www.mahaixiang.cn/tags.php?/%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;" target="_blank">响应式原理</a>  
+
+</p>
+<p style="padding:0px;padding-top:10px;border-top:1px solid rgb(204, 204, 204);font-size:16px;line-height:28px;margin:10px 0px;">上一篇：<a href="http://www.mahaixiang.cn/wzsj/277.html" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;">什么是响应式网页设计？</a>  <br/>
+下一篇：<a href="http://www.mahaixiang.cn/wzsj/288.html" style="outline:none;color:rgb(111, 111, 111);text-decoration:none;">基于网站色彩设计对用户体验影响的研究</a> 
+</p>
+</div></div></div></div></div></div></div>
+</div>
+</span>
+</div></body></html> 

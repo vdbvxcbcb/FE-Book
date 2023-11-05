@@ -1,0 +1,1464 @@
+<html>
+<head>
+  <title>前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue #25 · chokcoco/cnblogsArticle · GitHub</title>
+  <basefont face="微软雅黑" size="2" />
+  <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+  <meta name="exporter-version" content="YXBJ Windows/606060 (zh-CN, DDL); Windows/10.0.0 (Win64); EDAMVersion=V2;"/>
+  <style>
+    body, td {
+      font-family: 微软雅黑;
+      font-size: 10pt;
+    }
+  </style>
+</head>
+<body>
+<a name="1640"/>
+<h1>前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue #25 · chokcoco/cnblogsArticle · GitHub</h1>
+
+<div><span>
+  <div style="--en-clipped-content:article; --en-clipped-source-url:https://github.com/chokcoco/cnblogsArticle/issues/25; --en-clipped-source-title:前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue #25 · chokcoco/cnblogsArticle · GitHub;">
+<div><br/></div><div style="min-height: 23318px; font-size: 16px; display:block; min-width: 100%; position: relative;"> <div style="text-size-adjust:100%;font-family:sans-serif;box-sizing:border-box;background-color:rgb(255, 255, 255);color:rgb(36, 41, 46);color-scheme:light;"><div style="box-sizing:border-box;background-color:rgb(255, 255, 255);color:rgb(36, 41, 46);font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;font-size:14px;line-height:1.5;word-wrap:break-word;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;"><span style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;"><div style="box-sizing:border-box;">
+
+      
+
+  <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);margin-bottom:16px;">
+  <div style="box-sizing:border-box;">
+    <div style="box-sizing:border-box;flex-direction:row;display:flex;">
+      <div style="box-sizing:border-box;float:right;align-items:flex-start;flex-shrink:0;order:1;margin-left:0px;margin-bottom:0px;display:flex;margin-top:8px;">
+
+
+
+
+          
+<div style="display:block;box-sizing:border-box;float:right;">
+  <div style="box-sizing:border-box;appearance:none;border:1px solid;border-radius:6px;font-weight:500;position:relative;user-select:none;vertical-align:middle;white-space:nowrap;display:inline-block;cursor:pointer;transition:color 0.2s cubic-bezier(0.3, 0, 0.5, 1) 0s, background-color, border-color;background-color:rgb(46, 164, 79);border-color:rgba(27, 31, 35, 0.15);box-shadow:rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;color:rgb(255, 255, 255);font-size:12px;line-height:20px;padding:3px 12px;list-style:none;float:left;margin:0px;margin-left:8px;"><span style="cursor:pointer;font-size:12px;font-weight:500;line-height:20px;white-space:nowrap;color:rgb(255, 255, 255);list-style:none;display:none;"></span>
+    
+    New issue
+  </div>
+  
+</div>
+        
+      </div>
+
+    <h1 style="margin:0.67em 0px;box-sizing:border-box;margin-top:0px;font-weight:400;flex:1 1 auto;margin-right:0px;margin-bottom:8px;font-size:32px;line-height:1.25;word-break:break-word;overflow-wrap:break-word;">
+      <span style="box-sizing:border-box;">前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配</span>
+      <span style="box-sizing:border-box;color:rgb(106, 115, 125);font-weight:300;font-size:32px;">#25</span>
+    </h1>
+    </div>
+  </div>
+
+  <div style="box-sizing:border-box;border-bottom:1px solid rgb(225, 228, 232);color:rgb(88, 96, 105);font-size:14px;padding-bottom:8px;margin-bottom:16px;flex-wrap:wrap;align-items:center;margin-top:0px;display:flex;">
+    <div style="box-sizing:border-box;flex-shrink:0;align-self:center;margin-bottom:8px;">
+        <span style="box-sizing:border-box;border-radius:2em;display:inline-block;font-size:14px;font-weight:500;line-height:20px;padding:5px 12px;text-align:center;white-space:nowrap;border:1px solid rgba(0, 0, 0, 0);border-color:rgba(0, 0, 0, 0);background-color:rgb(40, 167, 69);color:rgb(255, 255, 255);margin-right:8px;" title="Status: Open">
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='16' class='octicon octicon-issue-opened js-evernote-checked' viewBox='0 0 16 16' version='1.1' width='16' aria-hidden='true' data-evernote-id='346'%3e%3cpath d='M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='861' class='js-evernote-checked'%3e%3c/path%3e%3cpath fill-rule='evenodd' d='M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z' data-evernote-id='862' class='js-evernote-checked'%3e%3c/path%3e%3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img> Open
+</span>
+    </div>
+
+      <div style="box-sizing:border-box;flex-shrink:0;margin-bottom:8px;">
+            <div style="box-sizing:border-box;">
+        
+    </div>
+
+      </div>
+
+      <div style="box-sizing:border-box;flex-shrink:0;align-self:center;margin-bottom:8px;">
+          
+      </div>
+
+    <div style="box-sizing:border-box;flex:1 1 auto;min-width:0px;margin-bottom:8px;">
+        <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);font-weight:600;">chokcoco</a>  opened this issue
+<span style="box-sizing:border-box;white-space:nowrap;" title="2019年8月28日GMT+8 下午7:59">on 28 Aug 2019</span>
+· 4 comments
+
+<span style="box-sizing:border-box;">
+  
+</span>
+
+    </div>
+  </div>
+
+
+
+    <div style="box-sizing:border-box;top:0px;height:1px;visibility:hidden;display:block;"></div>
+    
+</div>
+
+
+        
+
+      <h2 style="box-sizing:border-box;margin-bottom:0px;margin-top:0px;font-weight:600;font-size:24px;clip:rect(0px, 0px, 0px, 0px);overflow-wrap:normal;border:0px;padding:0px;overflow:hidden;position:absolute;width:1px;">Comments</h2>
+      <div style="box-sizing:border-box;">
+        <div style="box-sizing:border-box;margin-left:-16px;margin-right:-16px;flex-direction:row;display:flex;">
+
+  <div style="box-sizing:border-box;width:75%;flex-shrink:0;margin-bottom:0px;padding-left:16px;padding-right:16px;">            <div style="box-sizing:border-box;">
+
+              <div style="box-sizing:border-box;margin-left:40px;padding-left:16px;">
+                
+<div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;padding-top:0px;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+
+  
+<div style="box-sizing:border-box;left:-72px;z-index:1;position:absolute;display:block;">
+  <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/8554143" type="image/png" data-filename="8554143" height="40" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="40"/></a>
+
+</div>
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;max-width:100%;min-width:0px;margin-bottom:0px;margin-top:0px;">
+    <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);border:1px solid rgb(225, 228, 232);border-radius:6px;color:rgb(36, 41, 46);position:relative;margin-left:-16px;"><span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-border-primary);"> </span>
+      
+
+      
+<div style="box-sizing:border-box;align-items:center;background-color:rgb(246, 248, 250);border-bottom:1px solid rgb(225, 228, 232);border-top-left-radius:6px;border-top-right-radius:6px;color:rgb(88, 96, 105);flex-direction:row-reverse;padding-left:16px;padding-right:16px;display:flex;"><span style="color:rgb(88, 96, 105);display:table;"></span>
+  <div style="box-sizing:border-box;float:right;margin-left:8px;flex-shrink:0;">
+      
+
+
+
+<div style="box-sizing:border-box;position:relative;display:inline-block;">
+  <div style="box-sizing:border-box;appearance:none;background-color:transparent;border:0px;font-size:inherit;text-decoration:none;user-select:none;white-space:nowrap;cursor:pointer;list-style:none;display:inline-block;padding:8px 4px;color:rgb(88, 96, 105);"><span style="cursor:pointer;color:rgb(88, 96, 105);font-size:inherit;white-space:nowrap;list-style:none;display:none;"></span>
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-label='Show options' role='img' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-kebab-horizontal js-evernote-checked' data-evernote-id='348'%3e %3cpath d='M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='899' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+    
+</div>
+
+
+  </div>
+
+  <div style="box-sizing:border-box;align-items:center;display:flex;">
+
+        
+
+
+
+      
+
+    <span style="box-sizing:border-box;position:relative;border:1px solid rgb(225, 228, 232);cursor:default;float:right;margin-left:8px;border-width:1px;border-style:solid;border-image:initial;border-color:rgb(225, 228, 232);display:inline-block;font-size:12px;line-height:18px;border-radius:2em;padding:0px 7px;font-weight:500;"><span style="font-weight:500;cursor:default;font-size:12px;line-height:18px;border:6px solid transparent;color:var(--color-tooltip-bg);display:none;height:0px;opacity:0;pointer-events:none;position:absolute;width:0px;z-index:1000001;border-bottom-color:var(--color-tooltip-bg);bottom:-7px;margin-right:-6px;right:50%;top:auto;"></span>
+      Owner
+    <span style="font-weight:500;cursor:default;font-size:12px;line-height:18px;-webkit-font-smoothing:subpixel-antialiased;overflow-wrap:break-word;background:var(--color-tooltip-bg);border-radius:6px;color:var(--color-tooltip-text);display:none;font:11px / 1.5 -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;letter-spacing:normal;opacity:0;padding:0.5em 0.75em;pointer-events:none;position:absolute;text-align:center;text-decoration:none;text-shadow:none;text-transform:none;white-space:pre-line;z-index:1000000;margin-top:6px;right:auto;top:100%;transform:translateX(-50%);border-collapse:separate;max-width:250px;width:250px;left:50%;">This user is the owner of the cnblogsArticle repository.</span></span>
+
+
+    
+
+  </div>
+
+  <h3 style="box-sizing:border-box;margin-top:0px;flex:1 1 auto;min-width:0px;padding-bottom:8px;padding-top:8px;margin-bottom:1px;font-size:14px;font-weight:400;">
+
+
+      
+
+    <strong style="box-sizing:border-box;font-weight:600;">
+      
+
+  <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:top;color:rgb(36, 41, 46);max-width:100%;">chokcoco</a>
+  
+
+    </strong>
+
+
+    commented
+
+
+      <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#issue-486336786" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2019年8月28日GMT+8 下午7:59">on 28 Aug 2019</span></a>
+
+
+    <span style="box-sizing:border-box;">
+        
+  <span style="box-sizing:border-box;color:rgb(106, 115, 125);display:inline-block;">•</span>
+
+  <div style="box-sizing:border-box;position:relative;display:inline-block;">
+    <div style="box-sizing:border-box;appearance:none;background-color:transparent;border:0px;font-size:inherit;padding:0px;user-select:none;white-space:nowrap;display:inline-block;cursor:pointer;list-style:none;color:rgb(88, 96, 105);text-decoration:none;"><span style="cursor:pointer;color:rgb(88, 96, 105);font-size:inherit;white-space:nowrap;list-style:none;display:none;"></span>
+      <div style="box-sizing:border-box;position:relative;">
+        <span style="box-sizing:border-box;">
+            edited
+        </span>
+        <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-triangle-down v-align-middle js-evernote-checked' data-evernote-id='349'%3e %3cpath d='M4.427 7.427l3.396 3.396a.25.25 0 00.354 0l3.396-3.396A.25.25 0 0011.396 7H4.604a.25.25 0 00-.177.427z' data-evernote-id='910' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;overflow:visible;vertical-align:middle;"></img>
+      </div>
+    </div>
+    
+  </div>
+
+    </span>
+  </h3>
+<span style="color:rgb(88, 96, 105);clear:both;display:table;"></span></div>
+
+
+      <div style="box-sizing:border-box;">
+
+        
+<span style="box-sizing:border-box;">
+<table style="font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;box-sizing:border-box;border-collapse:collapse;border-spacing:0px;display:block;">
+  <tbody style="box-sizing:border-box;display:block;">
+    <tr style="box-sizing:border-box;display:block;">
+      <td style="box-sizing:border-box;overflow-wrap:break-word;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;line-height:1.5;overflow:visible;width:100%;padding:15px;font-size:14px;display:block;"><span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;display:table;"></span>
+          <p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">本文是内部的一次分享沉淀，偏向基础但是涉及了一些有意思的细节，文笔有限，才疏学浅，文中若有不正之处，万望告知。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">前端的一大工作内容就是去兼容页面在不同内核的浏览器，不同的设备，不同的分辨率下的行为，使页面的能正常工作在各种各样的宿主环境当中。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">而本文的主题 -- <strong style="box-sizing:border-box;font-weight:600;">移动端开发的兼容适配与性能优化</strong>，就是希望能从一些常见的移动端开发问题出发，厘清 Web 移动端开发的前前后后，一些技术的发展过程，一些问题的优化手段以及给出一些常见的兼容性问题的解决方案。</p>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">什么是响应式设计</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">首先先聊聊响应式设计，这个与移动端开发有着密切的联系。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">响应式设计即是 RWD，Responsive Web Design。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">这里百度或者谷歌一下会有各种各样的答案。这里一段摘自知乎上我觉得很棒的一个答案：<a href="https://www.zhihu.com/question/20976405" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">什么是响应式布局设计？</a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">根据维基百科及其参考文献，理论上，响应式界面能够适应不同的设备。描述响应式界面最著名的一句话就是“Content is like water”，翻译成中文便是“如果将屏幕看作容器，那么内容就像水一样”。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">为什么要设计响应式界面</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">为什么要费神地尝试统一所有设备呢？</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">即便是PC或Mac用户，有查显示只有一半的人会将浏览器全屏显示，而剩下的一般人使用多大的浏览器，很难预知；</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">台式机、投影、电视、笔记本、手机、平板、手表、VR……智能设备正在不断增加，“主流设备”的概念正在消失；</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">屏幕分辨率正飞速发展，同一张图片在不同设备上看起来，大小可能天差地别；</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">鼠标、触屏、笔、摄像头手势……不可预期的操控方式正在不断出现。</li>
+</ul>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">响应式界面的四个层次</h3>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">同一页面在不同大小和比例上看起来都应该是舒适的；</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">同一页面在不同分辨率上看起来都应该是合理;</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">同一页面在不同操作方式（如鼠标和触屏）下，体验应该是统一的；</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">同一页面在不同类型的设备（手机、平板、电脑）上，交互方式应该是符合习惯的。</li>
+</ul>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">响应式界面的基本规则</h3>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">可伸缩的内容区块：内容区块的在一定程度上能够自动调整，以确保填满整个页面<br style="box-sizing:border-box;"/>
+<a href="https://camo.githubusercontent.com/41cfb8ed95dedac30b548d794b110e1cb35e01f3e2b69c53b5e583a7b3b1a844/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d33633734376563313632336164663563623061393539376638653362363461345f722e6a7067" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d33633734376563313632336164663563623061393539376638653362363461345f722e6a7067" type="image/png" data-filename="68747470733a2f2f706963342e7a68696d672e636f6d2f76322d33633734376563313632336164663563623061393539376638653362363461345f722e6a7067" height="300" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="788"/></a></p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">可自由排布的内容区块：当页面尺寸变动较大时，能够减少/增加排布的列数<br style="box-sizing:border-box;"/>
+<a href="https://camo.githubusercontent.com/1044e1623213b8a35833a01fb8c7cdd85bb304f465047826fd4cd19c574ad568/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d63396661663334316335343732343039656332373737393531396131386532625f722e6a7067" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d63396661663334316335343732343039656332373737393531396131386532625f722e6a7067" type="image/png" data-filename="68747470733a2f2f706963332e7a68696d672e636f6d2f76322d63396661663334316335343732343039656332373737393531396131386532625f722e6a7067" height="300" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="788"/></a></p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">适应页面尺寸的边距：到页面尺寸发生更大变化时，区块的边距也应该变化<br style="box-sizing:border-box;"/>
+<a href="https://camo.githubusercontent.com/9815bd6a23bfde96defa64a9e4b24f761c4dd6236566e945174dd93b8b097621/68747470733a2f2f706963322e7a68696d672e636f6d2f76322d39323634616263383132663430343339613335363137366165616365366263365f722e6a7067" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f706963322e7a68696d672e636f6d2f76322d39323634616263383132663430343339613335363137366165616365366263365f722e6a7067" type="image/png" data-filename="68747470733a2f2f706963322e7a68696d672e636f6d2f76322d39323634616263383132663430343339613335363137366165616365366263365f722e6a7067" height="300" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="788"/></a></p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">能够适应比例变化的图片：对于常见的宽度调整，图片在隐去两侧部分时，依旧保持美观可用<br style="box-sizing:border-box;"/>
+<a href="https://camo.githubusercontent.com/06567a6b2fe9fc7d231c565736d03e7664bcbf2e70a2c723e05097f31602162e/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d32353666333139613466626638313538663633373963323665303063396165615f722e6a7067" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d32353666333139613466626638313538663633373963323665303063396165615f722e6a7067" type="image/png" data-filename="68747470733a2f2f706963342e7a68696d672e636f6d2f76322d32353666333139613466626638313538663633373963323665303063396165615f722e6a7067" height="300" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="788"/></a></p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">能够自动隐藏/部分显示的内容：如在电脑上显示的的大段描述文本，在手机上就只能少量显示或全部隐藏<br style="box-sizing:border-box;"/>
+<a href="https://camo.githubusercontent.com/b9964a4c1cb5bbd88b2966111a684eebaee01b8764b555af812682b9e157a44f/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d61383632356539363161336533346131663133336266393137336134393330645f722e6a7067" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f706963342e7a68696d672e636f6d2f76322d61383632356539363161336533346131663133336266393137336134393330645f722e6a7067" type="image/png" data-filename="68747470733a2f2f706963342e7a68696d672e636f6d2f76322d61383632356539363161336533346131663133336266393137336134393330645f722e6a7067" height="300" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="788"/></a></p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">能自动折叠的导航和菜单：展开还是收起，应该根据页面尺寸来判断<br style="box-sizing:border-box;"/>
+<a href="https://camo.githubusercontent.com/bc97798c3e9dcff1d8f7c1d06857eaaaa7e750931dfd4cfdbd10ff942ab4e598/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d66663238316166626565373832613934663463376635386530326437663035645f722e6a7067" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f706963332e7a68696d672e636f6d2f76322d66663238316166626565373832613934663463376635386530326437663035645f722e6a7067" type="image/png" data-filename="68747470733a2f2f706963332e7a68696d672e636f6d2f76322d66663238316166626565373832613934663463376635386530326437663035645f722e6a7067" height="300" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="788"/></a></p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">放弃使用像素作为尺寸单位：用dp(对于前端来说，这里可能是rem)尺寸等方法来确保页面在分辨率相差很大的设备上，看起来也能保持一致。同时也要求提供的图片应该比预想的更大，才能适应高分辨率的屏幕</p>
+</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">上面一段我觉得已经涵盖了响应式设计的绝大部分，简单总结起来，可以概括为：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">媒体查询，边界断点的规则设定（Media queries &amp;&amp; break point）</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">内容的可伸缩性效果（Flexibel visuals）</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">流式网格布局(Fluid grids)</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">主要内容呈现及图片的高质量(Main content and high quality)</li>
+</ol>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">响应式 vs. 自适应</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">响应式设计是 Responsive Web Design（RWD），自适应设计是 Adaptive Web Design（AWD）。经常有人会将两者混为一谈，或者其实根本也区分不了所谓的响应式与自适应。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">其实在我写这篇文章的时候，我也无法很好的去区分两者。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">RWD 和 AWD 两者都是为了适配各种不同的移动设备，致力于提升用户体验所产生的的技术。核心思想是用技术来使网页适应从小到大（现在到超大）的不同分辨率的屏幕。<strong style="box-sizing:border-box;font-weight:600;">通常认为，RWD 是 AWD 的子集</strong>。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">RWD：Ethan Marcote 的文章是大家认为 RWD 的起源。他提出的 RWD 方案是通过 HTML 和 CSS 的媒体查询技术，配合流体布局实现。RWD 倾向于只改变元素的外观布局，而不大幅度改变内容。Jeffrey Zeldman 总结说，我们就把 RWD 定义为<strong style="box-sizing:border-box;font-weight:600;">一切能用来为各种分辨率和设备性能优化视觉体验的技术</strong>。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">AWD：Adaptive Design 是 Aaron Gustafson 的书的标题。他认为 AWD 在包括 RWD 的 CSS 媒体查询技术以外，也要用 Javascript 来操作 HTML 来更适应移动设备的能力。AWD 有可能会针对移动端用户<strong style="box-sizing:border-box;font-weight:600;">减去内容，减去功能</strong>。AWD 可以在服务器端就进行优化，把优化过的内容送到终端上。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">一图胜千言。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60004137-a3e1e380-969e-11e9-8175-c100b2a7d718.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60004137-a3e1e380-969e-11e9-8175-c100b2a7d718.png" type="image/png" data-filename="60004137-a3e1e380-969e-11e9-8175-c100b2a7d718.png" height="424" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">从定义上而言，RWD 是一套代码，适用于所有屏幕。而 AWD 则是多端多套代码。本文不会过多去纠结响应式与自适应区别，我觉得这两者的本质都是致力于适配不同设备，更好地提升用户体验。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://www.quora.com/What-is-the-difference-between-responsive-and-adaptive-design" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Quora - Responsive Design vs. Adaptive Design?</a><br style="box-sizing:border-box;"/>
+<a href="https://www.zhihu.com/question/20628050?rf=24334181" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">zhihu -- Responsive design 和 Adaptive design 的区别</a></p>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">渐进增强 vs. 优雅降级</h2>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">渐进增强（progressive enhancement）：针对低版本浏览器进行构建页面，保证最基本的功能，然后再针对高级浏览器进行效果、交互等改进和追加功能达到更好的用户体验。</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">优雅降级（graceful degradation）：一开始就构建完整的功能，然后再针对低版本浏览器进行兼容。</p>
+</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">区别：优雅降级是从复杂的现状开始，并试图减少用户体验的供给，而渐进增强则是从一个非常基础的，能够起作用的版本开始，并不断扩充，以适应未来环境的需要。降级（功能衰减）意味着往回看；而渐进增强则意味着朝前看，同时保证其根基处于安全地带。　</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">渐进增强/优雅降级通常是 AWD 会牵扯到的另一个技术术语。本质上而言即是随着屏幕的大小的改变，功能会一点一点增强。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">也通常会用在一些高级 CSS3 属性上，我们对一些 CSS 属性进行特性检测，甚至不进行特性检测直接使用。后果是在支持它的网页上该属性正常展示，而不支持它的网页该属性不生效，但也不影响用户的基本使用。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">典型的例子是 CSS3 逐渐被大众认可并被使用，PC端页面开始由 IE678 向兼容性更好的IE9+，chrome，firefox浏览器转变的时期。我们可以对页面元素直接使用阴影，圆角等属性。对于不支持它的低版本 IE 而言，没有什么损失，而对于支持它的高级浏览器而言，带给了用户更好的交互视觉体验，这就是渐进增强。</p>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">移动端屏幕适配方案</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">下面会针对一些具体的案例，展开讲讲。第一个是高保真还原设计稿，也就是如何适配移动端繁杂的屏幕大小。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">通常而言，设计师只会给出单一分辨率下的设计稿，而我们要做的，就是以这个设计稿为基准，去适配所有不同大小的移动端设备。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在此之前，有一些基础概念需要理解。</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">一些概念性的东西，大部分人很难一次性记住，或者记了又忘，我觉得记忆这个东西比较看技巧，比如关联法，想象法，把这些生硬的概念与一些符合我们常识的知识关联在一起记忆，往往能够事半功倍。</p>
+</blockquote>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">设备独立像素</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">以 iPhone6/7/8为例，这里我们打开 Chrome 开发者工具：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60015984-6f2e5600-96b7-11e9-8fd6-983fe46145fe.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60015984-6f2e5600-96b7-11e9-8fd6-983fe46145fe.png" type="image/png" data-filename="60015984-6f2e5600-96b7-11e9-8fd6-983fe46145fe.png" height="26" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="408"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">这里的 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">375 * 667</code> 表示的是什么呢，表示的是设备独立像素（DIP），也可以理解为 CSS 像素，也称为逻辑像素：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><strong style="box-sizing:border-box;font-weight:600;">设备独立像素 = CSS 像素 = 逻辑像素</strong></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">如何记忆呢？这里使用 CSS 像素来记忆，也就是说。我们设定一个宽度为 375px 的 div，刚好可以充满这个设备的一行，配合高度 667px ，则 div 的大小<strong style="box-sizing:border-box;font-weight:600;">刚好</strong>可以充满整个屏幕。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">物理像素</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">OK，那么，什么又是物理像素呢。我们到电商网站购买手机，都会看一看手机的参数，以 JD 上的 iPhone7 为例：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60807301-e1269500-a1b7-11e9-8dc1-ea6295ffbc37.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60807301-e1269500-a1b7-11e9-8dc1-ea6295ffbc37.png" type="image/png" data-filename="60807301-e1269500-a1b7-11e9-8dc1-ea6295ffbc37.png" height="194" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">可以看到，iPhone7 的分辨率是 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">1334 x 750</code>，这里描述的就是屏幕实际的物理像素。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">物理像素，又称为设备像素。显示屏是由一个个物理像素点组成的，<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">1334 x 750</code> 表示手机分别在垂直和水平上所具有的像素点数。通过控制每个像素点的颜色，就可以使屏幕显示出不同的图像，屏幕从工厂出来那天起，它上面的物理像素点就固定不变了，单位为pt。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><strong style="box-sizing:border-box;font-weight:600;">设备像素 = 物理像素</strong></p>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">DPR（Device Pixel Ratio） 设备像素比</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">OK，有了上面两个概念，就可以顺理成章引出下一个概念。DPR（Device Pixel Ratio） 设备像素比，这个与我们通常说的视网膜屏（多倍屏，Retina屏）有关。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">设备像素比描述的是<strong style="box-sizing:border-box;font-weight:600;">未缩放状态下</strong>，物理像素和设备独立像素的初始比例关系。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">简单的计算公式：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><strong style="box-sizing:border-box;font-weight:600;">DPR = 物理像素 / 设备独立像素</strong></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">我们套用一下上面 iPhone7 的数据（取设备的物理像素宽度与设备独立像素宽度进行计算）：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">iPhone7’s DPR = iPhone7’s 物理像素宽度 / iPhone7's 设备独立像素宽度 = 2</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">750 / 375 = 2<br style="box-sizing:border-box;"/>
+或者是 1334 / 667 = 2</p>
+</blockquote>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">可以得到 iPhone7 的 dpr 为 2。也就是我们常说的视网膜屏幕。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">视网膜（Retina）屏幕是苹果公司&quot;发明&quot;的一个营销术语。 苹果公司将 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">dpr &gt; 1</code> 的屏幕称为视网膜屏幕。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60808151-2ba91100-a1ba-11e9-81ea-c0fe0b524625.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60808151-2ba91100-a1ba-11e9-81ea-c0fe0b524625.png" type="image/png" data-filename="60808151-2ba91100-a1ba-11e9-81ea-c0fe0b524625.png" height="367" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="488"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在视网膜屏幕中，以 dpr = 2 为例，把 4(2x2) 个像素当 1 个像素使用，这样让屏幕看起来更精致，但是元素的大小本身却不会改变：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60808220-53987480-a1ba-11e9-81a4-8e9605dd6817.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60808220-53987480-a1ba-11e9-81a4-8e9605dd6817.png" type="image/png" data-filename="60808220-53987480-a1ba-11e9-81a4-8e9605dd6817.png" height="293" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">OK，我们再来看看 iPhone XS Max：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60808691-7f682a00-a1bb-11e9-8300-294443443a9d.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60808691-7f682a00-a1bb-11e9-8300-294443443a9d.png" type="image/png" data-filename="60808691-7f682a00-a1bb-11e9-8300-294443443a9d.png" height="426" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="300"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">它的物理像素如上图是 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">2688 x 1242</code>，</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/60808907-f271a080-a1bb-11e9-9b5d-23896acd7e75.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/60808907-f271a080-a1bb-11e9-9b5d-23896acd7e75.png" type="image/png" data-filename="60808907-f271a080-a1bb-11e9-9b5d-23896acd7e75.png" height="40" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="430"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">它的 CSS 像素是 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">896 x 414</code>，很容易得出 iPhone XS Max 的 dpr 为 3。</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">上面三个概念（CSS像素、设备独立像素、DPR）是我觉得比较重要的，还有一些其他比较重要的概念 PPI、DPI 不影响后续的内容，可以自行去加深理解。</p>
+</blockquote>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">OK，到这里我们就完成了一个小的里程碑。我们通常说的H5手机适配也就是指的这两个维度：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">适配不同屏幕大小，也就是适配不同屏幕下的 CSS 像素</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">适配不同像素密度，也就是适配不同屏幕下 dpr 不一致导致的一些问题</li>
+</ol>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">适配不同屏幕大小</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">适配不同屏幕大小，也就是适配不同屏幕下的 CSS 像素。最早移动端屏幕 CSS 像素适配方案是<strong style="box-sizing:border-box;font-weight:600;">CSS媒体查询</strong>。但是无法做到高保真接近 100% 的还原。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">适配不同屏幕大小其实只需要遵循一条原则，确保页面元素大小的与屏幕大小保持一定比例。也就是：<strong style="box-sizing:border-box;font-weight:600;">按比例还原设计稿</strong></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62044820-6f7dbc00-b236-11e9-877f-c0587462cac8.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62044820-6f7dbc00-b236-11e9-877f-c0587462cac8.png" type="image/png" data-filename="62044820-6f7dbc00-b236-11e9-877f-c0587462cac8.png" height="715" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="458"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">假设我们现在拿到标注为 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">375*667</code> 的大小的设计稿，其中一个元素的标注如下：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62045088-0fd3e080-b237-11e9-9459-3ad80f18c72a.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62045088-0fd3e080-b237-11e9-9459-3ad80f18c72a.png" type="image/png" data-filename="62045088-0fd3e080-b237-11e9-9459-3ad80f18c72a.png" height="178" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="470"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62045225-67724c00-b237-11e9-869f-a5fc98dbb8ac.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62045225-67724c00-b237-11e9-869f-a5fc98dbb8ac.png" type="image/png" data-filename="62045225-67724c00-b237-11e9-869f-a5fc98dbb8ac.png" height="261" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="416"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">以页面宽度为基准的话，那么，</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">元素的宽度为：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">209/375 = 55.73%</code></li>
+<li style="box-sizing:border-box;margin-top:0.25em;">元素的高度为：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">80/375 = 21.33%</code></li>
+<li style="box-sizing:border-box;margin-top:0.25em;">元素的上左右边距依次计算...</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">这样，无论屏幕的 CSS 像素宽度是 320px 还是 375px 还是 414px，按照等量百分比还原出来的界面总是正确的。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">然而，理想很丰满，现实很骨感。实现上述百分比方案的核心需要一个全局通用的基准单位，让所有百分比展示以它为基准，但是在 CSS 中，根据<a href="https://www.w3.org/TR/css-values-4/#percentages" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CSS Values and Units Module Level 4</a>的定义：</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">百分比值总要相对于另一个量，比如长度。每个允许使用百分比值的属性，同时也要定义百分比值参照的那个量。这个量可以是相同元素的另一个属性的值，也可以是祖先元素的某个属性的值，甚至是格式化上下文的一个度量（比如包含块的宽度）。</p>
+</blockquote>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">具体来说：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">宽度（width）、间距（maring/padding）支持百分比值，但默认的相对参考值是包含块的宽度；</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">高度（height）百分比的大小是相对其父级元素高的大小；</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">边框（border）不支持百分值；</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">边框圆角半径（border-radius）支持百分比值，但水平方向相对参考值是盒子的宽度，垂直方向相对参考值是盒子的高度；</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">文本大小（font-size）支持百分比值，但相对参考值是父元素的font-size的值；</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">盒阴影（box-shadow）和文本阴影（text-shadow）不支持百分比值；</p>
+</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">首先，支持百分比单位的度量属性有其各自的参照基准，其次并非所有度量属性都支持百分比单位。所以我们需要另辟蹊径。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">rem 适配方案</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在 vw 方案出来之前，最被大众接受的就是使用 rem 进行适配的方案，因为 rem 满足上面说的，可以是一个全局性的基准单位。</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">rem（font size of the root element），在 <a href="https://drafts.csswg.org/css-values-3/#lengths" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CSS Values and Units Module Level 3</a>中的定义就是， 根据网页的根元素来设置字体大小，和 em（font size of the element）的区别是，em 是根据其父元素的字体大小来设置，而 rem 是根据网页的跟元素（html）来设置字体大小。</p>
+</blockquote>
+<h4 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1em;">flexible</h4>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">基于此，淘宝早年推行的一套以 rem 为基准的适配方案：<a href="https://github.com/amfe/lib-flexible" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">lib-flexible</a>。其核心做法在于：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;"><del style="box-sizing:border-box;">根据设备的 dpr 动态改写 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;text-decoration:inherit;">&lt;meta&gt;</code> 标签，设置 viewport 的缩放</del></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><del style="box-sizing:border-box;">给 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;text-decoration:inherit;">&lt;html&gt;</code> 元素添加 data-dpr 属性，并且动态改写 data-dpr 的值</del></li>
+<li style="box-sizing:border-box;margin-top:0.25em;">根据 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">document.documentElement.clientWidth</code> 动态修改 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">&lt;html&gt;</code> 的 font-size ，页面其他元素使用 rem 作为长度单位进行布局，从而实现页面的等比缩放</li>
+</ul>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">关于头两点，其实现在的 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">lib-flexible</code> 库已经不这样做了，不再去缩放 Viewport，字体大小的设定也直接使用了 rem</p>
+</blockquote>
+<h4 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1em;">hotcss</h4>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://github.com/imochen/hotcss" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">hotcss</a> 不是一个库，也不是一个框架。它是一个移动端布局开发解决方案。使用 hotcss 可以让移动端布局开发更容易。本质的思想与 flexible 完全一致。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">对于 rem 方案的一些总结</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">使用 flexible/hotcss 作为屏幕宽度适配解决方案，是存在一些问题的：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">动态修改 Viewport 存在一定的风险的，譬如通过 Viewport 改变了页面的缩放之后，获取到的 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">innerWidth/innerHeight</code> 也会随之发生变化，如果业务逻辑有获取此类高宽进行其他计算的，可能会导致意想不到的错误；</li>
+</ol>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">到今天，其实存在很多在 flexible 基础上演化而来的各种 rem 解决方案，有的不会对 Viewport 进行缩放处理，自行处理 1px 边框问题。</p>
+</blockquote>
+<ol start="2" style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">flexible/hotcss 都并非纯 CSS 方案，需要引入一定的 Javascript 代码</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">rem 的设计初衷并非是用于解决此类问题，用 rem 进行页面的宽度适配多少有一种 hack 的感觉</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">存在一定的兼容性问题，对于安卓 4.4 以下版本系统不支持 viewport 缩放（当然，flexible 处理 Android 系列时，始终认为其 dpr 为 1，没有进行 viewport 缩放）</li>
+</ol>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">vw 适配方案</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">严格来说，使用 rem 进行页面适配其实是一种 hack 手段，rem 单位的初衷本身并不是用来进行移动端页面宽度适配的。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">到了今天，有了一种更好的替代方案，使用 vw 进行适配 。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">百分比适配方案的核心需要一个全局通用的基准单位，rem 是不错，但是需要借助 Javascript 进行动态修改根元素的 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-size</code>，而 vw/vh（vmax/vmin） 的出现则很好弥补 rem 需要 JS 辅助的缺点。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">根据 CSS Values and Units Module Level 4：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">vw</code>等于初始包含块（html元素）宽度的1%，也就是</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;"><code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">1vw</code> 等于 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">window.innerWidth</code> 的数值的 1%</li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">1vh</code> 等于<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">window.innerHeight</code> 的数值的 1%</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://camo.githubusercontent.com/11aa6d59ffefbf5aff1eedc577eaf6746a9a8b0b56fceb741193c16ebbfc1e59/68747470733a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f373031363631372d663065366564653164616431623065662e706e67" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/68747470733a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f373031363631372d663065366564653164616431623065662e706e67" type="image/png" data-filename="68747470733a2f2f75706c6f61642d696d616765732e6a69616e7368752e696f2f75706c6f61645f696d616765732f373031363631372d663065366564653164616431623065662e706e67" height="344" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">再以上面设计稿图的元素为例，那么，</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">元素的宽度为：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">209/375 = 55.73% = 55.73vw</code></li>
+<li style="box-sizing:border-box;margin-top:0.25em;">元素的高度为：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">80/375 = 21.33% = 21.33vw</code></li>
+<li style="box-sizing:border-box;margin-top:0.25em;">元素的上左右边距依次计算...</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">根据相关的测试，可以使用 vw 进行长度单位的有：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">容器大小适配，可以使用 vw</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">文本大小的适配，可以使用 vw</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">大于 1px 的边框、圆角、阴影都可以使用 vw</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">内距和外距，可以使用 vw</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">简单的一个页面，看看效果，完全是等比例缩放的效果：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/64007393-a7ad3e80-cb03-11e9-988a-90a7a38990f6.gif" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/64007393-a7ad3e80-cb03-11e9-988a-90a7a38990f6.gif" type="image/gif" data-filename="64007393-a7ad3e80-cb03-11e9-988a-90a7a38990f6.gif" height="628" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="345"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://codepen.io/Chokcoco/pen/oNvWVYq?editors=1100" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CodePen Demo（移动端打开）：使用 vw 进行页面适配</a></p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">自动转换插件</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当我们使用 rem 作为长度单位的时，通常会有借助 Sass/Less 实现一个转换函数，像是这样：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;"><span style="box-sizing:border-box;color:rgb(0, 92, 197);">/</span><span style="box-sizing:border-box;color:rgb(0, 92, 197);">/</span> 假设设计稿的宽度是 375px，假设取设计稿宽度下 1rem <span style="box-sizing:border-box;color:rgb(0, 92, 197);">=</span> 100px
+$baseFontSize<span style="box-sizing:border-box;">:</span> 100;
+
+<span style="box-sizing:border-box;color:rgb(215, 58, 73);">@function</span> px2rem($px) {
+	<span style="box-sizing:border-box;color:rgb(215, 58, 73);">@return</span> $px <span style="box-sizing:border-box;color:rgb(0, 92, 197);">/</span> $baseFontSize <span style="box-sizing:border-box;color:rgb(0, 92, 197);">*</span> 1rem;
+}</pre></div>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">同理，在 vw 方案下，我们只需要去改写这个方法：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;"><span style="box-sizing:border-box;color:rgb(0, 92, 197);">/</span><span style="box-sizing:border-box;color:rgb(0, 92, 197);">/</span> 假设设计稿的宽度是 375px
+
+<span style="box-sizing:border-box;color:rgb(215, 58, 73);">@function</span> px2vw($px) {
+	<span style="box-sizing:border-box;color:rgb(215, 58, 73);">@return</span> $px <span style="box-sizing:border-box;color:rgb(0, 92, 197);">/</span> 375 <span style="box-sizing:border-box;color:rgb(0, 92, 197);">*</span> 100vw;
+}</pre></div>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当然，我们还可以借助一些插件包去实现这个自动转换，提高效率，譬如 <a href="https://www.npmjs.com/package/postcss-px-to-viewport" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">postcss-px-to-viewport</a></p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">vw polyfill</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">vw 现在毕竟还是存在兼容问题的，看看兼容性：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/63826833-7d3c7380-c993-11e9-9d0e-6d33f2d5aa1a.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/63826833-7d3c7380-c993-11e9-9d0e-6d33f2d5aa1a.png" type="image/png" data-filename="63826833-7d3c7380-c993-11e9-9d0e-6d33f2d5aa1a.png" height="441" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">其实已经覆盖了绝大部分设备，那么如果业务使用了且又真的出现了兼容问题，应该怎么处理呢？有两种方式可以进行降级处理：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">CSS Houdini：通过CSS Houdini针对vw做处理，调用CSS Typed OM Level1 提供的 CSSUnitValue API。</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">CSS Polyfill：通过相应的Polyfill做相应的处理，目前针对于 vw 单位的 Polyfill 主要有：vminpoly、Viewport Units Buggyfill、vunits.js和 Modernizr</li>
+</ul>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">对于 vw 方案的一些总结</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">vw 确实看上去很不错，但是也是存在它的一些问题：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">也没能很好的解决 1px 边框在高清屏下的显示问题，需要自行处理</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">由于 vw 方案是完全的等比缩放，在完全等比还原设计稿的同时带来的一个问题是无法很好的限定一个最大最小宽度值，由于 rem 方案是借助 Javascript 的，所以这一点 rem 比 vw 会更加的灵活</li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当然，两个方案现阶段其实都可以使用甚至一起搭配使用，更多详情可以读读：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;"><a href="https://juejin.im/entry/5a9d07ee6fb9a028c149f55b" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">再聊移动端页面的适配</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://mp.weixin.qq.com/s/NgGd9zSm6NEaF5Jxp5WBKg" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">H5必知必会之像素级还原设计稿</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://www.smashingmagazine.com/2016/05/fluid-typography/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Responsive And Fluid Typography With vh And vw Units</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://www.cnblogs.com/wengxuesong/archive/2016/05/16/5497653.html" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">使用VH和VW实现真正的流体排版</a></li>
+</ul>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">1px线</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">上面说到使用 vw 适配屏幕大小方案，其中有一个缺点就是在 Retina 屏下，无法很好的展示真正的 1px 物理像素线条。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">设计师想要的 retina 下 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">border: 1px</code>，其实是 1 物理像素宽度，而不是 1 CSS 像素宽度，对于 CSS 而言：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">在 dpr = 1 时，此时 1 物理像素等于 1 CSS 像素宽度；</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">在 dpr = 2 时，此时 1 物理像素等于 0.5 CSS 宽度像素，可以认为 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">border-width: 1px</code> 这里的 1px 其实是 1 CSS像素宽度，等于 2 像素物理宽度，设计师其实想要的是 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">border-width: 0.5px</code>;</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">在 dpr = 3 时，此时 1 物理像素等于 0.33 CSS 宽度像素，设计师其实想要的是 border-width: 0.333px</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">然而，并不是所有手机浏览器都能识别 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">border-width: 0.5px</code>，在 iOS7 以下，Android 等其他系统里，小于 1px 的单位会被当成为 0px 处理，那么如何实现这 0.5px、0.33px 呢？</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">这里介绍几种方法：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">渐变实现</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">使用缩放实现</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">使用图片实现（base64）</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">使用SVG实现（嵌入 background url）</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://codepen.io/Chokcoco/pen/XyNjqK" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Retina 屏幕下 1px 线的实现</a></p>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">图片适配及优化</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">图像通常占据了网页上下载资源绝的大部分。优化图像通常可以最大限度地减少从网站下载的字节数以及提高网站性能。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">通常可以，有一些通用的优化手段：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">消除多余的图像资源</li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><strong style="box-sizing:border-box;font-weight:600;">尽可能利用 CSS3\SVG 矢量图像替代某些光栅图像</strong></li>
+<li style="box-sizing:border-box;margin-top:0.25em;">谨慎使用字体图标，使用网页字体取代在图像中进行文本编码</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">选择正确的图片格式</li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><strong style="box-sizing:border-box;font-weight:600;">为不同 DPR 屏幕提供最适合的图片尺寸</strong></li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">本文重点关注如何在不同的 dpr 屏幕下，让图片看起来都不失真。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">首先就是上述的第二点，尽可能利用 CSS3\SVG 矢量图像替代某些光栅图像。某些简单的几何图标，可以用 CSS3 快速实现的图形，都应该尽量避免使用光栅图像。这样能够保证它们在任何尺寸下都不会失真。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">其次，实在到了必须使用光栅图像的地步，也是有许多方式能保证图像在各种场景下都不失真。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">无脑多倍图</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在移动端假设我们需要一张 CSS 像素为 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">300 x 200</code> 的图像，考虑到现在已经有了 dpr = 3 的设备，那么要保证图片在 dpr = 3 的设备下也正常高清展示，我们最大可能需要一张 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">900 x 600</code> 的原图。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">这样，不管设备的 dpr 是否为 3，我们统一都使用 3 倍图。这样即使在 dpr = 1，dpr = 2 的设备上，也能非常好的展示图片。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当然这样并不可取，会造成大量带宽的浪费。现代浏览器，提供了更好的方式，让我们能够根据设备 dpr 的不同，提供不同尺寸的图片。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">srcset 配合 1x 2x 像素密度描述符</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">简单来说，srcset 可以根据不同的 dpr 拉取对应尺寸的图片：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;"><span style="box-sizing:border-box;">&lt;</span><span style="box-sizing:border-box;color:rgb(34, 134, 58);">div</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">class</span>='<span style="box-sizing:border-box;color:rgb(3, 47, 98);">illustration</span>'<span style="box-sizing:border-box;">&gt;</span>
+  <span style="box-sizing:border-box;">&lt;</span><span style="box-sizing:border-box;color:rgb(34, 134, 58);">img</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">src</span>='<span style="box-sizing:border-box;color:rgb(3, 47, 98);">illustration-small.png</span>'
+       <span style="box-sizing:border-box;color:rgb(0, 92, 197);">srcset</span>='<span style="box-sizing:border-box;color:rgb(3, 47, 98);">images/illustration-small.png 1x,</span>
+<span style="box-sizing:border-box;color:rgb(3, 47, 98);">               images/illustration-big.png 2x</span>'
+       <span style="box-sizing:border-box;color:rgb(0, 92, 197);">style</span>='<span style="box-sizing:border-box;color:rgb(3, 47, 98);">max-width: 500px</span>'/&gt;
+<span style="box-sizing:border-box;">&lt;/</span><span style="box-sizing:border-box;color:rgb(34, 134, 58);">div</span><span style="box-sizing:border-box;">&gt;</span></pre></div>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">上面 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">srcset</code> 里的 1x，2x 表示 <strong style="box-sizing:border-box;font-weight:600;">像素密度描述符</strong>，表示</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">当屏幕的 dpr = 1 时，使用 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">images/illustration-small.png</code> 这张图</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">当屏幕的 dpr = 2 时，使用 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">images/illustration-big.png</code> 这张图</li>
+</ul>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">srcset 属性配合 sizes 属性 w 宽度描述符</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">上面 1x，2x 的写法比较容易接受易于理解。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">除此之外，srcset属性还有一个 w 宽度描述符，配合 sizes 属性一起使用，可以覆盖更多的面。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">以下面这段代码为例子：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;"><span style="box-sizing:border-box;">&lt;</span><span style="box-sizing:border-box;color:rgb(34, 134, 58);">img</span> 
+        <span style="box-sizing:border-box;color:rgb(0, 92, 197);">sizes</span> = <span style="box-sizing:border-box;color:rgb(3, 47, 98);">“(min-width:</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">600px)</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">600px,</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">300px</span>&quot; 
+        src = &quot;<span style="box-sizing:border-box;color:rgb(3, 47, 98);">photo.png</span>&quot; 
+        <span style="box-sizing:border-box;color:rgb(0, 92, 197);">srcset</span> = <span style="box-sizing:border-box;color:rgb(3, 47, 98);">“photo@1x.png</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">300w,</span>
+                       <span style="box-sizing:border-box;color:rgb(0, 92, 197);">photo@2x.png</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">600w,</span>
+                       <span style="box-sizing:border-box;color:rgb(0, 92, 197);">photo@3x.png</span> <span style="box-sizing:border-box;color:rgb(0, 92, 197);">1200w,</span>
+<span style="box-sizing:border-box;">&gt;</span></pre></div>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">解析一下：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">sizes = “(min-width: 600px) 600px, 300px&quot; </code>的意思是，如果屏幕当前的 CSS 像素宽度大于或者等于 600px，则图片的 CSS 宽度为 600px，反之，则图片的 CSS 宽度为 300px。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">也就是 sizes 属性声明了在不同宽度下图片的 CSS 宽度表现。这里可以理解为，大屏幕下图片宽度为 600px，小屏幕下图片宽度为 300px。（具体的媒体查询代码由 CSS 实现）</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">这里的 sizes 属性只是声明了在不同宽度下图片的 CSS 宽度表现，而具体使图片在大于600px的屏幕上展示为600px宽度的代码需要另外由 CSS 或者 JS 实现，有点绕。</p>
+</blockquote>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">srcset = “photo@1x.png 300w, photo@2x.png 600w, photo@3x.png 1200w </code> 里面的 300w，600w，900w 叫宽度描述符。怎么确定当前场景会选取哪张图片呢？</p>
+<h4 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1em;"><strong style="box-sizing:border-box;font-weight:600;">当前屏幕 dpr = 2 ，CSS 宽度为 375px</strong>。</h4>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当前屏幕 CSS 宽度为 375px，则图片 CSS 宽度为 300px。分别用上述 3 个宽度描述符的数值除以 300。</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">300 / 300 = 1</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">600 / 300 = 2</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">1200 / 300 = 4</li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">上面计算得到的 1、 2、 4 即是算出的有效的像素密度，换算成和 x 描述符等价的值 。这里 600w 算出的 2 即满足 dpr = 2 的情况，选择此张图。</p>
+<h4 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1em;"><strong style="box-sizing:border-box;font-weight:600;">当前屏幕 dpr = 3 ，CSS 宽度为 414px</strong>。</h4>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当前屏幕 CSS 宽度为 414px，则图片 CSS 宽度仍为 300px。再计算一次：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">300 / 300 = 1</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">600 / 300 = 2</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">1200 / 300 = 4</li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">因为 dpr = 3，2 已经不满足了，则此时会选择 1200w 这张图。</p>
+<h4 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1em;"><strong style="box-sizing:border-box;font-weight:600;">当前屏幕 dpr = 1 ，CSS 宽度为 1920px</strong>。</h4>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当前屏幕 CSS 宽度为 1920px，则图片 CSS 宽度变为了 600px。再计算一次：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">300 / 600 = .5</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">600 / 600 = 1</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">1200 / 600 = 2</li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">因为 dpr = 1，所以此时会选择 600w 对应的图片。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">具体的可以试下这个 Demo：<a href="https://codepen.io/Chokcoco/pen/WNeZvOX?editors=1100" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CodePen Demo -- srcset属性配合w宽度描述符配合sizes属性</a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">此方案的意义在于考虑到了响应性布局的复杂性与屏幕的多样性，利用上述规则，可以一次适配 PC 端大屏幕和移动端高清屏，一箭多雕。</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">CSS 有个类似的属性，<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">image-set()</code>，搭配使用，效果更佳。</p>
+</blockquote>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">了解更多细节，推荐看看：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;"><a href="https://developers.google.com/web/fundamentals/design-and-ux/responsive/images" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Google Web Fundamentals -- Web Responsive Images</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://www.zhangxinxu.com/wordpress/2014/10/responsive-images-srcset-size-w-descriptor/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">响应式图片srcset全新释义sizes属性w描述符</a></li>
+</ul>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">字体适配方案</h2>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">字体大小</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">字体是很多前端开发同学容易忽略的一个点，但是其中也是有很多小知识点。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">首先要知道，浏览器有最小字体限制：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">PC上最小 font-size=12px</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">手机上最小 font-size=8px</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">如果小于最小字体，那么字体默认就是最小字体。</p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">其次，很多早期的文章规范都建议不要使用奇数级单位来定义字体大小（如 13px，15px...），容易在一些低端设备上造成字体模糊，出现锯齿。</p>
+</blockquote>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">字体的选择展示</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在字体适配上面，我们需要从<strong style="box-sizing:border-box;font-weight:600;">性能</strong>和<strong style="box-sizing:border-box;font-weight:600;">展示效果</strong>两个维度去考虑。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">完整的一个字体资源实在太大了，所以我们应该尽可能的使用用户设备上已有的字体，而不是额外去下载字体资源，从而使加载时间明显加快。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">而从展示效果层面来说，使用系统字体能更好的与当前操作系统使用的相匹配，得到最佳的展示效果。所以我们在字体使用方面，有一个应该尽量去遵循的原则，也是现在大部分网站在字体适配上使用的策略：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><strong style="box-sizing:border-box;font-weight:600;">使用各个支持平台上的默认系统字体</strong>。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">兼顾各个操作系统</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">常见的操作系统有 Windows、Windows Phone、Mac OS X、iPhone、Android Phone、Linux。当然对于普通用户而言，无须关注 Linux 系统。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">下面就以 <a href="https://css-tricks.com/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CSS-Trick</a> 网站最新的 font-family 为例，看看他们是如何在字体选择上做到适配各个操作系统的</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;">{
+  <span style="box-sizing:border-box;color:rgb(0, 92, 197);">font-family</span><span style="box-sizing:border-box;">:</span> 
+    system-ui<span style="box-sizing:border-box;">,</span>-apple-system<span style="box-sizing:border-box;">,</span>BlinkMacSystemFont<span style="box-sizing:border-box;">,</span>segoe ui<span style="box-sizing:border-box;">,</span>Roboto<span style="box-sizing:border-box;">,</span>
+    Helvetica<span style="box-sizing:border-box;">,</span>Arial<span style="box-sizing:border-box;">,</span>
+    sans-serif<span style="box-sizing:border-box;">,</span>apple color emoji<span style="box-sizing:border-box;">,</span>segoe ui emoji<span style="box-sizing:border-box;">,</span>segoe ui symbol;
+}</pre></div>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">font-family 关键字</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">对于 CSS 中的 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family</code> 而言，它有两类取值。</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">一类是类似这样的具体的<strong style="box-sizing:border-box;font-weight:600;">字体族名</strong>定义：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family: Arial</code> 这里定义了一个具体的字体样式，字体族名为 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">Arial</code>;</p>
+</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:16px;">一类是<strong style="box-sizing:border-box;font-weight:600;">通用字体族名</strong>，它是一种备选机制，用于在指定的字体不可用时给出较好的字体，类似这样：<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family: sans-serif</code> 。</p>
+</li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">其中，<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">sans-serif</code> 表无衬线字体族，例如， &quot;Open Sans&quot;, &quot;Arial&quot; &quot;微软雅黑&quot; 等等。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">关于<strong style="box-sizing:border-box;font-weight:600;">通用字体族名</strong>，在 <a href="https://www.w3.org/TR/2018/REC-css-fonts-3-20180920/#generic-font-families" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CSS Fonts Module Level 3 -- Basic Font Properties</a> 中，定义了 5 个，也就是我们熟知的几个通用字体族名：</p>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">serif 衬线字体族</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">sans-serif 非衬线字体族</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">monospace 等宽字体，即字体中每个字宽度相同</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">cursive 草书字体</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">fantasy 主要是那些具有特殊艺术效果的字体</li>
+</ol>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">新增通用字体族关键字</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">而在  <a href="https://www.w3.org/TR/css-fonts-4/#generic-font-families" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CSS Fonts Module Level 4 -- Generic font families</a> 中，新增了几个关键字：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">system-ui 系统默认字体</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">emoji 用于兼容 emoji 表情符号字符</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">math 适用于数学表达式</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">fangsong 此字体系列用于中文的（仿宋）字体。</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">我们看看用的最多的 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">system-ui</code>。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">system-ui</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">简单而言，<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family: system-ui</code> 的目的就是在不同的操作系统的 Web 页面下，自动选择本操作系统下的默认系统字体。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">默认使用特定操作系统的系统字体可以提高性能，因为浏览器或者 webview 不必去下载任何字体文件，而是使用已有的字体文件。 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family: system-ui</code> 字体设置的优势之处在于它与当前操作系统使用的字体相匹配，对于文本内容而言，它可以得到最恰当的展示。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">San Francisco Fonts</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">OK，简单了解了 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">system-ui </code> 字体族。但是像 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">-apple-system</code>、<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">BlinkMacSystemFont</code> 没有在最新的标准里出现。它们又代表什么意思呢？</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在此之前，先了解下 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">San Francisco Fonts</code> 。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">San Francisco Fonts</code> 又叫旧金山字体，是一款西文字体。随着 iOS 9 更新面世，在 WatchOS 中随 Apple Watch 一起悄然发售，并且还将在 Apple TV 上的新 tvOS 中使用。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">San Francisco Fonts</code> 在 iOS 系统上用于替代升级另外一款西文字体 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">Helvetica Neue</code>。Apple 做了一些重要的改变，使其成为平台上更好的， 甚至是完美的西文字体。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62924612-06c04300-bde3-11e9-9385-ae4d5a6cc0d9.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62924612-06c04300-bde3-11e9-9385-ae4d5a6cc0d9.png" type="image/png" data-filename="62924612-06c04300-bde3-11e9-9385-ae4d5a6cc0d9.png" height="158" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">-apple-system/BlinkMacSystemFont</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">话说回来。正如每个前端开发人员都知道的那样，将一个功能纳入规范是一回事，将其纳入浏览器又是另一回事。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">幸运的是，<code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">system-ui</code> 的普及很快。 Chrome 和 Safari 都可以在各种平台上完全支持它。只有 Mozilla 和 Windows 相对落后。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">看看 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">system-ui</code> 的兼容性，<a href="https://caniuse.com/#search=system" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Can i Use -- system-ui</a>(图片截取日 2019-08-13)：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62925290-9b777080-bde4-11e9-9865-195e8e44fcd9.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62925290-9b777080-bde4-11e9-9865-195e8e44fcd9.png" type="image/png" data-filename="62925290-9b777080-bde4-11e9-9865-195e8e44fcd9.png" height="393" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="816"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">仔细看上图的最后两行：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">Supported as the -apple-system value (only on macOS and iOS)</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">Supported as the BlinkMacSystemFont value (only on macOS)</li>
+</ul>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">考虑到不同平台及向后兼容，在 macOS 和 iOS 上，我们需要使用 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">-apple-system</code> 及 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">BlinkMacSystemFont</code> 来兼容适配 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">system-ui</code> 标准。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">Segoe UI</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">Segoe UI 是 Windows 从 Vista 开始的默认西文字体族，只有西文，不支持汉字，属于无衬线体。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">它也表示一个系列而不是某一款单一字体。使用 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family: Segoe UI</code> 可以在 Windows 平台及 Windows Phone 上选取最佳的西文字体展示。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">Roboto</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">Roboto 是为 Android 操作系统设计的一个无衬线字体家族。Google 描述该字体为“现代的、但平易近人”和“有感情”的。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">这个字体家族包含Thin、Light、Regular、Medium、Bold、Black六种粗细及相配的斜体。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">总结一下</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">到此，我们可以总结一下了。以 <a href="https://css-tricks.com/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">CSS-Tricks</a> 网站的 font-family 定义为例子：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;">{
+  <span style="box-sizing:border-box;color:rgb(0, 92, 197);">font-family</span><span style="box-sizing:border-box;">:</span> 
+    system-ui<span style="box-sizing:border-box;">,</span>-apple-system<span style="box-sizing:border-box;">,</span>BlinkMacSystemFont<span style="box-sizing:border-box;">,</span>segoe ui<span style="box-sizing:border-box;">,</span>Roboto<span style="box-sizing:border-box;">,</span>
+    Helvetica<span style="box-sizing:border-box;">,</span>Arial<span style="box-sizing:border-box;">,</span>
+    sans-serif<span style="box-sizing:border-box;">,</span>apple color emoji<span style="box-sizing:border-box;">,</span>segoe ui emoji<span style="box-sizing:border-box;">,</span>segoe ui symbol;
+}</pre></div>
+<ol style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;">system-ui，使用各个支持平台上的默认系统字体</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">-apple-system， 在一些稍低版本 Mac OS X 和 iOS 上，它针对旧版上的 Neue Helvetica 和 Lucida Grande 字体，升级使用更为合适的 San Francisco Fonts</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">BlinkMacSystemFont，针对一些 Mac OS X 上的 Chrome 浏览器，使用系统默认字体</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">segoe ui，在 Windows 及 Windows Phone 上选取系统默认字体</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">Roboto，面向 Android 和一些新版的的 Chrome OS</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">Helvetica,Arial，在针对不同操作系统不同平台设定采用默认系统字体后，针对一些低版本浏览器的降级方案</li>
+<li style="box-sizing:border-box;margin-top:0.25em;">sans-serif，兜底方案，保证字体风格统一，至少也得是无衬线字体</li>
+</ol>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">上述 5 个字体族定义，优先级由高到底，可以看到，它们 5 个都并非某个特定字体，基本的核心思想都是选择对应平台上的默认系统字体。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">涵盖了 iOS、MAC OS X、Android、Windows、Windows Phone 基本所有用户经常使用的主流操作系统。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">使用系统默认字体的主要原因是性能。字体通常是网站上加载的最大/最重的资源之一。如果我们可以使用用户机器上已有的字体，我们就完全不需要再去获取字体资源，从而使加载时间明显加快。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">并且系统字体的优点在于它与当前操作系统使用的相匹配，因此它的文本展示必然也是一个让人舒适展示效果。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">当然，上述 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family</code> 的定义不一定是最佳的。譬如天猫移动端在 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">font-family</code> 最前面添加了 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">&quot;PingFang SC&quot;,miui,..</code>必定也有他们的业务上的考虑。但是一些 fallback 方案向后兼容的思想都是一致的，值得参考学习。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">更多的关于字体方面的细节知识，可以看看这几篇文章：</p>
+<ul style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;padding-left:2em;">
+<li style="box-sizing:border-box;"><a href="https://github.com/chokcoco/iCSS/issues/6" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">你该知道的字体 -- font-family</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://github.com/chokcoco/iCSS/issues/69" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Web 字体 font-family 再探秘</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://www.smashingmagazine.com/2015/11/using-system-ui-fonts-practical-guide/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Using UI System Fonts In Web Design: A Quick Practical Guide</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://furbo.org/2018/03/28/system-fonts-in-css/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">System Fonts in CSS</a></li>
+<li style="box-sizing:border-box;margin-top:0.25em;"><a href="https://designforhackers.com/blog/san-francisco-font/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Apple’s San Francisco Font</a></li>
+</ul>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">前端布局的兼容适配</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">前端工程师的一大工作内容就是页面布局。无论在PC端还是移动端，页面布局的兼容适配都是重中之重。在整个前端发展的历程中，布局的方法也在不断的推陈出新。</p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">布局发展历程</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">简单来说，前端的布局发展历程经历了下面几个过程：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><strong style="box-sizing:border-box;font-weight:600;">表格布局 --&gt; 定位布局 --&gt; 浮动布局 --&gt; flexbox布局 --&gt; gridbox布局</strong></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">每一种布局在特定时期都发挥了重要的作用，而每一种新的布局方式的出现，往往都是因为现有的布局方式已经在该时期已经无法很好的满足开发者的需求，无法满足越来越潮流的页面布局的方式。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">以 Flexbox 的出现为例子，在 Flexbox 被大家广为接受使用之前。我们一直在使用定位+浮动的布局方式。像下面这个布局：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62538301-096fe500-b885-11e9-82f5-7ac92502f619.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62538301-096fe500-b885-11e9-82f5-7ac92502f619.png" type="image/png" data-filename="62538301-096fe500-b885-11e9-82f5-7ac92502f619.png" height="105" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="1010"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">容器宽度不定，内部三个元素，均分排列且占满整个空间，并且垂直居中。如果使用定位+浮动的布局方式，你无法很快想到最佳的解决方式。三个元素并排那么必然需要浮动或者绝对定位，容器宽度不定且中间元素始终居中，需要顾虑的方面就很多了。也许使用 <code style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;background-color:rgba(27, 31, 35, 0.05);border-radius:6px;margin:0px;padding:0.2em 0.4em;font-size:85%;">text-align: justufy</code> 可以 hack 实现，等等等等。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">然而，使用 flexbox 布局的话，只需要：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;">.<span style="box-sizing:border-box;color:rgb(0, 92, 197);">container</span> {
+    <span style="box-sizing:border-box;color:rgb(0, 92, 197);">display</span><span style="box-sizing:border-box;">:</span> flex;
+    <span style="box-sizing:border-box;color:rgb(0, 92, 197);">justify-content</span><span style="box-sizing:border-box;">:</span> space-between;
+    <span style="box-sizing:border-box;color:rgb(0, 92, 197);">align-items</span><span style="box-sizing:border-box;">:</span> center;
+}</pre></div>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">flexbox 的出现，一次性解决了流动布局，弹性布局，排列方式等多个问题。并且它是简洁的，可控的。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">再来看一个例子，水平垂直居中一个元素。使用 flexbox 也许是最便捷的：</p>
+<div style="box-sizing:border-box;margin-bottom:16px;background-color:transparent;position:relative;overflow:visible;"><pre style="box-sizing:border-box;font-family:ui-monospace, SFMono-Regular, &quot;SF Mono&quot;, Menlo, Consolas, &quot;Liberation Mono&quot;, monospace;margin-top:0px;overflow-wrap:normal;word-break:normal;margin-bottom:0px;background-color:rgb(246, 248, 250);border-radius:6px;line-height:1.45;overflow:auto;padding:16px;font-size:85%;">.<span style="box-sizing:border-box;color:rgb(0, 92, 197);">container</span> {
+    <span style="box-sizing:border-box;color:rgb(0, 92, 197);">display</span><span style="box-sizing:border-box;">:</span> flex;
+}
+
+.<span style="box-sizing:border-box;color:rgb(0, 92, 197);">item</span> {
+    <span style="box-sizing:border-box;color:rgb(0, 92, 197);">margin</span><span style="box-sizing:border-box;">:</span> auto;
+}</pre></div>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://codepen.io/Chokcoco/pen/GarPev" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">最便捷的垂直居中方式</a></p>
+<h3 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;font-size:1.25em;">CSS Grid Layout</h3>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">OK，flexbox 已经足够优秀了，为什么 gird 网格布局的出现又是为什么？它解决了什么 flex 布局无法很好解决的问题？</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">看看下面这张图：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62539277-6bc9e500-b887-11e9-9f7b-78c51cde312c.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62539277-6bc9e500-b887-11e9-9f7b-78c51cde312c.png" type="image/png" data-filename="62539277-6bc9e500-b887-11e9-9f7b-78c51cde312c.png" height="242" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="400"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">flexbox 是一维布局，他只能在一条直线上放置你的内容区块；而grid是一个二维布局。它除了可以灵活的控制水平方向之外，还能轻易的控制垂直方向的布局模式。对于上图那样的九宫格布局，它就可以轻而易举的完成。</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">一图以蔽之，flexbox：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62591778-51cde800-b903-11e9-9037-9c5b25c9b894.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62591778-51cde800-b903-11e9-9037-9c5b25c9b894.png" type="image/png" data-filename="62591778-51cde800-b903-11e9-9037-9c5b25c9b894.png" height="252" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="600"/></a></p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">gridbox：</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;"><a href="https://user-images.githubusercontent.com/8554143/62591784-5397ab80-b903-11e9-9c70-e7d4316a3da0.png" rel="noopener noreferrer" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;" target="_blank"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/62591784-5397ab80-b903-11e9-9c70-e7d4316a3da0.png" type="image/png" data-filename="62591784-5397ab80-b903-11e9-9c70-e7d4316a3da0.png" height="240" style="border-style:none;background-color:rgb(255, 255, 255);box-sizing:content-box;max-width:100%;" width="300"/></a></p>
+<blockquote style="box-sizing:border-box;margin:0px;margin-bottom:16px;margin-top:0px;border-left:3.5px solid rgb(224, 227, 230);color:rgb(106, 115, 125);padding:0px 1em;">
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">图片截取自陈慧晶老师在 2019 第五届 CSS 大会上的分享 -- <a href="https://www.chenhuijing.com/slides/53-cssconfcn-2019/#/" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">新时代CSS布局</a></p>
+</blockquote>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">在现阶段，移动端布局应当更多使用 flexbox 去完成（相对那些还在使用 float 布局的），而考虑到未来页面布局的推陈出新。对于 Grid 布局我们应当像前几年对待 flexbox 一样，重视起来，随着兼容性的普及，Grid 布局也会慢慢成为主流。</p>
+<h2 style="box-sizing:border-box;line-height:1.25;margin-bottom:16px;margin-top:24px;font-weight:600;border-bottom:1px solid rgb(235, 237, 239);padding-bottom:0.3em;font-size:1.5em;">最后</h2>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">好了，本文到此结束，希望对你有帮助 :)</p>
+<p style="box-sizing:border-box;margin-bottom:16px;margin-top:0px;">更多精彩技术文章汇总在我的 <a href="https://github.com/chokcoco/iCSS" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Github -- iCSS</a> ，持续更新，欢迎点个 star 订阅收藏。</p>
+<p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">如果还有什么疑问或者建议，可以多多交流，原创文章，文笔有限，才疏学浅，文中若有不正之处，万望告知。</p>
+      <span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;clear:both;display:table;"></span></td>
+    </tr>
+      
+  </tbody>
+</table>
+</span>
+
+
+            
+<div style="box-sizing:border-box;display:flex;border-top:1px solid rgb(225, 228, 232);align-items:center;"><span style="display:table;"></span>
+    <div style="box-sizing:border-box;">
+      
+
+      <div style="box-sizing:border-box;">
+
+            
+      </div>
+</div>
+<span style="clear:both;display:table;"></span></div>
+
+      </div>
+
+        
+        
+    <span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-bg-primary);background-image:linear-gradient(var(--color-bg-tertiary),var(--color-bg-tertiary));margin-left:1px;"> </span></div>
+</div>
+
+</div>
+
+
+                
+<div style="box-sizing:border-box;">
+
+    
+  <div style="box-sizing:border-box;"></div>
+
+
+    
+<div style="box-sizing:border-box;">
+  
+    
+<div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+
+  
+<div style="box-sizing:border-box;left:-72px;z-index:1;position:absolute;display:block;">
+  <a href="https://github.com/sponses" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/45093945" type="image/jpeg" data-filename="45093945" height="40" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="40"/></a>
+
+</div>
+
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;max-width:100%;min-width:0px;margin-bottom:0px;margin-top:0px;">
+    <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);border:1px solid rgb(225, 228, 232);border-radius:6px;color:rgb(36, 41, 46);position:relative;margin-left:-16px;"><span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-border-primary);"> </span>
+      
+
+      
+<div style="box-sizing:border-box;align-items:center;background-color:rgb(246, 248, 250);border-bottom:1px solid rgb(225, 228, 232);border-top-left-radius:6px;border-top-right-radius:6px;color:rgb(88, 96, 105);flex-direction:row-reverse;padding-left:16px;padding-right:16px;display:flex;"><span style="color:rgb(88, 96, 105);display:table;"></span>
+  <div style="box-sizing:border-box;float:right;margin-left:8px;flex-shrink:0;">
+      
+
+
+
+<div style="box-sizing:border-box;position:relative;display:inline-block;">
+  <div style="box-sizing:border-box;appearance:none;background-color:transparent;border:0px;font-size:inherit;text-decoration:none;user-select:none;white-space:nowrap;cursor:pointer;list-style:none;display:inline-block;padding:8px 4px;color:rgb(88, 96, 105);"><span style="cursor:pointer;color:rgb(88, 96, 105);font-size:inherit;white-space:nowrap;list-style:none;display:none;"></span>
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-label='Show options' role='img' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-kebab-horizontal js-evernote-checked' data-evernote-id='368'%3e %3cpath d='M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='1472' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+    
+</div>
+
+
+  </div>
+
+  <div style="box-sizing:border-box;align-items:center;display:flex;">
+
+        
+
+
+
+      
+
+
+
+    
+
+  </div>
+
+  <h3 style="box-sizing:border-box;margin-top:0px;flex:1 1 auto;min-width:0px;padding-bottom:8px;padding-top:8px;margin-bottom:1px;font-size:14px;font-weight:400;">
+
+
+      
+
+    <strong style="box-sizing:border-box;font-weight:600;">
+      
+
+  <a href="https://github.com/sponses" style="background-color:transparent;box-sizing:border-box;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:top;color:rgb(36, 41, 46);max-width:100%;">sponses</a>
+  
+
+    </strong>
+
+
+    commented
+
+
+      <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#issuecomment-527073186" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2019年9月2日GMT+8 下午5:21">on 2 Sep 2019</span></a>
+
+
+    <span style="box-sizing:border-box;">
+    </span>
+  </h3>
+<span style="color:rgb(88, 96, 105);clear:both;display:table;"></span></div>
+
+
+      <div style="box-sizing:border-box;">
+
+        
+<span style="box-sizing:border-box;">
+<table style="font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;box-sizing:border-box;border-collapse:collapse;border-spacing:0px;display:block;">
+  <tbody style="box-sizing:border-box;display:block;">
+    <tr style="box-sizing:border-box;display:block;">
+      <td style="box-sizing:border-box;overflow-wrap:break-word;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;line-height:1.5;overflow:visible;width:100%;padding:15px;font-size:14px;display:block;"><span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;display:table;"></span>
+          <p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">Coco姐太棒了</p>
+      <span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;clear:both;display:table;"></span></td>
+    </tr>
+  </tbody>
+</table>
+</span>
+
+
+            
+
+
+      </div>
+
+    <span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-bg-primary);background-image:linear-gradient(var(--color-bg-tertiary),var(--color-bg-tertiary));margin-left:1px;"> </span></div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+    
+<div style="box-sizing:border-box;">
+  
+    
+<div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+
+  
+<div style="box-sizing:border-box;left:-72px;z-index:1;position:absolute;display:block;">
+  <a href="https://github.com/growthworld" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/29936083" type="image/png" data-filename="29936083" height="40" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="40"/></a>
+
+</div>
+
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;max-width:100%;min-width:0px;margin-bottom:0px;margin-top:0px;">
+    <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);border:1px solid rgb(225, 228, 232);border-radius:6px;color:rgb(36, 41, 46);position:relative;margin-left:-16px;"><span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-border-primary);"> </span>
+      
+
+      
+<div style="box-sizing:border-box;align-items:center;background-color:rgb(246, 248, 250);border-bottom:1px solid rgb(225, 228, 232);border-top-left-radius:6px;border-top-right-radius:6px;color:rgb(88, 96, 105);flex-direction:row-reverse;padding-left:16px;padding-right:16px;display:flex;"><span style="color:rgb(88, 96, 105);display:table;"></span>
+  <div style="box-sizing:border-box;float:right;margin-left:8px;flex-shrink:0;">
+      
+
+
+
+<div style="box-sizing:border-box;position:relative;display:inline-block;">
+  <div style="box-sizing:border-box;appearance:none;background-color:transparent;border:0px;font-size:inherit;text-decoration:none;user-select:none;white-space:nowrap;cursor:pointer;list-style:none;display:inline-block;padding:8px 4px;color:rgb(88, 96, 105);"><span style="cursor:pointer;color:rgb(88, 96, 105);font-size:inherit;white-space:nowrap;list-style:none;display:none;"></span>
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-label='Show options' role='img' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-kebab-horizontal js-evernote-checked' data-evernote-id='369'%3e %3cpath d='M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='1494' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+    
+</div>
+
+
+  </div>
+
+  <div style="box-sizing:border-box;align-items:center;display:flex;">
+
+        
+
+
+
+      
+
+
+
+    
+
+  </div>
+
+  <h3 style="box-sizing:border-box;margin-top:0px;flex:1 1 auto;min-width:0px;padding-bottom:8px;padding-top:8px;margin-bottom:1px;font-size:14px;font-weight:400;">
+
+
+      
+
+    <strong style="box-sizing:border-box;font-weight:600;">
+      
+
+  <a href="https://github.com/growthworld" style="background-color:transparent;box-sizing:border-box;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:top;color:rgb(36, 41, 46);max-width:100%;">growthworld</a>
+  
+
+    </strong>
+
+
+    commented
+
+
+      <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#issuecomment-527077507" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2019年9月2日GMT+8 下午5:33">on 2 Sep 2019</span></a>
+
+
+    <span style="box-sizing:border-box;">
+    </span>
+  </h3>
+<span style="color:rgb(88, 96, 105);clear:both;display:table;"></span></div>
+
+
+      <div style="box-sizing:border-box;">
+
+        
+<span style="box-sizing:border-box;">
+<table style="font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;box-sizing:border-box;border-collapse:collapse;border-spacing:0px;display:block;">
+  <tbody style="box-sizing:border-box;display:block;">
+    <tr style="box-sizing:border-box;display:block;">
+      <td style="box-sizing:border-box;overflow-wrap:break-word;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;line-height:1.5;overflow:visible;width:100%;padding:15px;font-size:14px;display:block;"><span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;display:table;"></span>
+          <p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">深度好文</p>
+      <span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;clear:both;display:table;"></span></td>
+    </tr>
+  </tbody>
+</table>
+</span>
+
+
+            
+
+
+      </div>
+
+    <span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-bg-primary);background-image:linear-gradient(var(--color-bg-tertiary),var(--color-bg-tertiary));margin-left:1px;"> </span></div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+    
+<div style="box-sizing:border-box;">
+  
+        <div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+  <div style="box-sizing:border-box;align-items:center;background-color:rgb(225, 228, 232);border:2px solid rgb(255, 255, 255);border-radius:50%;color:rgb(88, 96, 105);display:flex;flex-shrink:0;height:32px;justify-content:center;margin-left:-15px;margin-right:8px;position:relative;width:32px;z-index:1;">
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-pencil js-evernote-checked' data-evernote-id='370'%3e %3cpath fill-rule='evenodd' d='M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z' data-evernote-id='1512' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;margin-top:4px;max-width:100%;min-width:0px;">
+
+    
+
+        <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/8554143 [1]" type="image/png" data-filename="8554143" height="20" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="20"/></a>
+<a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(36, 41, 46);font-weight:600;">chokcoco</a>
+
+
+
+
+      
+changed the title
+<del style="box-sizing:border-box;font-weight:600;">前端基础知识概述 -- 移动端开发的兼容适配与性能优化</del>
+
+<ins style="box-sizing:border-box;font-weight:600;text-decoration:none;">前端基础知识概述 -- 移动端开发的屏幕、图像、字体的兼容适配</ins>
+
+
+    <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#event-2602110108" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2019年9月3日GMT+8 上午10:58">on 3 Sep 2019</span></a>
+
+  </div>
+</div>
+
+
+  <div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+  <div style="box-sizing:border-box;align-items:center;background-color:rgb(225, 228, 232);border:2px solid rgb(255, 255, 255);border-radius:50%;color:rgb(88, 96, 105);display:flex;flex-shrink:0;height:32px;justify-content:center;margin-left:-15px;margin-right:8px;position:relative;width:32px;z-index:1;">
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-pencil js-evernote-checked' data-evernote-id='371'%3e %3cpath fill-rule='evenodd' d='M11.013 1.427a1.75 1.75 0 012.474 0l1.086 1.086a1.75 1.75 0 010 2.474l-8.61 8.61c-.21.21-.47.364-.756.445l-3.251.93a.75.75 0 01-.927-.928l.929-3.25a1.75 1.75 0 01.445-.758l8.61-8.61zm1.414 1.06a.25.25 0 00-.354 0L10.811 3.75l1.439 1.44 1.263-1.263a.25.25 0 000-.354l-1.086-1.086zM11.189 6.25L9.75 4.81l-6.286 6.287a.25.25 0 00-.064.108l-.558 1.953 1.953-.558a.249.249 0 00.108-.064l6.286-6.286z' data-evernote-id='1519' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;margin-top:4px;max-width:100%;min-width:0px;">
+
+    
+
+        <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/8554143 [2]" type="image/png" data-filename="8554143" height="20" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="20"/></a>
+<a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(36, 41, 46);font-weight:600;">chokcoco</a>
+
+
+
+
+      
+changed the title
+<del style="box-sizing:border-box;font-weight:600;">前端基础知识概述 -- 移动端开发的屏幕、图像、字体的兼容适配</del>
+
+<ins style="box-sizing:border-box;font-weight:600;text-decoration:none;">前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配</ins>
+
+
+    <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#event-2602110809" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2019年9月3日GMT+8 上午10:58">on 3 Sep 2019</span></a>
+
+  </div>
+</div>
+
+
+
+
+</div>
+
+    
+<div style="box-sizing:border-box;">
+  
+    
+<div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+
+  
+<div style="box-sizing:border-box;left:-72px;z-index:1;position:absolute;display:block;">
+  <a href="https://github.com/kodomozz" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/17587821" type="image/jpeg" data-filename="17587821" height="40" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="40"/></a>
+
+</div>
+
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;max-width:100%;min-width:0px;margin-bottom:0px;margin-top:0px;">
+    <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);border:1px solid rgb(225, 228, 232);border-radius:6px;color:rgb(36, 41, 46);position:relative;margin-left:-16px;"><span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-border-primary);"> </span>
+      
+
+      
+<div style="box-sizing:border-box;align-items:center;background-color:rgb(246, 248, 250);border-bottom:1px solid rgb(225, 228, 232);border-top-left-radius:6px;border-top-right-radius:6px;color:rgb(88, 96, 105);flex-direction:row-reverse;padding-left:16px;padding-right:16px;display:flex;"><span style="color:rgb(88, 96, 105);display:table;"></span>
+  <div style="box-sizing:border-box;float:right;margin-left:8px;flex-shrink:0;">
+      
+
+
+
+<div style="box-sizing:border-box;position:relative;display:inline-block;">
+  <div style="box-sizing:border-box;appearance:none;background-color:transparent;border:0px;font-size:inherit;text-decoration:none;user-select:none;white-space:nowrap;cursor:pointer;list-style:none;display:inline-block;padding:8px 4px;color:rgb(88, 96, 105);"><span style="cursor:pointer;color:rgb(88, 96, 105);font-size:inherit;white-space:nowrap;list-style:none;display:none;"></span>
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-label='Show options' role='img' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-kebab-horizontal js-evernote-checked' data-evernote-id='372'%3e %3cpath d='M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='1531' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+    
+</div>
+
+
+  </div>
+
+  <div style="box-sizing:border-box;align-items:center;display:flex;">
+
+        
+
+
+
+      
+
+
+
+    
+
+  </div>
+
+  <h3 style="box-sizing:border-box;margin-top:0px;flex:1 1 auto;min-width:0px;padding-bottom:8px;padding-top:8px;margin-bottom:1px;font-size:14px;font-weight:400;">
+
+
+      
+
+    <strong style="box-sizing:border-box;font-weight:600;">
+      
+
+  <a href="https://github.com/kodomozz" style="background-color:transparent;box-sizing:border-box;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:top;color:rgb(36, 41, 46);max-width:100%;">kodomozz</a>
+  
+
+    </strong>
+
+
+    commented
+
+
+      <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#issuecomment-558607120" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2019年11月26日GMT+8 下午8:28">on 26 Nov 2019</span></a>
+
+
+    <span style="box-sizing:border-box;">
+    </span>
+  </h3>
+<span style="color:rgb(88, 96, 105);clear:both;display:table;"></span></div>
+
+
+      <div style="box-sizing:border-box;">
+
+        
+<span style="box-sizing:border-box;">
+<table style="font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;box-sizing:border-box;border-collapse:collapse;border-spacing:0px;display:block;">
+  <tbody style="box-sizing:border-box;display:block;">
+    <tr style="box-sizing:border-box;display:block;">
+      <td style="box-sizing:border-box;overflow-wrap:break-word;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;line-height:1.5;overflow:visible;width:100%;padding:15px;font-size:14px;display:block;"><span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;display:table;"></span>
+          <p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">写的不错<span style="box-sizing:border-box;font-family:&quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;, &quot;Segoe UI Symbol&quot;;font-size:1em;font-weight:400;line-height:1;vertical-align:-0.075em;font-style:normal;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/1f44d.png" type="image/png" data-filename="1f44d.png" height="20" style="border-style:none;height:1em;width:1em;box-sizing:content-box;vertical-align:text-top;background-color:transparent;max-width:none;" width="20"/></span></p>
+      <span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;clear:both;display:table;"></span></td>
+    </tr>
+  </tbody>
+</table>
+</span>
+
+
+            
+
+
+      </div>
+
+    <span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-bg-primary);background-image:linear-gradient(var(--color-bg-tertiary),var(--color-bg-tertiary));margin-left:1px;"> </span></div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+    
+<div style="box-sizing:border-box;">
+  
+    
+<div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+
+  
+<div style="box-sizing:border-box;left:-72px;z-index:1;position:absolute;display:block;">
+  <a href="https://github.com/liaoliaots" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/27341089" type="image/jpeg" data-filename="27341089" height="40" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="40"/></a>
+
+</div>
+
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;max-width:100%;min-width:0px;margin-bottom:0px;margin-top:0px;">
+    <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);border:1px solid rgb(225, 228, 232);border-radius:6px;color:rgb(36, 41, 46);position:relative;margin-left:-16px;"><span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-border-primary);"> </span>
+      
+
+      
+<div style="box-sizing:border-box;align-items:center;background-color:rgb(246, 248, 250);border-bottom:1px solid rgb(225, 228, 232);border-top-left-radius:6px;border-top-right-radius:6px;color:rgb(88, 96, 105);flex-direction:row-reverse;padding-left:16px;padding-right:16px;display:flex;"><span style="color:rgb(88, 96, 105);display:table;"></span>
+  <div style="box-sizing:border-box;float:right;margin-left:8px;flex-shrink:0;">
+      
+
+
+
+<div style="box-sizing:border-box;position:relative;display:inline-block;">
+  <div style="box-sizing:border-box;appearance:none;background-color:transparent;border:0px;font-size:inherit;text-decoration:none;user-select:none;white-space:nowrap;cursor:pointer;list-style:none;display:inline-block;padding:8px 4px;color:rgb(88, 96, 105);"><span style="cursor:pointer;color:rgb(88, 96, 105);font-size:inherit;white-space:nowrap;list-style:none;display:none;"></span>
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-label='Show options' role='img' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-kebab-horizontal js-evernote-checked' data-evernote-id='373'%3e %3cpath d='M8 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zM1.5 9a1.5 1.5 0 100-3 1.5 1.5 0 000 3zm13 0a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='1554' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+    
+</div>
+
+
+  </div>
+
+  <div style="box-sizing:border-box;align-items:center;display:flex;">
+
+        
+
+
+
+      
+
+
+
+    
+
+  </div>
+
+  <h3 style="box-sizing:border-box;margin-top:0px;flex:1 1 auto;min-width:0px;padding-bottom:8px;padding-top:8px;margin-bottom:1px;font-size:14px;font-weight:400;">
+
+
+      
+
+    <strong style="box-sizing:border-box;font-weight:600;">
+      
+
+  <a href="https://github.com/liaoliaots" style="background-color:transparent;box-sizing:border-box;text-decoration:none;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:inline-block;vertical-align:top;color:rgb(36, 41, 46);max-width:100%;">liaoliaots</a>
+  
+
+    </strong>
+
+
+    commented
+
+
+      <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#issuecomment-693299340" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);"><span style="box-sizing:border-box;white-space:nowrap;" title="2020年9月16日GMT+8 下午5:51">on 16 Sep 2020</span></a>
+
+
+    <span style="box-sizing:border-box;">
+    </span>
+  </h3>
+<span style="color:rgb(88, 96, 105);clear:both;display:table;"></span></div>
+
+
+      <div style="box-sizing:border-box;">
+
+        
+<span style="box-sizing:border-box;">
+<table style="font-size:inherit;font-weight:inherit;font-style:inherit;font-variant:inherit;box-sizing:border-box;border-collapse:collapse;border-spacing:0px;display:block;">
+  <tbody style="box-sizing:border-box;display:block;">
+    <tr style="box-sizing:border-box;display:block;">
+      <td style="box-sizing:border-box;overflow-wrap:break-word;font-family:-apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;;line-height:1.5;overflow:visible;width:100%;padding:15px;font-size:14px;display:block;"><span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;display:table;"></span>
+          <p style="box-sizing:border-box;margin-top:0px;margin-bottom:0px;">感谢</p>
+      <span style="font-family:-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;font-size:14px;line-height:1.5;clear:both;display:table;"></span></td>
+    </tr>
+  </tbody>
+</table>
+</span>
+
+
+            
+
+
+      </div>
+
+    <span style="color:rgb(36, 41, 46);clip-path:polygon(0px 50%, 100% 0px, 100% 100%);display:block;height:16px;left:-8px;pointer-events:none;position:absolute;right:100%;top:11px;width:8px;background-color:var(--color-bg-primary);background-image:linear-gradient(var(--color-bg-tertiary),var(--color-bg-tertiary));margin-left:1px;"> </span></div>
+</div>
+
+
+</div>
+
+
+</div>
+
+
+    
+<div style="box-sizing:border-box;">
+  
+        <div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+  <div style="box-sizing:border-box;align-items:center;background-color:rgb(225, 228, 232);border:2px solid rgb(255, 255, 255);border-radius:50%;color:rgb(88, 96, 105);display:flex;flex-shrink:0;height:32px;justify-content:center;margin-left:-15px;margin-right:8px;position:relative;width:32px;z-index:1;">
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-cross-reference js-evernote-checked' data-evernote-id='374'%3e %3cpath fill-rule='evenodd' d='M16 1.25v4.146a.25.25 0 01-.427.177L14.03 4.03l-3.75 3.75a.75.75 0 11-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0111.604 1h4.146a.25.25 0 01.25.25zM2.75 3.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-2.5a.75.75 0 111.5 0v2.5A1.75 1.75 0 0113.25 13H9.06l-2.573 2.573A1.457 1.457 0 014 14.543V13H2.75A1.75 1.75 0 011 11.25v-7.5C1 2.784 1.784 2 2.75 2h5.5a.75.75 0 010 1.5h-5.5z' data-evernote-id='1572' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;margin-top:4px;max-width:100%;min-width:0px;">
+      <div style="box-sizing:border-box;">
+    <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/8554143 [3]" type="image/png" data-filename="8554143" height="20" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="20"/></a>
+<a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(36, 41, 46);font-weight:600;">chokcoco</a>
+
+
+
+    mentioned this issue
+
+  <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#ref-issue-780381305" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);">
+    <span style="box-sizing:border-box;white-space:nowrap;" title="2021年1月10日GMT+8 下午7:23">on 10 Jan</span>
+  </a>
+</div>
+
+<div style="box-sizing:border-box;align-items:flex-start;flex-direction:row;margin-top:8px;display:flex;">
+  <div style="box-sizing:border-box;flex:1 1 auto;overflow-wrap:break-word;word-break:break-word;">
+    <a href="https://github.com/chokcoco/iCSS/issues/88" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(36, 41, 46);font-size:16px;font-weight:600;">
+      前端优秀实践不完全指南
+      <span style="box-sizing:border-box;color:rgb(88, 96, 105);font-weight:400;">chokcoco/iCSS#88</span>
+</a>  </div>
+
+
+  <div style="box-sizing:border-box;flex-shrink:0;margin-bottom:0px;margin-top:0px;margin-left:16px;">
+      <span style="box-sizing:border-box;border-radius:2em;display:inline-block;font-weight:500;text-align:center;white-space:nowrap;border:1px solid rgba(0, 0, 0, 0);border-color:rgba(0, 0, 0, 0);background-color:rgb(215, 58, 73);color:rgb(255, 255, 255);font-size:12px;line-height:24px;padding:0px 10px;" title="Status: Closed">
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='14' class='octicon octicon-issue-closed js-evernote-checked' viewBox='0 0 16 16' version='1.1' width='14' aria-hidden='true' data-evernote-id='375'%3e%3cpath d='M11.28 6.78a.75.75 0 00-1.06-1.06L7.25 8.69 5.78 7.22a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l3.5-3.5z' data-evernote-id='1581' class='js-evernote-checked'%3e%3c/path%3e%3cpath fill-rule='evenodd' d='M16 8A8 8 0 110 8a8 8 0 0116 0zm-1.5 0a6.5 6.5 0 11-13 0 6.5 6.5 0 0113 0z' data-evernote-id='1582' class='js-evernote-checked'%3e%3c/path%3e%3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;width:1em;overflow:visible;"></img> Closed
+</span>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+  <div style="box-sizing:border-box;display:flex;margin-left:16px;padding:16px 0px;position:relative;"><span style="background-color:var(--color-border-secondary);bottom:0px;display:block;left:0px;position:absolute;top:0px;width:2px;"></span>
+  <div style="box-sizing:border-box;align-items:center;background-color:rgb(225, 228, 232);border:2px solid rgb(255, 255, 255);border-radius:50%;color:rgb(88, 96, 105);display:flex;flex-shrink:0;height:32px;justify-content:center;margin-left:-15px;margin-right:8px;position:relative;width:32px;z-index:1;">
+    <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' aria-hidden='true' height='16' viewBox='0 0 16 16' version='1.1' width='16' data-view-component='true' class='octicon octicon-cross-reference js-evernote-checked' data-evernote-id='376'%3e %3cpath fill-rule='evenodd' d='M16 1.25v4.146a.25.25 0 01-.427.177L14.03 4.03l-3.75 3.75a.75.75 0 11-1.06-1.06l3.75-3.75-1.543-1.543A.25.25 0 0111.604 1h4.146a.25.25 0 01.25.25zM2.75 3.5a.25.25 0 00-.25.25v7.5c0 .138.112.25.25.25h2a.75.75 0 01.75.75v2.19l2.72-2.72a.75.75 0 01.53-.22h4.5a.25.25 0 00.25-.25v-2.5a.75.75 0 111.5 0v2.5A1.75 1.75 0 0113.25 13H9.06l-2.573 2.573A1.457 1.457 0 014 14.543V13H2.75A1.75 1.75 0 011 11.25v-7.5C1 2.784 1.784 2 2.75 2h5.5a.75.75 0 010 1.5h-5.5z' data-evernote-id='1585' class='js-evernote-checked'%3e%3c/path%3e %3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;overflow:visible;"></img>
+  </div>
+
+  <div style="box-sizing:border-box;color:rgb(68, 77, 86);flex:1 1 auto;margin-top:4px;max-width:100%;min-width:0px;">
+      <div style="box-sizing:border-box;">
+    <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;display:inline-block;"><img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/8554143 [4]" type="image/png" data-filename="8554143" height="20" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="20"/></a>
+<a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(36, 41, 46);font-weight:600;">chokcoco</a>
+
+
+
+    mentioned this issue
+
+  <a href="https://github.com/chokcoco/cnblogsArticle/issues/25#ref-issue-815529204" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);">
+    <span style="box-sizing:border-box;white-space:nowrap;" title="2021年2月24日GMT+8 下午10:26">on 24 Feb</span>
+  </a>
+</div>
+
+<div style="box-sizing:border-box;align-items:flex-start;flex-direction:row;margin-top:8px;display:flex;">
+  <div style="box-sizing:border-box;flex:1 1 auto;overflow-wrap:break-word;word-break:break-word;">
+    <a href="https://github.com/chokcoco/cnblogsArticle/issues/26" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(36, 41, 46);font-size:16px;font-weight:600;">
+      前端优秀实践不完全指南
+      <span style="box-sizing:border-box;color:rgb(88, 96, 105);font-weight:400;">#26</span>
+</a>  </div>
+
+
+  <div style="box-sizing:border-box;flex-shrink:0;margin-bottom:0px;margin-top:0px;margin-left:16px;">
+      <span style="box-sizing:border-box;border-radius:2em;display:inline-block;font-weight:500;text-align:center;white-space:nowrap;border:1px solid rgba(0, 0, 0, 0);border-color:rgba(0, 0, 0, 0);background-color:rgb(40, 167, 69);color:rgb(255, 255, 255);font-size:12px;line-height:24px;padding:0px 10px;" title="Status: Open">
+  <img src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' height='14' class='octicon octicon-issue-opened js-evernote-checked' viewBox='0 0 16 16' version='1.1' width='14' aria-hidden='true' data-evernote-id='377'%3e%3cpath d='M8 9.5a1.5 1.5 0 100-3 1.5 1.5 0 000 3z' data-evernote-id='1594' class='js-evernote-checked'%3e%3c/path%3e%3cpath fill-rule='evenodd' d='M8 0a8 8 0 100 16A8 8 0 008 0zM1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0z' data-evernote-id='1595' class='js-evernote-checked'%3e%3c/path%3e%3c/svg%3e" style="box-sizing:border-box;fill:currentcolor;display:inline-block;vertical-align:text-bottom;width:1em;overflow:visible;"></img> Open
+</span>
+  </div>
+</div>
+
+
+
+
+
+  </div>
+</div>
+
+
+
+</div>
+
+
+
+
+
+
+  
+  <div style="box-sizing:border-box;">
+      </div>
+
+</div>
+
+
+              </div>
+
+
+              <span style="box-sizing:border-box;"></span>
+              <div style="box-sizing:border-box;background-color:rgb(255, 255, 255);border-top:2px solid rgb(225, 228, 232);">
+                          <div style="box-sizing:border-box;border-radius:6px;border-style:solid;border-width:1px;padding:20px 16px;position:relative;background-image:linear-gradient(rgb(255, 251, 221), rgb(255, 251, 221));border-color:rgba(176, 136, 0, 0.2);color:rgb(36, 41, 46);margin-top:16px;">
+    <a href="https://github.com/join?source=comment-repo" rel="nofollow" style="box-sizing:border-box;text-decoration:none;appearance:none;border:1px solid;border-radius:6px;cursor:pointer;display:inline-block;font-size:14px;font-weight:500;line-height:20px;padding:5px 16px;position:relative;user-select:none;vertical-align:middle;white-space:nowrap;transition:color 0.2s cubic-bezier(0.3, 0, 0.5, 1) 0s, background-color, border-color;background-color:rgb(46, 164, 79);color:rgb(255, 255, 255);border-color:rgba(27, 31, 35, 0.15);box-shadow:rgba(27, 31, 35, 0.1) 0px 1px 0px 0px, rgba(255, 255, 255, 0.03) 0px 1px 0px 0px inset;">Sign up for free</a>
+    <strong style="box-sizing:border-box;font-weight:600;">to join this conversation on GitHub</strong>.
+    Already have an account?
+    <a href="https://github.com/login?return_to=https%3A%2F%2Fgithub.com%2Fchokcoco%2FcnblogsArticle%2Fissues%2F25" rel="nofollow" style="background-color:transparent;box-sizing:border-box;color:rgb(3, 102, 214);text-decoration:none;">Sign in to comment</a>
+</div>
+
+
+              </div>
+            </div>
+</div>
+
+    <div style="box-sizing:border-box;width:25%;flex-shrink:0;padding-left:16px;padding-right:16px;">              
+<div style="box-sizing:border-box;">
+
+
+
+    <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;padding-top:16px;">
+  <div style="box-sizing:border-box;">
+
+      
+  <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;margin-bottom:8px;font-weight:600;">
+    Assignees
+  </div>
+
+
+      
+<span style="box-sizing:border-box;">
+    No one assigned
+</span>
+
+
+</div></div>
+
+
+      <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;padding-top:16px;border-top:1px solid rgb(235, 237, 239);margin-top:16px;">
+  
+
+
+  <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;margin-bottom:8px;font-weight:600;">
+    Labels
+  </div>
+
+  <div style="box-sizing:border-box;flex-wrap:wrap;display:flex;">
+    None yet
+</div>
+
+</div>
+
+
+      
+<div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;padding-top:16px;border-top:1px solid rgb(235, 237, 239);margin-top:16px;">
+  <div style="box-sizing:border-box;">
+      <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;margin-bottom:8px;font-weight:600;">
+    Projects
+  </div>
+
+    
+<span style="box-sizing:border-box;">
+    None yet
+
+</span>
+
+</div></div>
+
+
+      <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;padding-top:16px;border-top:1px solid rgb(235, 237, 239);margin-top:16px;">
+  <div style="box-sizing:border-box;">
+      <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;margin-bottom:8px;font-weight:600;">
+    Milestone
+  </div>
+
+      No milestone
+
+</div></div>
+
+
+      
+<div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;padding-top:16px;border-top:1px solid rgb(235, 237, 239);margin-top:16px;">
+  <div style="box-sizing:border-box;">
+    
+  <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;margin-bottom:8px;font-weight:600;">
+    Linked pull requests
+  </div>
+
+
+      
+<p style="box-sizing:border-box;margin-bottom:10px;margin-top:0px;">Successfully merging a pull request may close this issue.</p>
+
+  None yet
+
+</div>
+</div>
+
+
+    
+
+    <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;padding-top:16px;border-top:1px solid rgb(235, 237, 239);margin-top:16px;">
+  <div style="box-sizing:border-box;">
+    <div style="box-sizing:border-box;color:rgb(88, 96, 105);font-size:12px;margin-bottom:8px;font-weight:600;">
+      5 participants
+    </div>
+    <div style="box-sizing:border-box;margin-left:-4px;flex-wrap:wrap;display:flex;"><span style="display:table;"></span>
+        <a href="https://github.com/chokcoco" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);float:left;margin:4px 0px 0px 4px;">
+          <img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/8554143 [5]" type="image/png" data-filename="8554143" height="26" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="26"/> 
+</a>        <a href="https://github.com/kodomozz" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);float:left;margin:4px 0px 0px 4px;">
+          <img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/17587821 [1]" type="image/jpeg" data-filename="17587821" height="26" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="26"/> 
+</a>        <a href="https://github.com/liaoliaots" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);float:left;margin:4px 0px 0px 4px;">
+          <img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/27341089 [1]" type="image/jpeg" data-filename="27341089" height="26" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="26"/> 
+</a>        <a href="https://github.com/growthworld" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);float:left;margin:4px 0px 0px 4px;">
+          <img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/29936083 [1]" type="image/png" data-filename="29936083" height="26" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="26"/> 
+</a>        <a href="https://github.com/sponses" style="background-color:transparent;box-sizing:border-box;text-decoration:none;color:rgb(88, 96, 105);float:left;margin:4px 0px 0px 4px;">
+          <img src="前端基础知识概述 -- 移动端开发的屏幕、图像、字体与布局的兼容适配 · Issue 25_files/45093945 [1]" type="image/jpeg" data-filename="45093945" height="26" style="border-style:none;box-sizing:border-box;background-color:rgb(255, 255, 255);box-shadow:rgba(0, 0, 0, 0) 0px 0px 0px 1px;display:inline-block;flex-shrink:0;line-height:1;overflow:hidden;vertical-align:middle;border-radius:50%;" width="26"/> 
+</a>    <span style="clear:both;display:table;"></span></div>
+  </div>
+</div>
+
+
+    
+
+    
+
+
+
+    
+
+</div>
+
+</div>
+</div>      </div>
+    </div></div></div></div></span></div></div></div></div></div>
+</div>
+</span>
+</div></body></html> 
