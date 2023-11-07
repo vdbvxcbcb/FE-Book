@@ -277,11 +277,11 @@ hotfix 都从 release 切的，修完把 hotfix 合 release, 再把 release 合�
 
 #### 合并分支
 
-在将一个分支合并到另一个分支时（例如将 feature-* 合并到 dev），
+**在将一个分支合并到另一个分支时（例如将 feature-* 合并到 dev），**
 
-需要查看自己的新分支中有没有多个重复提交或意义不明的 commit。
+**需要查看自己的新分支中有没有多个重复提交或意义不明的 commit。**
 
-如果有，则需要对它们进行合并（git rebase）。
+**如果有，则需要对它们进行合并（git rebase）。**
 
 示例：
 
@@ -296,11 +296,9 @@ chore: 修改按钮样式及文字
 
 注意：
 
-在将 feature-* 合并到 dev 时，
+在将分支合并到另一分支前，例如将 `feature/*` 合并到 `dev`。
 
-需要先将 dev 分支合并到 feature-* 分支，然后再将 feature-* 合并到 dev 分支，避免出现代码冲突的情况。
-
-同理，合并 bug-* 分支也一样。
+需要先拉取 `dev` 的最新更新，然后回到 `feature/*`，执行 `git rebase dev` 操作，再提交，最后提合并分支操作。
 
 
 
@@ -1185,8 +1183,6 @@ https://www.cnblogs.com/-mrl/p/13859321.html
 
 
 ![2021-11-27_161536.jpg](https://cdn.nlark.com/yuque/0/2022/jpeg/1614731/1656302469251-5bbd8bd2-72d0-4b29-a61c-bf621553dd0e.jpeg)
-
-
 
 
 
