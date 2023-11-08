@@ -988,6 +988,136 @@ sourcetree revert 方式
 
 回到原来的 develop 分支，重置到a这次的提交。然后再把 copy_develop 分支的代码合并到 develop 分支即可。
 
+#### 删错某些提交怎么恢复？
+
+如果说 `reset --soft` 是后悔药，那 reflog 就是强力后悔药。它记录了所有的 commit 操作记录，便于错误操作后找回记录。
+
+通过执行git reflog命令，可以查看reflog。输出的内容大致格式如下：
+
+```sh
+ 400e4b7 HEAD@{0}: checkout: moving from main to HEAD~2 
+ 0e25143 HEAD@{1}: commit (amend): Integrate some awesome feature into `main` 
+ 00f5425 HEAD@{2}: commit (merge): Merge branch ';feature'; 
+ ad8621a HEAD@{3}: commit: Finish the feature
+```
+
+这些内容大意如下：
+
+你刚刚切换到 HEAD~2
+
+在这之前执行了一次 commit amend 操作
+
+在这之前将 feature 分支合并进 main 分支
+
+在这之前执行了一次提交
+
+当你使用 git reset 命令废弃了某些功能的代码。比如此时你的 reflog 看上去大概会是这个样子：
+
+```sh
+ad8621a HEAD@{0}: reset: moving to HEAD~3 
+298eb9f HEAD@{1}: commit: Some other commit message 
+bbe9012 HEAD@{2}: commit: Continue the feature 
+9cb79fa HEAD@{3}: commit: Start a new feature
+```
+
+```sh
+git reflog show --date=iso
+```
+
+git reflog用来记录你的每一次命令，--date=iso 表示以标准时间显示。
+
+**应用场景**
+
+应用场景：某天你眼花，发现自己在其他人分支提交了代码还推到远程分支，这时因为分支只有你的最新提交，就想着使用 `reset --hard`，
+
+结果紧张不小心记错了 commitHash，reset 过头，把同事的 commit 搞没了。
+
+没办法，`reset --hard` 是强制回退的，找不到 commitHash 了，
+
+只能让同事从本地分支再推一次（同事瞬间拳头就硬了，怎么又是你）。于是，你的技术形象又一落千丈。
+
+**命令使用**
+
+分支记录如下，想要 reset 到 b ：
+
+![img](https://cdn.nlark.com/yuque/0/2023/webp/1614731/1699454142525-7d2fd327-abb7-49be-95b7-b6f8cf245a9b.webp)
+
+误操作 reset 过头，b 没了，最新的只剩下 a ：
+
+![img](https://cdn.nlark.com/yuque/0/2023/webp/1614731/1699454142524-00a220da-f12a-4602-ad19-8a97913bfff3.webp)
+
+这时用 `git reflog` 查看历史记录，把错误提交的那次 commitHash 记下（即 HEAD@{1} ）： 
+
+![img](https://cdn.nlark.com/yuque/0/2023/webp/1614731/1699454142511-52c37089-7d9b-4a7e-9a64-41df12a01f46.webp)
+
+所有条目都是按时间顺序排列的，这意味着处于上面的提交是最近的（也就是最新的）提交。
+
+如果仔细看，会注意到几分钟前致命的 git reset 操作就在顶部。
+
+再次 reset 回去，就会发现 b 回来了
+
+```sh
+git reset --hard 8631553
+
+git log
+```
+
+![img](https://cdn.nlark.com/yuque/0/2023/webp/1614731/1699454142574-932a0bad-479a-4add-af3f-172c6271c755.webp)
+
+#### 删错分支怎么恢复？
+
+第一步 查看 reflog
+
+reflog 记录了本地仓库中的引用更改历史，包括分支的删除。首先，进入您的项目根目录，并打开终端或命令行。运行以下命令查看分支的 reflog：
+
+```sh
+git reflog
+```
+
+![04174547_64f5a74be288382465](https://cdn.nlark.com/yuque/0/2023/jpeg/1614731/1699455193538-286fd429-f1fb-4067-95e8-aa7b303127a0.jpeg)
+
+在输出中，您将看到提交号（commit hash）以及删除分支之前的引用号。
+
+例如，
+
+删除分支为 dev_xj ，
+
+删除分支之前的引用号 d9244f1，
+
+记住这个引用号，它将帮助您恢复被删除的分支。
+
+第二步 恢复分支
+
+```sh
+git checkout -b dev_xj d9244f1
+```
+
+dev_xj：你的分支名，可以和之前删除的一样，也可以重新命个名
+
+d9244f1： 最后一次commit 的提交号或者引用号
+
+第三步 推送分支
+
+如果您希望将恢复的分支同步到 Git 远程仓库，可以使用以下命令将分支推送到 Git：
+
+```sh
+git push origin dev_xj
+```
+
+注意事项
+
+Git 会定期清理过期的 reflog 记录，以减少仓库大小。
+
+默认情况下，过期的 reflog 记录会在 90 天后被删除。如果需要修改过期时间，可以通过配置 gc.reflogExpire 和 gc.reflogExpireUnreachable 参数来调整。
+
+```sh
+# 设置 reflog 记录的保留时间为 180 天
+git config gc.reflogExpire 180.days
+
+# 设置无法访问的 reflog 记录的保留时间为 180 天
+git config gc.reflogExpireUnreachable 180.days
+```
+
 #### 修改最后一次 commit
 
 https://www.jianshu.com/p/882548efdc57
