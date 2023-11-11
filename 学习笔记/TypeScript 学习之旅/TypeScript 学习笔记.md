@@ -6554,17 +6554,23 @@ tsc --target ES5 --experimentalDecorators test.ts
 }
 ```
 
-在一个末日生存游戏里，你有一个安全屋和一张床，每次睡觉都可以恢复一定的精力，但是初始的床什么都没有，每天睡在木板上只能恢复20点精力，某天你出外搜寻了材料并制作了一个床垫，将床垫放在床上，每次睡觉可以额外恢复20点精力，之后你又找到了被絮和三件套，甚至还给床进行改装增加了按摩功能，每次睡觉可以额外恢复的精力越来越多了...
+在一个末日生存游戏里，你有一个安全屋和一张床，每次睡觉都可以恢复一定的精力，
+
+但是初始的床什么都没有，每天睡在木板上只能恢复20点精力，
+
+某天你出外搜寻了材料并制作了一个床垫，将床垫放在床上，每次睡觉可以额外恢复20点精力，
+
+之后你又找到了被絮和三件套，甚至还给床进行改装增加了按摩功能，每次睡觉可以额外恢复的精力越来越多了...
 
 在这个例子中，对于使用床的人而言，“睡觉”这个动作没有发生改变，床还是那张床，只不过我们通过床垫、被絮、按摩机增加了额外的功能。
 
 在程序设计中，它们就可以分别以装饰器的形式进行设计，再通过组合使床拥有全部的装饰特征。
 
-装饰者模式（Decorator Pattern）也称为装饰器模式，在不改变对象自身的基础上，动态增加额外的职责。
+**装饰者模式（Decorator Pattern）也称为装饰器模式，在不改变对象自身的基础上，动态增加额外的职责。**
 
-属于结构型模式的一种。
+**属于结构型模式的一种。**
 
-使用装饰者模式的优点：把对象核心职责和要装饰的功能分开了。非侵入式的行为修改。
+**使用装饰者模式的优点：把对象核心职责和要装饰的功能分开了。非侵入式的行为修改。**
 
 举个例子来说，
 
@@ -6691,7 +6697,35 @@ declaration
 declaration
 ```
 
+### 装饰器执行时机
+
+装饰器只在解释执行时应用一次，例如：
+
+```typescript
+function f(C) {
+  console.log('apply decorator')
+  return C
+}
+
+@f
+class A {}
+
+// output: apply decorator
+```
+
+这里的代码会在终端中打印`apply decorator`，即便我们其实并没有使用类A。
+
 ### 装饰器的分类
+
+在语法上，装饰器有如下几个特征。
+
+（1）第一个字符（或者说前缀）是`@`，后面是一个表达式。
+
+（2）`@`后面的表达式，必须是一个函数（或者执行后可以得到一个函数）。
+
+（3）这个函数接受所修饰对象的一些相关值作为参数。
+
+（4）这个函数要么不返回值，要么返回一个新对象取代所修饰的目标对象。
 
 参数装饰器（Parameter decorators）
 
@@ -6703,16 +6737,16 @@ declaration
 
 类装饰器（Class decorators）
 
-| 装饰器   | 参数装饰器                          | **方法装饰器**                  | **访问器装饰器**                | 属性装饰器          | **类装饰器**                         |
-| -------- | ----------------------------------- | ------------------------------- | :------------------------------ | ------------------- | ------------------------------------ |
-| 位置     | bar(@foo para: string) {}           | @foo public bar() {}            | @foo get bar()                  | @foo() bar: number  | @foo class Bar {}                    |
-| 传入参数 | target, propertyKey, parameterIndex | target, propertyKey, descriptor | target, propertyKey, descriptor | target, propertyKey | constructor                          |
-| 返回值   | 返回值被用作方法的属性描述符        | 返回值被用作方法的属性描述符    | 被忽略                          | 被忽略              | 用返回值提供的构造函数来替换类的声明 |
+|  装饰器  |             参数装饰器              |         **方法装饰器**          | **访问器装饰器**                |     属性装饰器      |             **类装饰器**             |
+| :------: | :---------------------------------: | :-----------------------------: | ------------------------------- | :-----------------: | :----------------------------------: |
+|   位置   |      bar(@foo para: string) {}      |      @foo  public bar() {}      | @foo get bar()                  | @foo() bar: number  |          @foo class Bar {}           |
+| 传入参数 | target, propertyKey, parameterIndex | target, propertyKey, descriptor | target, propertyKey, descriptor | target, propertyKey |             constructor              |
+|  返回值  |    返回值被用作方法的属性描述符     |  返回值被用作方法的属性描述符   | 被忽略                          |       被忽略        | 用返回值提供的构造函数来替换类的声明 |
 
 参数释义：
 
 - `constructor`: 类构造函数
-- `target`: 被装饰的对象，对于静态成员来说是类的构造函数，对于实例成员是类的原型对象。
+- `target`: 被装饰的对象，对于静态成员来说是类的构造函数，对于实例成员是类的原型。
 - `propertyKey`: 被装饰的属性，成员的名字
 - `descriptor`: 属性的描述，成员的属性描述符
 - `parameterIndex`: 参数在函数参数列表中的索引
@@ -6739,7 +6773,76 @@ class Bird {
 }
 ```
 
-### 装饰器的使用
+### 装饰器的基本使用
+
+**装饰器只能用于类和类的方法，不能用于函数，主要原因是存在函数提升。**
+
+JavaScript 的函数不管在代码的什么位置，都会提升到代码顶部。
+
+```ts
+addOne(1);
+function addOne(n:number) {
+  return n + 1;
+}
+```
+
+上面示例中，函数`addOne()`不会因为在定义之前执行而报错，原因就是函数存在提升，会自动提升到代码顶部。
+
+如果允许装饰器可以用于普通函数，那么就有可能导致意想不到的情况。
+
+```ts
+let counter = 0;
+
+let add = function (target:any) {
+  counter++;
+};
+
+@add
+function foo() {
+  //...
+}
+```
+
+上面示例中，本来的意图是装饰器`@add`每使用一次，变量`counter`就加`1`，但是实际上会报错，因为函数提升的存在，使得实际执行的代码是下面这样。
+
+```ts
+@add // 报错
+function foo() {
+  //...
+}
+
+let counter = 0;
+let add = function (target:any) {
+  counter++;
+};
+```
+
+上面示例中，`@add`还没有定义就调用了，从而报错。
+
+总之，由于存在函数提升，使得装饰器不能用于函数。类是不会提升的，所以就没有这方面的问题。
+
+另一方面，如果一定要装饰函数，可以采用高阶函数的形式直接执行，没必要写成装饰器。
+
+```js
+function doSomething(name) {
+  console.log('Hello, ' + name);
+}
+
+function loggingDecorator(wrapped) {
+  return function() {
+    console.log('Starting');
+    const result = wrapped.apply(this, arguments);
+    console.log('Finished');
+    return result;
+  }
+}
+
+const wrapped = loggingDecorator(doSomething);
+```
+
+上面示例中，`loggingDecorator()`是一个装饰器，只要把原始函数传入它执行，就能起到装饰器的效果。
+
+**类装饰器**
 
 定义 face.ts 文件：
 
@@ -6753,7 +6856,9 @@ class Girl {
 }
 ```
 
-编译成 js 代码，在运行时，会直接调用 thinFace 函数。这个装饰器作用在类上，称之为类装饰器。
+编译成 js 代码，在运行时，会直接调用 thinFace 函数。
+
+这个装饰器作用在类上，称之为类装饰器。
 
 如果需要附加多个功能，可以组合多个装饰器一起使用：
 
@@ -6772,7 +6877,7 @@ class Girl {
 }
 ```
 
-多个装饰器组合在一起，在运行时，要注意，调用顺序是 从下至上 依次调用，正好和书写的顺序相反。
+**多个装饰器组合在一起，在运行时，要注意，调用顺序是 从下至上 依次调用，正好和书写的顺序相反。**
 
 例子中给出的运行结果是：
 
@@ -6781,66 +6886,11 @@ class Girl {
 '开启瘦脸'
 ```
 
-下面代码中，smile 是一个装饰器，`@smile`语法规定了 greet 方法将使用 smile 装饰器
-
-装饰器 smile 本身其实是一个函数，
-
-它接收 target（被装饰的对象），propertyKey（被装饰的属性）和 descriptor（属性的描述）作为参数，
-
-本例中 ,
-
-target 表示 Greeter 的原型对象，即 Greeter.prototype，
-
-propertyKey 是 "greet" ，
-
-descriptor 是Greeter.prototype.greet 的属性描述对象，类似下面这样：
-
-```
-{
-  value: [Function],
-  writable: true,
-  enumerable: true,
-  configurable: true
-}
-```
-
-smile 方法本身没有返回任何值，只是执行简单的打印 "smile" 的功能
-
-```typescript
-function smile(
-  target: any,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-) {
-  console.log('smile');
-}
-
-class Greeter {
-  greeting: string;
-  constructor(message: string) {
-    this.greeting = message;
-  }
-  @smile
-  greet(name: string): string {
-    console.log(`welcome, ${name}!`);
-    return "Hello";
-  }
-}
-
-const g = new Greeter('msg');
-
-g.greet('tom');
-// "smile" 
-// "welcome, tom!" 
-```
-
-### 装饰器工厂
+**类装饰器（装饰器工厂）**
 
 **通过装饰器工厂方法，可以额外传参，普通装饰器无法传参。**
 
 有时需要给装饰器传递一些参数，这要借助于装饰器工厂函数。
-
-装饰器工厂函数实际上就是一个高阶函数，在调用后返回一个函数，返回的函数作为装饰器函数。
 
 ```typescript
 function thinFace(value: string){
@@ -6874,11 +6924,11 @@ class Girl {
 4-我是瘦脸的装饰器，要瘦脸50%
 ```
 
-根据不同场景确定"smile"的打印次数，
+根据不同场景确定 "smile" 的打印次数，
 
-greet方法执行的时候需要打印3次smile，
+greet 方法执行的时候需要打印 3 次smile，
 
-打印的次数可以作为参数传递给smile装饰器灵活控制
+打印的次数可以作为参数传递给 smile 装饰器灵活控制
 
 ```typescript
 function smile(times: number) {
@@ -6916,15 +6966,78 @@ g.greet('tom');
 
 经过上面的改造，smile 装饰器需接收 1 个参数，
 
-通过 @smile(3) 的形式使用装饰器即可在调用 greet 方法时打印3 次"smile"。
+通过 @smile(3) 的形式使用装饰器即可在调用 greet 方法时打印 3 次"smile"。
+
+**方法装饰器**
+
+下面代码中，smile 是一个装饰器，`@smile`语法规定了 greet 方法将使用 smile 装饰器
+
+装饰器 smile 本身其实是一个函数，
+
+它接收 target（被装饰的对象），propertyKey（被装饰的属性）和 descriptor（属性的描述）作为参数，
+
+本例中 ,
+
+target 表示 Greeter 的原型对象，即 Greeter.prototype，
+
+propertyKey 是 "greet" ，
+
+descriptor 是Greeter.prototype.greet 的属性描述对象，类似下面这样：
+
+```js
+{
+  value: [Function],
+  writable: true,
+  enumerable: true,
+  configurable: true
+}
+```
+
+descriptor.value 用于重写方法 ，顶替掉原来的方法。
+
+
+
+smile 方法本身没有返回任何值，只是执行简单的打印 "smile" 的功能
+
+```typescript
+function smile(
+  target: any,
+  propertyKey: string,
+  descriptor: PropertyDescriptor
+) {
+  console.log('smile');
+}
+
+class Greeter {
+  greeting: string;
+  constructor(message: string) {
+    this.greeting = message;
+  }
+  @smile
+  greet(name: string): string {
+    console.log(`welcome, ${name}!`);
+    return "Hello";
+  }
+}
+
+const g = new Greeter('msg');
+
+g.greet('tom');
+// "smile" 
+// "welcome, tom!" 
+```
 
 ### 类装饰器
 
 作用在类声明上的装饰器，可以给我们改变类的机会，通过类装饰器扩展类的属性和方法。
 
+**类装饰器有唯一参数，就是构造器（类本身），可以在装饰器内部，对构造器进行各种改造。**
+
+**类装饰器可以没有返回值，如果有返回值，就会替代所装饰的类的构造函数。**
+
 下面代码中，
 
-activate 装饰器的 target 参数指代 Greeter 构造器，该装饰器修改了 Greeter 类的 static 属性 active 的值
+activate 装饰器的 target 参数指代 Greeter 构造器，该装饰器修改了 Greeter 类的 static 属性 active 的值：
 
 ```typescript
 function activate(target: any) {
@@ -6947,7 +7060,168 @@ class Greeter {
 console.log(Greeter.active); // true
 ```
 
+装饰器实现重新修改 Employee 类属性与重载 Employee 类方法：
+
+```ts
+const extension = (constructor: Function) => {
+  constructor.prototype.coreHour = '10:00-15:00'
+
+  constructor.prototype.meeting = () => {
+    console.log('重载：Daily meeting!');
+  }
+}
+
+@extension
+class Employee {
+  public name!: string
+  public department!: string
+
+  constructor(name: string, department: string) {
+    this.name = name
+    this.department = department
+  }
+
+  meeting() {
+    console.log('Every Monday!')
+  }
+}
+
+let e: any = new Employee('Tom', 'IT')
+console.log(e.coreHour) // 10:00-15:00
+e.meeting()             // 重载：Daily meeting!
+```
+
+可以添加一个 toString 方法给所有的类来覆盖它原有的 toString 方法。
+
+```ts
+type Consturctor = { new (...args: any[]): any };
+
+function toString<T extends Consturctor>(BaseClass: T) {
+  return class extends BaseClass {
+    toString() {
+      return JSON.stringify(this);
+    }
+  };
+}
+
+@toString
+class C {
+  public foo = "foo";
+  public num = 24;
+}
+
+console.log(new C().toString())
+// -> {"foo":"foo","num":24}
+```
+
+因此，下面的代码我们可以得出以下结论:
+
+- `Controller` 装饰器声明在类声明之前,并且不携带分号;
+- 在 `Controller` 函数中的参数 `params` 就是 `Services` 类;
+- 可以在不修改类的前提上扩展类和方法;
+
+```ts
+function Controller(params: any) {
+  console.log(params === Services); // true
+  params.prototype.moment = "777";
+}
+
+@Controller
+class Services {
+  constructor() {}
+
+  getMoment() {}
+}
+
+const s: any = new Services();
+console.log(s.moment); // 777
+```
+
+在上面的例子中,它是一个普通的装饰器，它无法传参，传参会报错
+
+#### 装饰器工厂（返回函数或类的类装饰器）
+
+如果想传参就要定义一个装饰器工厂，
+
+装饰器工厂很简单，它也是一个函数，和前面不同的是，它返回一个函数，
+
+**装饰器工厂实际上就是一个高阶函数，在调用后返回一个函数，返回的函数作为装饰器函数。**
+
+**这个被返回的函数接收一个参数，这个参数就是被装饰的类。**
+
+具体代码如下所示：
+
+```ts
+function Controller(params: string) {
+  console.log(params); // moment
+
+  return function (target) {
+    console.log(target === Services); // true
+    target.prototype[params] = 777;
+  };
+}
+
+@Controller("moment")
+class Services {
+  constructor() {}
+
+  getMoment() {}
+}
+
+const s: any = new Services();
+console.log(s.moment); // 777
+```
+
 在执行装饰器函数时，会把类构造函数传递给装饰器函数。
+
+由于 JavaScript 的类等同于构造函数的语法糖，所以装饰器通常返回一个新的类，对原有的类进行修改或扩展。
+
+```ts
+function decorator(target:any) {
+  return class extends target {
+    value = 123;  
+  };
+}
+
+@decorator
+class Foo {
+  value = 456;
+}
+
+const foo = new Foo();
+console.log(foo.value); // 123
+```
+
+上面示例中，装饰器`decorator`返回一个新的类，替代了原来的类。
+
+上例的装饰器参数`target`类型是`any`，可以改成构造方法，这样就更准确了。
+
+```ts
+type Constructor = {
+  new(...args: any[]): {}
+};
+
+function decorator<T extends Constructor> (
+  target: T
+) {
+  return class extends target {
+    value = 123;  
+  };
+}
+```
+
+这时，装饰器的行为就是下面这样。
+
+```ts
+@decorator
+class A {}
+
+// 等同于
+class A {}
+A = decorator(A) || A;
+```
+
+装饰器工厂实现扩展 Employee 类属性与重载 Employee 类方法：
 
 ```typescript
 function extension<T extends { new(...args:any[]): {} }>(constructor: T) {
@@ -6983,60 +7257,135 @@ console.log(e) // Employee { name: 'Tom', department: 'IT', coreHour: '10:00-15:
 e.meeting()    // 重载：Daily meeting!
 ```
 
+### 属性装饰器
 
+属性装饰器函数接受两个参数。
+
+- target：（对于实例属性）类的原型对象（prototype），或者（对于静态属性）类的构造函数。
+- propertyKey：所装饰属性的属性名，注意类型有可能是字符串，也有可能是 Symbol 值。
+
+```ts
+function Controller(params) {
+  return function (target: any, attribute: any) {
+    console.log(target); 
+    console.log(attribute);
+    console.log(params);
+  };
+}
+
+class Services {
+  @Controller("nba")
+  public moment: number;
+}
+
+const s: any = new Services();
+// Services {}
+// "nba"
+```
+
+属性装饰器也可以用来给类添加额外的方法和属性。 例如我们可以写一个装饰器来给某些属性添加监听器。
 
 ```typescript
-const extension = (constructor: Function) => {
-  constructor.prototype.coreHour = '10:00-15:00'
-
-  constructor.prototype.meeting = () => {
-    console.log('重载：Daily meeting!');
-  }
+function capitalizeFirstLetter(str: string) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
-@extension
-class Employee {
-  public name!: string
-  public department!: string
+function observable(target: any, key: string): any {
+  // prop -> onPropChange
+  const targetKey = "on" + capitalizeFirstLetter(key) + "Change";
 
-  constructor(name: string, department: string) {
-    this.name = name
-    this.department = department
-  }
-
-  meeting() {
-    console.log('Every Monday!')
-  }
+  target[targetKey] =
+    function (fn: (prev: any, next: any) => void) {
+      let prev = this[key];
+      Reflect.defineProperty(this, key, {
+        set(next) {
+          fn(prev, next);
+          prev = next;
+        }
+      })
+    };
 }
 
-let e: any = new Employee('Tom', 'IT')
-console.log(e.coreHour) // 10:00-15:00
-e.meeting()             // 重载：Daily meeting!
+class C {
+  @observable
+  foo = -1;
+
+  @observable
+  bar = "bar";
+}
+
+const c = new C();
+
+c.onFooChange((prev, next) => console.log(`prev: ${prev}, next: ${next}`))
+c.onBarChange((prev, next) => console.log(`prev: ${prev}, next: ${next}`))
+
+c.foo = 100; // -> prev: -1, next: 100
+c.foo = -3.14; // -> prev: 100, next: -3.14
+c.bar = "baz"; // -> prev: bar, next: baz
+c.bar = "sing"; // -> prev: baz, next: sing
 ```
 
 ### 方法装饰器
 
+方法装饰器将在运行时作为函数调用，方法装饰器一共可以接受三个参数：
+
+- target：（对于类的静态方法）类的构造函数，或者（对于类的实例方法）类的原型。
+- propertyKey：所装饰方法的方法名，类型为`string|symbol`。
+- descriptor：所装饰方法的描述对象。
+
+```ts
+function Controller(params: any) {
+  return function (target: any, attribute: any, descriptor: any) {
+    const method = descriptor.value;
+
+    descriptor.value = function (value: string) {
+      method.call(this, value);
+
+      return value.toLocaleUpperCase();
+    };
+  };
+}
+
+class Http {
+  constructor() {}
+
+  @Controller("sss")
+  getDate() {
+    console.log(666666);
+  }
+}
+
+const foo: any = new Http();
+
+console.log(foo.getDate("nba"));
+// 666666
+// 每当 .getDate() 调用一次，控制台就会打印出运行结果。
+// NBA
+```
+
+
+
 ```typescript
- function log(
-      target: Object,
-      propertyName: string,
-      descriptor: TypedPropertyDescriptor<(...args: any[]) => any>
-    ) {
-      const method = descriptor.value;
-      descriptor.value = function(...args: any[]) {
-        // 将参数转为字符串
-        const params: string = args.map(a => JSON.stringify(a)).join();
+function log(
+  target: Object,
+  propertyName: string,
+  descriptor: TypedPropertyDescriptor<(...args: any[]) => any>
+) {
+  const method = descriptor.value;
+  descriptor.value = function(...args: any[]) {
+    // 将参数转为字符串
+    const params: string = args.map(a => JSON.stringify(a)).join();
 
-        const result = method!.apply(this, args);
+    const result = method!.apply(this, args);
 
-        // 将结果转为字符串
-        const resultString: string = JSON.stringify(result);
+    // 将结果转为字符串
+    const resultString: string = JSON.stringify(result);
 
-        console.log(`Call:${propertyName}(${params}) => ${resultString}`);
+    console.log(`Call:${propertyName}(${params}) => ${resultString}`);
 
-        return result;
-      };
-    }
+    return result;
+  };
+}
 
 class Author {
   constructor(private firstName: string, private lastName: string) {}
@@ -7078,6 +7427,59 @@ class C {
 // => bar(): called
 // => foo(): called
 ```
+
+### 参数装饰器（方法参数装饰器）
+
+参数装饰器接受三个参数。
+
+- target：（对于静态方法）类的构造函数，或者（对于类的实例方法）类的原型对象。
+- propertyKey：所装饰的方法的名字，类型为`string|symbol`。
+- parameterIndex：当前参数在方法的参数序列的位置（从0开始）。
+
+```ts
+function Log(target: Function, key: string, parameterIndex: number) {
+  let functionLogged = key || target.prototype.constructor.name;
+  console.log(`The parameter in position ${parameterIndex} at ${functionLogged} has
+	been decorated`);
+}
+
+class Greeter {
+  greeting: string;
+  constructor(@Log phrase: string) {
+    this.greeting = phrase;
+  }
+}
+// "The parameter in position 0 at Greeter has been decorated"
+```
+
+```ts
+function log(
+  target: Object,
+  propertyKey: string|symbol,
+  parameterIndex: number
+) {
+  console.log(`${String(propertyKey)} NO.${parameterIndex} Parameter`);
+}
+
+class C {
+  member(
+    @log x:number,
+    @log y:number
+  ) {
+    console.log(`member Parameters: ${x} ${y}`);
+  }
+}
+
+const c = new C();
+c.member(5, 5);
+// member NO.1 Parameter
+// member NO.0 Parameter 
+// member Parameters: 5 5 
+```
+
+上面示例中，参数装饰器会输出参数的位置序号。注意，后面的参数会先输出。
+
+跟其他装饰器不同，参数装饰器主要用于输出信息，没有办法修改类的行为。
 
 ### 装饰器的执行优先级
 
